@@ -14,12 +14,14 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "../../../src/hooks/useTheme";
 import { useEffect, useState } from "react";
+import api from "../../services/apiClient.js";
 
 const { width } = Dimensions.get("window");
 const CARD_W = (width - 48) / 2;
 
 export default function VehicleModelScreen() {
-  const { brandSlug } = useLocalSearchParams();
+  // ✅ Also accept the full brand object so we can forward it to specs
+  const { type, brandSlug, brandData } = useLocalSearchParams();
   const router = useRouter();
   const { theme } = useTheme();
 
@@ -27,18 +29,20 @@ export default function VehicleModelScreen() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchModels();
-  }, []);
+    if (brandSlug) {
+      fetchModels();
+    }
+  }, [brandSlug]);
 
   const fetchModels = async () => {
     try {
-      const res = await fetch(
-        `http://10.0.2.2:8000/api/vehicles/models/${brandSlug}`,
-      );
-      const data = await res.json();
-      setModels(data);
+      const res = await api.get(`/vehicles/models/${brandSlug}`, {
+        params: { type },
+      });
+
+      setModels(res.data);
     } catch (err) {
-      console.log("Model fetch error:", err);
+      console.log("Model fetch error:", err.response?.data || err.message);
     } finally {
       setLoading(false);
     }
@@ -47,7 +51,12 @@ export default function VehicleModelScreen() {
   const handleSelectModel = (model) => {
     router.push({
       pathname: "/vehicle/specs",
-      params: { brandSlug, model: JSON.stringify(model) },
+      params: {
+        type,
+        brandSlug,
+        brandData,
+        model: JSON.stringify(model),
+      },
     });
   };
 
@@ -56,7 +65,7 @@ export default function VehicleModelScreen() {
   const textPrimary = isDark ? "#f5f5f5" : "#111111";
   const textSecondary = isDark ? "#8e8e93" : "#6b6b6b";
   const border = isDark ? "#3a3a3c" : "#e8e8e8";
-  const accent = "#004cff";
+  const accent = "#0037ff";
   const cardBg = isDark ? "#2c2c2e" : "#f9f9f9";
 
   const renderItem = ({ item }) => (
@@ -68,7 +77,6 @@ export default function VehicleModelScreen() {
       onPress={() => handleSelectModel(item)}
       activeOpacity={0.72}
     >
-      {/* Model Image */}
       <View style={[styles.imageWrap, { backgroundColor: cardBg }]}>
         <Image
           source={{ uri: item.thumbnailUrl }}
@@ -76,8 +84,6 @@ export default function VehicleModelScreen() {
           resizeMode="contain"
         />
       </View>
-
-      {/* Info */}
       <View style={styles.cardBody}>
         <Text
           style={[styles.modelName, { color: textPrimary }]}
@@ -91,8 +97,6 @@ export default function VehicleModelScreen() {
           </View>
         </View>
       </View>
-
-      {/* Arrow */}
       <View style={[styles.arrowCircle, { backgroundColor: accent }]}>
         <Ionicons name="chevron-forward" size={12} color="#fff" />
       </View>
@@ -119,7 +123,6 @@ export default function VehicleModelScreen() {
       style={{ flex: 1, backgroundColor: theme.colors.background }}
       edges={["top"]}
     >
-      {/* Header */}
       <View style={[styles.header, { borderBottomColor: border }]}>
         <TouchableOpacity onPress={() => router.back()} style={styles.backBtn}>
           <Ionicons
@@ -134,18 +137,17 @@ export default function VehicleModelScreen() {
         <View style={styles.headerRight} />
       </View>
 
-      {/* Hero */}
       <View style={styles.heroWrap}>
         <Text style={[styles.heroEyebrow, { color: accent }]}>STEP 2 OF 3</Text>
         <Text style={[styles.heroTitle, { color: textPrimary }]}>
-          Select your{"\n"}car model
+          Select your{"\n"}
+          {type === "bike" ? "bike" : "car"} model
         </Text>
         <Text style={[styles.heroSub, { color: textSecondary }]}>
           {models.length} model{models.length !== 1 ? "s" : ""} available
         </Text>
       </View>
 
-      {/* Grid */}
       <FlatList
         data={models}
         keyExtractor={(item) => item.slug}
@@ -179,12 +181,7 @@ const styles = StyleSheet.create({
   backBtn: { minWidth: 44 },
   headerTitle: { fontSize: 16, fontWeight: "700", letterSpacing: 0.3 },
   headerRight: { minWidth: 44 },
-
-  heroWrap: {
-    paddingHorizontal: 20,
-    paddingTop: 22,
-    paddingBottom: 18,
-  },
+  heroWrap: { paddingHorizontal: 20, paddingTop: 22, paddingBottom: 18 },
   heroEyebrow: {
     fontSize: 11,
     fontWeight: "700",
@@ -199,10 +196,8 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   heroSub: { fontSize: 13, fontWeight: "500" },
-
   grid: { paddingHorizontal: 12, paddingBottom: 40 },
   columnWrapper: { gap: 12, marginBottom: 12 },
-
   card: {
     borderRadius: 16,
     borderWidth: StyleSheet.hairlineWidth,
@@ -213,7 +208,6 @@ const styles = StyleSheet.create({
     shadowRadius: 6,
     elevation: 3,
   },
-
   imageWrap: {
     width: "100%",
     height: 120,
@@ -221,11 +215,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingVertical: 12,
   },
-  modelImage: {
-    width: "85%",
-    height: 90,
-  },
-
+  modelImage: { width: "85%", height: 90 },
   cardBody: {
     paddingHorizontal: 12,
     paddingTop: 10,
@@ -239,17 +229,8 @@ const styles = StyleSheet.create({
     lineHeight: 20,
   },
   badgeRow: { flexDirection: "row" },
-  badge: {
-    paddingHorizontal: 8,
-    paddingVertical: 3,
-    borderRadius: 6,
-  },
-  badgeText: {
-    fontSize: 10,
-    fontWeight: "700",
-    letterSpacing: 0.5,
-  },
-
+  badge: { paddingHorizontal: 8, paddingVertical: 3, borderRadius: 6 },
+  badgeText: { fontSize: 10, fontWeight: "700", letterSpacing: 0.5 },
   arrowCircle: {
     position: "absolute",
     top: 10,
@@ -260,14 +241,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-
-  emptyWrap: {
-    alignItems: "center",
-    paddingTop: 60,
-    gap: 12,
-  },
-  emptyText: {
-    fontSize: 14,
-    textAlign: "center",
-  },
+  emptyWrap: { alignItems: "center", paddingTop: 60, gap: 12 },
+  emptyText: { fontSize: 14, textAlign: "center" },
 });

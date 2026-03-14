@@ -35,6 +35,6 @@ export default function AccountScreen() {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 16,
-    paddingBottom: 40,
+    paddingBottom: 80,
   },
 });

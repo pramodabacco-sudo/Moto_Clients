@@ -1,16 +1,9 @@
 import { StyleSheet, Animated } from "react-native";
 import { useTheme } from "../../../hooks/useTheme";
-import HomeHeader from "./HomeHeader";
 import SearchBar from "./SearchBar";
 
 export default function StickyHeader({ scrollY }) {
   const { theme } = useTheme();
-
-  const elevation = scrollY?.interpolate({
-    inputRange: [0, 20],
-    outputRange: [0, 8],
-    extrapolate: "clamp",
-  });
 
   const shadowOpacity = scrollY?.interpolate({
     inputRange: [0, 20],
@@ -18,7 +11,7 @@ export default function StickyHeader({ scrollY }) {
     extrapolate: "clamp",
   });
 
-  const borderBottomOpacity = scrollY?.interpolate({
+  const borderOpacity = scrollY?.interpolate({
     inputRange: [0, 20],
     outputRange: [0, 1],
     extrapolate: "clamp",
@@ -30,13 +23,12 @@ export default function StickyHeader({ scrollY }) {
         styles.container,
         {
           backgroundColor: theme.colors.background,
-          elevation,
           shadowOpacity,
-          borderBottomColor: Animated.multiply(borderBottomOpacity, 1),
+          borderBottomColor: theme.colors.border,
+          borderBottomWidth: StyleSheet.hairlineWidth,
         },
       ]}
     >
-      <HomeHeader />
       <SearchBar />
     </Animated.View>
   );
@@ -45,8 +37,7 @@ export default function StickyHeader({ scrollY }) {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 16,
-    paddingTop: 10,
-    paddingBottom: 14,
+    paddingVertical: 10,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 4 },
     shadowRadius: 10,

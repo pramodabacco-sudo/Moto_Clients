@@ -3,6 +3,7 @@ export const ENDPOINTS = {
     SEND_OTP: "/auth/send-otp",
     VERIFY_OTP: "/auth/verify-otp",
     ME: "/auth/me",
+    VEHICLES: "/auth/vehicles",
   },
   GARAGES: {
     LIST: "/garages",

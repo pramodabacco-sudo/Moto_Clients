@@ -5,11 +5,11 @@ import { Platform } from "react-native";
 const getBaseURL = () => {
   if (Platform.OS === "android") {
     // Android Emulator
-    return "http://10.0.2.2:8000/api";
+    return "https://ld3bgq17-8000.inc1.devtunnels.ms/api";
   }
 
   // iOS Simulator
-  return "http://localhost:8000/api";
+  return "https://ld3bgq17-8000.inc1.devtunnels.ms/api";
 };
 
 const api = axios.create({

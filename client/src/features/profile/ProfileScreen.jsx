@@ -16,6 +16,7 @@ import { useRouter } from "expo-router";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useTheme } from "../../hooks/useTheme";
 import AppButton from "../../components/ui/AppButton";
+import { useLoginSheet } from "../../providers/LoginSheetProvider";
 
 const { width } = Dimensions.get("window");
 
@@ -23,13 +24,14 @@ export default function ProfileScreen() {
   const { user, loading, fetchProfile, logout } = useContext(AuthContext);
   const { theme } = useTheme();
   const router = useRouter();
+  const { openLoginSheet } = useLoginSheet();
 
   // ─── Auth Guard ───────────────────────────────────────
-  useEffect(() => {
-    if (!loading && !user) {
-      router.replace("/login");
-    }
-  }, [loading, user]);
+ useEffect(() => {
+   if (!loading && !user) {
+     openLoginSheet();
+   }
+ }, [loading, user]);
 
   // Refresh profile every time this screen mounts
   useEffect(() => {
@@ -37,7 +39,7 @@ export default function ProfileScreen() {
   }, []);
 
   // ─── Loading / unauthenticated state ─────────────────
-  if (loading || !user) {
+  if (loading) {
     return (
       <SafeAreaView
         style={[styles.safe, { backgroundColor: theme.colors.background }]}

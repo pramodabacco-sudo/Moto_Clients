@@ -20,6 +20,18 @@ function slugify(text) {
     .replace(/--+/g, "-");
 }
 
+const carType = await prisma.vehicleType.upsert({
+  where: { name: "Car" },
+  update: {},
+  create: { name: "Car" },
+});
+
+const bikeType = await prisma.vehicleType.upsert({
+  where: { name: "Bike" },
+  update: {},
+  create: { name: "Bike" },
+});
+
 async function main() {
   console.log("📄 Reading Excel file...");
 
@@ -87,6 +99,7 @@ async function main() {
             ? Number(row["Original Price"])
             : null,
           sectionId: currentSection.id,
+          vehicleTypeId: carType.id,
         },
       });
 

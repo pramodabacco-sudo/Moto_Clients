@@ -101,19 +101,85 @@ export const updateProfile = async (req, res, next) => {
 // ─────────────────────────────────────────────
 export const addVehicle = async (req, res, next) => {
   try {
-    const { registration, company, model } = req.body;
+    const {
+      vehicleType = "car",
+      brandSlug,
+      modelSlug,
+      fuelType,
+      registration,
+    } = req.body;
 
-    const vehicle = await prisma.vehicle.create({
-      data: {
-        registration,
-        company,
-        model,
-        userId: req.user.id,
+    // 1. Find vehicle type
+    const type = await prisma.vehicleType.findFirst({
+      where: {
+        name: {
+          equals: vehicleType,
+          mode: "insensitive",
+        },
       },
     });
 
-    res.status(201).json({ success: true, data: vehicle });
+    if (!type) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Invalid vehicle type" });
+    }
+
+    // 2. Find brand
+    const brand = await prisma.brand.findFirst({
+      where: {
+        name: {
+          equals: brandSlug,
+          mode: "insensitive",
+        },
+      },
+    });
+
+    if (!brand) {
+      return res.status(400).json({ success: false, message: "Invalid brand" });
+    }
+
+    // 3. Find model
+    const model = await prisma.model.findFirst({
+      where: {
+        brandId: brand.id,
+        name: {
+          equals: modelSlug,
+          mode: "insensitive",
+        },
+      },
+    });
+
+    if (!model) {
+      return res.status(400).json({ success: false, message: "Invalid model" });
+    }
+
+    // 4. Create vehicle with relation connections
+    const vehicle = await prisma.vehicle.create({
+      data: {
+        user: {
+          connect: { id: req.user.id },
+        },
+        vehicleType: {
+          connect: { id: type.id },
+        },
+        brand: {
+          connect: { id: brand.id },
+        },
+        model: {
+          connect: { id: model.id },
+        },
+        fuelType: fuelType ?? null,
+        registration: registration ?? null,
+      },
+    });
+
+    res.status(201).json({
+      success: true,
+      data: vehicle,
+    });
   } catch (err) {
+    console.error("Vehicle create error:", err);
     next(err);
   }
 };

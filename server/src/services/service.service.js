@@ -1,27 +1,74 @@
-import  {PrismaClient} from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
+
 const prisma = new PrismaClient();
 
 /**
- * Get all main services
+ * Resolve vehicleType name → id
  */
-const getMainServices = async () => {
+const getVehicleTypeId = async (vehicleType) => {
+  if (!vehicleType) return null;
+
+  const type = await prisma.vehicleType.findFirst({
+    where: {
+      name: {
+        equals: vehicleType,
+        mode: "insensitive",
+      },
+    },
+  });
+
+  return type ? type.id : null;
+};
+
+/**
+ * Get all main services
+ * Supports vehicle filtering
+ */
+const getMainServices = async (vehicleType) => {
+  const vehicleTypeId = await getVehicleTypeId(vehicleType);
+
+  if (!vehicleTypeId) {
+    return await prisma.mainService.findMany({
+      where: { isActive: true },
+      orderBy: { createdAt: "asc" },
+    });
+  }
+
   return await prisma.mainService.findMany({
-    where: { isActive: true },
+    where: {
+      isActive: true,
+      sections: {
+        some: {
+          services: {
+            some: {
+              vehicleTypeId,
+              isActive: true,
+            },
+          },
+        },
+      },
+    },
     orderBy: { createdAt: "asc" },
   });
 };
 
 /**
- * Get one main service with sections + sub services
+ * Get one main service with sections + services
+ * filtered by vehicle
  */
-const getMainServiceById = async (id) => {
+const getMainServiceById = async (id, vehicleType) => {
+  const vehicleTypeId = await getVehicleTypeId(vehicleType);
+
   return await prisma.mainService.findUnique({
     where: { id },
     include: {
       sections: {
         include: {
           services: {
-            where: { isActive: true },
+            where: {
+              isActive: true,
+              ...(vehicleTypeId && { vehicleTypeId }),
+            },
             orderBy: { createdAt: "asc" },
           },
         },
@@ -30,9 +77,18 @@ const getMainServiceById = async (id) => {
   });
 };
 
-const getSubServiceById = async (id) => {
-  return await prisma.service.findUnique({
-    where: { id },
+/**
+ * Get one sub service
+ * validate vehicle type
+ */
+const getSubServiceById = async (id, vehicleType) => {
+  const vehicleTypeId = await getVehicleTypeId(vehicleType);
+
+  return await prisma.service.findFirst({
+    where: {
+      id,
+      ...(vehicleTypeId && { vehicleTypeId }),
+    },
     include: {
       section: {
         include: {
@@ -42,8 +98,6 @@ const getSubServiceById = async (id) => {
     },
   });
 };
-
-
 
 export default {
   getMainServices,

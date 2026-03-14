@@ -4,6 +4,7 @@ import MembershipCards from "./MembershipCards";
 import CuratedServices from "./CuratedServices";
 import AssistBanner from "./AssistBanner";
 import { PROMO_BANNERS } from "../data/home.data";
+import VehicleSelector from "./VehicleSelector";
 
 export default function SectionRenderer({ section }) {
   switch (section.type) {
@@ -12,6 +13,14 @@ export default function SectionRenderer({ section }) {
 
     case "services":
       return <ServiceGrid services={section.data || []} />;
+
+    case "vehicleSelector":
+      return (
+        <VehicleSelector
+          selected={section.selected}
+          onChange={section.onChange}
+        />
+      );
 
     case "membership":
       return <MembershipCards />;

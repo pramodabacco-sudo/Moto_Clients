@@ -7,6 +7,7 @@
       {
         "name": "Nexon",
         "slug": "nexon",
+        "segment": "SUV",
         "thumbnailUrl": "https://s7ap1.scene7.com/is/image/tatamotors/PureGrey-30-3?$PO-750-500-S$&fit=crop&fmt=avif-alpha",
         "heroUrl": "https://s7ap1.scene7.com/is/image/tatamotors/PureGrey-30-3?$PO-750-500-S$&fit=crop&fmt=avif-alpha",
         "yearVariants": {
@@ -19,6 +20,7 @@
       {
         "name": "Nexon EV",
         "slug": "nexon-ev",
+        "segment": "SUV",
             "thumbnailUrl": "https://images.91wheels.com/assets/c_images/gallery/tata/nexon-ev/tata-nexon-ev-0-1738987688.jpg?w=840&q=50",
             "heroUrl": "https://images.91wheels.com/assets/c_images/gallery/tata/nexon-ev/tata-nexon-ev-0-1738987688.jpg?w=840&q=50",
         "yearVariants": {
@@ -31,6 +33,7 @@
       {
         "name": "Punch",
         "slug": "punch",
+        "segment": "Hatchback",
         "thumbnailUrl": "https://s7ap1.scene7.com/is/image/tatamotorsstage/DaytonaGrey-29-6?$PO-750-500-S$&fit=crop&fmt=avif-alpha",
         "heroUrl": "https://s7ap1.scene7.com/is/image/tatamotorsstage/DaytonaGrey-29-6?$PO-750-500-S$&fit=crop&fmt=avif-alpha",
         "yearVariants": {
@@ -43,6 +46,7 @@
       {
         "name": "Punch EV",
         "slug": "punch-ev",
+        "segment": "Hatchback",
         "thumbnailUrl": "https://images.91wheels.com/assets/b_images/main/models/profile/profile1749469046.jpg?w=840&q=50",
         "heroUrl": "https://images.91wheels.com/assets/b_images/main/models/profile/profile1749469046.jpg?w=840&q=50",
         "yearVariants": {
@@ -55,6 +59,7 @@
       {
         "name": "Harrier",
         "slug": "harrier",
+         "segment": "SUV",
         "thumbnailUrl": "https://s7ap1.scene7.com/is/image/tatamotorsperf/PebbleGrey-30?$PO-750-500-S$&fit=crop&fmt=avif-alpha",
         "heroUrl": "https://s7ap1.scene7.com/is/image/tatamotorsperf/PebbleGrey-30?$PO-750-500-S$&fit=crop&fmt=avif-alpha",
         "yearVariants": {
@@ -67,6 +72,7 @@
       {
         "name": "Harrier EV",
         "slug": "harrier-ev",
+        "segment": "SUV",
         "thumbnailUrl": "https://s7ap1.scene7.com/is/image/tatamotors/AshGrey-30?$PO-750-500-S$&fit=crop&fmt=avif-alpha",
         "heroUrl": "https://images.91wheels.com/assets/b_images/main/models/profile/profile1749037110.jpg?w=600&q=60",
         "yearVariants": {
@@ -79,6 +85,7 @@
       {
         "name": "Safari",
         "slug": "safari",
+        "segment": "SUV",
         "thumbnailUrl": "https://s7ap1.scene7.com/is/image/tatamotors/StardustAsh-30-1?$PO-750-500-S$&fit=crop&fmt=avif-alpha",
         "heroUrl":"https://s7ap1.scene7.com/is/image/tatamotors/StardustAsh-30-1?$PO-750-500-S$&fit=crop&fmt=avif-alpha",
         "yearVariants": {
@@ -91,6 +98,7 @@
       {
         "name": "Tiago",
         "slug": "tiago",
+        "segment": "Hatchback",
         "thumbnailUrl": "https://s7ap1.scene7.com/is/image/tatamotors/PolarWhiteDT-30?$PO-750-500-S$&fit=crop&fmt=avif-alpha",
         "heroUrl": "https://s7ap1.scene7.com/is/image/tatamotors/PolarWhiteDT-30?$PO-750-500-S$&fit=crop&fmt=avif-alpha",
         "yearVariants": {
@@ -103,6 +111,7 @@
       {
         "name": "Tiago EV",
         "slug": "tiago-ev",
+        "segment": "Hatchback",
         "thumbnailUrl": "https://s7ap1.scene7.com/is/image/tatapassenger/daytonagrey-30?$PO-750-500-S$&fit=crop&fmt=avif-alpha",
         "heroUrl": "https://s7ap1.scene7.com/is/image/tatapassenger/daytonagrey-30?$PO-750-500-S$&fit=crop&fmt=avif-alpha",
         "yearVariants": {
@@ -115,6 +124,7 @@
       {
         "name": "Tigor",
         "slug": "tigor",
+        "segment": "Sedan",
         "thumbnailUrl": "https://s7ap1.scene7.com/is/image/tatamotors/OpalWhite-30-4?$PO-850-600-S$&fit=crop&fmt=avif-alpha",
         "heroUrl": "https://s7ap1.scene7.com/is/image/tatamotors/OpalWhite-30-4?$PO-850-600-S$&fit=crop&fmt=avif-alpha",
         "yearVariants": {
@@ -127,6 +137,7 @@
       {
         "name": "Tigor EV",
         "slug": "tigor-ev",
+        "segment": "Sedan",
         "thumbnailUrl": "https://s7ap1.scene7.com/is/image/tatapassenger/DaytonaGrey-30-1?$PO-850-600-S$&fit=crop&fmt=avif-alpha",
         "heroUrl": "https://s7ap1.scene7.com/is/image/tatapassenger/DaytonaGrey-30-1?$PO-850-600-S$&fit=crop&fmt=avif-alpha",
         "yearVariants": {
@@ -139,6 +150,7 @@
       {
         "name": "Altroz",
         "slug": "altroz",
+        "segment": "Hatchback",
         "thumbnailUrl": "https://s7ap1.scene7.com/is/image/tatamotors/PrestineWhite-30-1?$PO-750-500-S$&fit=crop&fmt=avif-alpha",
         "heroUrl": "https://s7ap1.scene7.com/is/image/tatamotors/PrestineWhite-30-1?$PO-750-500-S$&fit=crop&fmt=avif-alpha",
         "yearVariants": {
@@ -151,6 +163,7 @@
       {
         "name": "Altroz Racer",
         "slug": "altroz-racer",
+        "segment": "Hatchback",
         "thumbnailUrl": "https://images.91wheels.com/assets/b_images/main/models/profile/profile1744785602.jpg?w=840&q=50",
         "heroUrl": "https://images.91wheels.com/assets/b_images/main/models/profile/profile1744785602.jpg?w=840&q=50",
         "yearVariants": {
@@ -163,6 +176,7 @@
       {
         "name": "CURVV",
         "slug": "curvv",
+        "segment": "SUV_Coupe",
         "thumbnailUrl": "https://s7ap1.scene7.com/is/image/tatamotors/PristineWhite-1-3?$PO-750-500-S$&fit=crop&fmt=avif-alpha",
         "heroUrl": "https://s7ap1.scene7.com/is/image/tatamotors/PristineWhite-1-3?$PO-750-500-S$&fit=crop&fmt=avif-alpha",
         "yearVariants": {
@@ -175,6 +189,7 @@
       {
         "name": "CURVV EV",
         "slug": "curvv-ev",
+        "segment": "SUV_Coupe",
         "thumbnailUrl": "https://s7ap1.scene7.com/is/image/tatapassenger/puregrey-29-2?$PO-750-500-S$&fit=crop&fmt=webp-alpha",
         "heroUrl": "https://s7ap1.scene7.com/is/image/tatapassenger/puregrey-29-2?$PO-750-500-S$&fit=crop&fmt=webp-alpha",
         "yearVariants": {
@@ -187,6 +202,7 @@
       {
         "name": "SIERRA",
         "slug": "sierra",
+        "segment": "SUV",
         "thumbnailUrl": "https://s7ap1.scene7.com/is/image/tatamotors/AndamanAdventure-30?$PO-1228-468-S$&fit=crop&fmt=avif-alpha",
         "heroUrl": "https://s7ap1.scene7.com/is/image/tatamotors/AndamanAdventure-30?$PO-1228-468-S$&fit=crop&fmt=avif-alpha",
         "yearVariants": {
@@ -206,6 +222,7 @@
       {
         "name": "Scorpio",
         "slug": "scorpio",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/736x/4c/bf/02/4cbf027b7108bcde531f171a2ff9ad87.jpg",
         "heroUrl": "https://i.pinimg.com/736x/4c/bf/02/4cbf027b7108bcde531f171a2ff9ad87.jpg",
         "yearVariants": {
@@ -218,6 +235,7 @@
       {
         "name": "Scorpio N",
         "slug": "scorpio-n",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/736x/8b/29/9f/8b299f0ea4a28506d1da370c9a7008ab.jpg",
         "heroUrl": "https://i.pinimg.com/736x/8b/29/9f/8b299f0ea4a28506d1da370c9a7008ab.jpg",
         "yearVariants": {
@@ -230,6 +248,7 @@
       {
         "name": "Scorpio Classic",
         "slug": "scorpio-classic",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/736x/65/d2/b3/65d2b3879d4f972146603a463e92644e.jpg",
         "heroUrl": "https://i.pinimg.com/736x/65/d2/b3/65d2b3879d4f972146603a463e92644e.jpg",
         "yearVariants": {
@@ -242,6 +261,7 @@
       {
         "name": "Bolero",
         "slug": "bolero",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/736x/63/44/9c/63449c460824a1db345d893e1fea4e94.jpg",
         "heroUrl": "https://i.pinimg.com/736x/63/44/9c/63449c460824a1db345d893e1fea4e94.jpg",
         "yearVariants": {
@@ -254,6 +274,7 @@
       {
         "name": "Bolero Neo",
         "slug": "bolero-neo",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/736x/ff/53/8a/ff538ac46968b1cdfdca1dc2ac4de45b.jpg",
         "heroUrl": "https://i.pinimg.com/736x/ff/53/8a/ff538ac46968b1cdfdca1dc2ac4de45b.jpg",
         "yearVariants": {
@@ -266,6 +287,7 @@
       {
         "name": "XUV300",
         "slug": "xuv300",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/736x/b8/5d/ad/b85dad291d9556844dffa16523ac912b.jpg",
         "heroUrl": "https://i.pinimg.com/736x/b8/5d/ad/b85dad291d9556844dffa16523ac912b.jpg",
         "yearVariants": {
@@ -278,6 +300,7 @@
       {
         "name": "XUV300 3X0",
         "slug": "xuv300-3x0",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/1200x/e1/58/d7/e158d776ed4f1392cea7060071b4614b.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/e1/58/d7/e158d776ed4f1392cea7060071b4614b.jpg",
         "yearVariants": {
@@ -290,6 +313,7 @@
       {
         "name": "XUV400 EV",
         "slug": "xuv400-ev",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/736x/eb/8f/2d/eb8f2d8e1dd925e86199f0d36b1b33b8.jpg",
         "heroUrl": "https://i.pinimg.com/736x/eb/8f/2d/eb8f2d8e1dd925e86199f0d36b1b33b8.jpg",
         "yearVariants": {
@@ -302,6 +326,7 @@
       {
         "name": "XUV700",
         "slug": "xuv700",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/736x/9b/f3/1e/9bf31ec9101cb0daf2d3e520116c3c61.jpg",
         "heroUrl": "https://i.pinimg.com/736x/9b/f3/1e/9bf31ec9101cb0daf2d3e520116c3c61.jpg",
         "yearVariants": {
@@ -314,6 +339,7 @@
       {
         "name": "Thar",
         "slug": "thar",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/1200x/bc/fe/28/bcfe28986a5f2bbd4a483efa1830eb60.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/bc/fe/28/bcfe28986a5f2bbd4a483efa1830eb60.jpg",
         "yearVariants": {
@@ -326,6 +352,7 @@
       {
         "name": "Thar 5-Door",
         "slug": "thar-5-door",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/736x/a7/59/02/a7590276a6dbe3a8a8d592cfaab4663e.jpg",
         "heroUrl": "https://i.pinimg.com/736x/a7/59/02/a7590276a6dbe3a8a8d592cfaab4663e.jpg",
         "yearVariants": {
@@ -338,6 +365,7 @@
       {
         "name": "Marazzo",
         "slug": "marazzo",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/736x/00/0d/47/000d473c4ca0202770cf8cf66d047994.jpg",
         "heroUrl": "https://i.pinimg.com/736x/00/0d/47/000d473c4ca0202770cf8cf66d047994.jpg",
         "yearVariants": {
@@ -357,6 +385,7 @@
       {
         "name": "Swift",
         "slug": "swift",
+        "segment": "Hatchback",
         "thumbnailUrl": "https://i.pinimg.com/1200x/4b/c6/fa/4bc6fa6da4aa025431a4ba5f525407cb.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/4b/c6/fa/4bc6fa6da4aa025431a4ba5f525407cb.jpg",
         "yearVariants": {
@@ -369,6 +398,7 @@
       {
         "name": "Dzire",
         "slug": "dzire",
+        "segment": "Sedan",
         "thumbnailUrl": "https://i.pinimg.com/736x/0e/0d/a2/0e0da2818b70f0eed5f478bd4a893b13.jpg",
         "heroUrl": "https://i.pinimg.com/736x/0e/0d/a2/0e0da2818b70f0eed5f478bd4a893b13.jpg",
         "yearVariants": {
@@ -381,6 +411,7 @@
       {
         "name": "Baleno",
         "slug": "baleno",
+        "segment": "Hatchback",
         "thumbnailUrl": "https://i.pinimg.com/736x/02/f3/b1/02f3b1bf4b0120c7c6299c8ae1d01fee.jpg",
         "heroUrl": "https://i.pinimg.com/736x/02/f3/b1/02f3b1bf4b0120c7c6299c8ae1d01fee.jpg",
         "yearVariants": {
@@ -393,6 +424,7 @@
       {
         "name": "Celerio",
         "slug": "celerio",
+        "segment": "Hatchback",
         "thumbnailUrl": "https://i.pinimg.com/736x/73/4e/a9/734ea9873679e4ca9dfaeceddb1be52b.jpg",
         "heroUrl": "https://i.pinimg.com/736x/73/4e/a9/734ea9873679e4ca9dfaeceddb1be52b.jpg",
         "yearVariants": {
@@ -405,6 +437,7 @@
       {
         "name": "Ertiga",
         "slug": "ertiga",
+        "segment": "MPV",
         "thumbnailUrl": "https://i.pinimg.com/1200x/ed/24/ef/ed24ef892aec45a5dd26031f58711b62.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/ed/24/ef/ed24ef892aec45a5dd26031f58711b62.jpg",
         "yearVariants": {
@@ -417,6 +450,7 @@
       {
         "name": "XL6",
         "slug": "xl6",
+        "segment": "MPV",
         "thumbnailUrl": "https://i.pinimg.com/736x/ac/03/40/ac0340d5124fb4fc8badbced14a15bec.jpg",
         "heroUrl": "https://i.pinimg.com/736x/ac/03/40/ac0340d5124fb4fc8badbced14a15bec.jpg",
         "yearVariants": {
@@ -429,6 +463,7 @@
       {
         "name": "Vitara Brezza",
         "slug": "vitara-brezza",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/736x/9e/84/83/9e848384c691252a49c858c784fe6a2e.jpg",
         "heroUrl": "https://i.pinimg.com/736x/9e/84/83/9e848384c691252a49c858c784fe6a2e.jpg",
         "yearVariants": {
@@ -441,6 +476,7 @@
       {
         "name": "Brezza",
         "slug": "brezza",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/1200x/58/07/56/5807560dd9aa577142a821ba8ab79a60.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/58/07/56/5807560dd9aa577142a821ba8ab79a60.jpg",
         "yearVariants": {
@@ -453,6 +489,7 @@
       {
         "name": "Fronx",
         "slug": "fronx",
+        "segment": "SUV_Coupe",
         "thumbnailUrl": "https://i.pinimg.com/1200x/1e/10/d6/1e10d66c42b5aca62d6eecedc58cca9f.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/1e/10/d6/1e10d66c42b5aca62d6eecedc58cca9f.jpg",
         "yearVariants": {
@@ -465,6 +502,7 @@
       {
         "name": "Grand Vitara",
         "slug": "grand-vitara",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/736x/15/1c/6e/151c6e84f2fafcbc5db0d8a15da8faaf.jpg",
         "heroUrl": "https://i.pinimg.com/736x/15/1c/6e/151c6e84f2fafcbc5db0d8a15da8faaf.jpg",
         "yearVariants": {
@@ -477,6 +515,7 @@
       {
         "name": "S-Presso",
         "slug": "s-presso",
+        "segment": "Hatchback",
         "thumbnailUrl": "https://i.pinimg.com/736x/94/90/ff/9490ffced9152df0f25ac1b09d520730.jpg",
         "heroUrl": "https://i.pinimg.com/736x/94/90/ff/9490ffced9152df0f25ac1b09d520730.jpg",
         "yearVariants": {
@@ -489,6 +528,7 @@
       {
         "name": "Ignis",
         "slug": "ignis",
+        "segment": "Hatchback",
         "thumbnailUrl": "https://i.pinimg.com/736x/81/c6/5e/81c65eef83f20cd48edc12c5e40cb135.jpg",
         "heroUrl": "https://i.pinimg.com/736x/81/c6/5e/81c65eef83f20cd48edc12c5e40cb135.jpg",
         "yearVariants": {
@@ -501,6 +541,7 @@
       {
         "name": "Alto K10",
         "slug": "alto-k10",
+        "segment": "Hatchback",
         "thumbnailUrl": "https://i.pinimg.com/1200x/64/56/27/645627a369952fefd3a74feae7ab307f.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/64/56/27/645627a369952fefd3a74feae7ab307f.jpg",
         "yearVariants": {
@@ -513,6 +554,7 @@
       {
         "name": "Alto 800",
         "slug": "alto-800",
+        "segment": "Hatchback",
         "thumbnailUrl": "https://i.pinimg.com/736x/6b/12/25/6b1225f7c41a08485c5908f71e6d6b29.jpg",
         "heroUrl": "https://i.pinimg.com/736x/6b/12/25/6b1225f7c41a08485c5908f71e6d6b29.jpg",
         "yearVariants": {
@@ -525,6 +567,7 @@
       {
         "name": "Ciaz",
         "slug": "ciaz",
+        "segment": "Sedan",
         "thumbnailUrl": "https://i.pinimg.com/736x/ef/bc/8a/efbc8aae796627101be74b3f92983d19.jpg",
         "heroUrl": "https://i.pinimg.com/736x/ef/bc/8a/efbc8aae796627101be74b3f92983d19.jpg",
         "yearVariants": {
@@ -537,6 +580,7 @@
       {
         "name": "WagonR",
         "slug": "wagonr",
+        "segment": "Hatchback",
         "thumbnailUrl": "https://i.pinimg.com/736x/4a/8d/c9/4a8dc9b8063644b0b7002b904c03f791.jpg",
         "heroUrl": "https://i.pinimg.com/736x/4a/8d/c9/4a8dc9b8063644b0b7002b904c03f791.jpg",
         "yearVariants": {
@@ -556,6 +600,7 @@
       {
         "name": "Creta",
         "slug": "creta",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/736x/19/8c/ee/198cee8fa4697bcf304d57b8b116d5fb.jpg",
         "heroUrl": "https://i.pinimg.com/736x/19/8c/ee/198cee8fa4697bcf304d57b8b116d5fb.jpg",
         "yearVariants": {
@@ -568,6 +613,7 @@
       {
         "name": "Creta N Line",
         "slug": "creta-n-line",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/1200x/49/e5/17/49e517c793957bf6e767cfca038f624e.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/49/e5/17/49e517c793957bf6e767cfca038f624e.jpg",
         "yearVariants": {
@@ -580,6 +626,7 @@
       {
         "name": "Venue",
         "slug": "venue",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/1200x/b1/3e/9f/b13e9fb876ca87a2e594ff747c7a420b.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/b1/3e/9f/b13e9fb876ca87a2e594ff747c7a420b.jpg",
         "yearVariants": {
@@ -592,6 +639,7 @@
       {
         "name": "Venue N Line",
         "slug": "venue-n-line",
+        "segment": "SUV",
         "thumbnailUrl": "https://imgd.aeplcdn.com/664x374/n/cw/ec/210466/new-venue-n-line-exterior-right-front-three-quarter-11.png?isig=0&q=80",
         "heroUrl": "https://imgd.aeplcdn.com/664x374/n/cw/ec/210466/new-venue-n-line-exterior-right-front-three-quarter-11.png?isig=0&q=80",
         "yearVariants": {
@@ -604,6 +652,7 @@
       {
         "name": "i20",
         "slug": "i20",
+        "segment": "Hatchback",
         "thumbnailUrl": "https://i.pinimg.com/736x/b2/3a/de/b23adee27032b0d8322fc3efdf2a7b0e.jpg",
         "heroUrl": "https://i.pinimg.com/736x/b2/3a/de/b23adee27032b0d8322fc3efdf2a7b0e.jpg",
         "yearVariants": {
@@ -616,6 +665,7 @@
       {
         "name": "i20 N Line",
         "slug": "i20-n-line",
+        "segment": "Hatchback",
         "thumbnailUrl": "https://i.pinimg.com/1200x/c8/e1/37/c8e137b381bd49e3e7a42398a7f5cb4f.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/c8/e1/37/c8e137b381bd49e3e7a42398a7f5cb4f.jpg",
         "yearVariants": {
@@ -628,6 +678,7 @@
       {
         "name": "Verna",
         "slug": "verna",
+        "segment": "Sedan",
         "thumbnailUrl": "https://i.pinimg.com/1200x/95/8e/16/958e16fd074a661dc4e2876da3ec8477.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/95/8e/16/958e16fd074a661dc4e2876da3ec8477.jpg",
         "yearVariants": {
@@ -640,6 +691,7 @@
       {
         "name": "Grand i10 Nios",
         "slug": "grand-i10-nios",
+        "segment": "Hatchback",
         "thumbnailUrl": "https://i.pinimg.com/736x/ae/8f/a8/ae8fa89eff9d806046f3986a76030c42.jpg",
         "heroUrl": "https://i.pinimg.com/736x/ae/8f/a8/ae8fa89eff9d806046f3986a76030c42.jpg",
         "yearVariants": {
@@ -652,6 +704,7 @@
       {
         "name": "Aura",
         "slug": "aura",
+        "segment": "Sedan",
         "thumbnailUrl": "https://i.pinimg.com/736x/60/bb/2e/60bb2e33755e68d75546909abf92b7ed.jpg",
         "heroUrl": "https://i.pinimg.com/736x/60/bb/2e/60bb2e33755e68d75546909abf92b7ed.jpg",
         "yearVariants": {
@@ -664,6 +717,7 @@
       {
         "name": "Alcazar",
         "slug": "alcazar",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/736x/2e/a6/61/2ea6617595ee90b4c39a098e26e0b663.jpg",
         "heroUrl": "https://i.pinimg.com/736x/2e/a6/61/2ea6617595ee90b4c39a098e26e0b663.jpg",
         "yearVariants": {
@@ -676,6 +730,7 @@
       {
         "name": "Exter",
         "slug": "exter",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/736x/5d/41/45/5d41451dd7757bf92c9b9e4ff3b8a80e.jpg",
         "heroUrl": "https://i.pinimg.com/736x/5d/41/45/5d41451dd7757bf92c9b9e4ff3b8a80e.jpg",
         "yearVariants": {
@@ -688,6 +743,7 @@
       {
         "name": "Tucson",
         "slug": "tucson",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/736x/e4/0e/19/e40e1939827ac9d1af2f8fbce8bdc4e3.jpg",
         "heroUrl": "https://i.pinimg.com/736x/e4/0e/19/e40e1939827ac9d1af2f8fbce8bdc4e3.jpg",
         "yearVariants": {
@@ -700,6 +756,7 @@
       {
         "name": "Ioniq 5",
         "slug": "ioniq-5",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/736x/5f/1b/ff/5f1bff05b48f9a79ab3d0e2bab8cb9a4.jpg",
         "heroUrl": "https://i.pinimg.com/736x/5f/1b/ff/5f1bff05b48f9a79ab3d0e2bab8cb9a4.jpg",
         "yearVariants": {
@@ -712,6 +769,7 @@
       {
         "name": "Kona EV",
         "slug": "kona-ev",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/736x/9c/06/68/9c06685d9e0ab25ee0281a7cd5d86756.jpg",
         "heroUrl": "https://i.pinimg.com/736x/9c/06/68/9c06685d9e0ab25ee0281a7cd5d86756.jpg",
         "yearVariants": {
@@ -724,6 +782,7 @@
       {
         "name": "Grand i10",
         "slug": "grand-i10",
+        "segment": "Hatchback",
         "thumbnailUrl": "https://i.pinimg.com/736x/ea/a1/8c/eaa18c0cb12b58604035bea810712f60.jpg",
         "heroUrl": "https://i.pinimg.com/736x/ea/a1/8c/eaa18c0cb12b58604035bea810712f60.jpg",
         "yearVariants": {
@@ -736,6 +795,7 @@
       {
         "name": "i10",
         "slug": "i10",
+        "segment": "Hatchback",
         "thumbnailUrl": "https://i.pinimg.com/736x/88/03/fd/8803fd0b4aeb54b8f25433697b176af4.jpg",
         "heroUrl": "https://i.pinimg.com/736x/88/03/fd/8803fd0b4aeb54b8f25433697b176af4.jpg",
         "yearVariants": {
@@ -748,6 +808,7 @@
       {
         "name": "Santro",
         "slug": "santro",
+        "segment": "Hatchback",
         "thumbnailUrl": "https://i.pinimg.com/1200x/a2/a9/23/a2a923a6d3f6523ff45e59fd934a0a66.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/a2/a9/23/a2a923a6d3f6523ff45e59fd934a0a66.jpg",
         "yearVariants": {
@@ -760,6 +821,7 @@
       {
         "name": "Accent",
         "slug": "accent",
+        "segment": "Sedan",
         "thumbnailUrl": "https://i.pinimg.com/1200x/fe/04/ff/fe04ff8598be11af163f61a807b3bbcc.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/fe/04/ff/fe04ff8598be11af163f61a807b3bbcc.jpg",
         "yearVariants": {
@@ -772,6 +834,7 @@
       {
         "name": "Elantra",
         "slug": "elantra",
+        "segment": "Sedan",
         "thumbnailUrl": "https://i.pinimg.com/1200x/48/6a/ce/486ace302063f5a3b0e506a94371bb70.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/48/6a/ce/486ace302063f5a3b0e506a94371bb70.jpg",
         "yearVariants": {
@@ -784,6 +847,7 @@
       {
         "name": "Accent Viva",
         "slug": "accent-viva",
+        "segment": "Sedan",
         "thumbnailUrl": "https://imgd.aeplcdn.com/370x208/cw/cars/discontinued/hyundai/accent-1999-2003.jpg?q=80",
         "heroUrl": "https://imgd.aeplcdn.com/370x208/cw/cars/discontinued/hyundai/accent-1999-2003.jpg?q=80",
         "yearVariants": {
@@ -796,6 +860,7 @@
       {
         "name": "Xcent",
         "slug": "xcent",
+        "segment": "Sedan",
         "thumbnailUrl": "https://i.pinimg.com/1200x/d4/5d/8c/d45d8c5d16a80d1b72973af188f4dd1a.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/d4/5d/8c/d45d8c5d16a80d1b72973af188f4dd1a.jpg",
         "yearVariants": {
@@ -808,6 +873,7 @@
       {
         "name": "Sonata",
         "slug": "sonata",
+        "segment": "Luxury",
         "thumbnailUrl": "https://imgd.aeplcdn.com/664x374/cw/cars/discontinued/hyundai/sonata-2011-2015.jpg?q=80",
         "heroUrl": "https://imgd.aeplcdn.com/664x374/cw/cars/discontinued/hyundai/sonata-2011-2015.jpg?q=80",
         "yearVariants": {
@@ -820,6 +886,7 @@
       {
         "name": "Getz",
         "slug": "getz",
+        "segment": "Hatchback",
         "thumbnailUrl": "https://i.pinimg.com/1200x/d4/ac/26/d4ac2630193907f99901b3d73d87ca45.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/d4/ac/26/d4ac2630193907f99901b3d73d87ca45.jpg",
         "yearVariants": {
@@ -832,6 +899,7 @@
       {
         "name": "Getz Prime",
         "slug": "getz-prime",
+        "segment": "Hatchback",
         "thumbnailUrl": "https://imgd.aeplcdn.com/664x374/cw/cars/discontinued/hyundai/getz-prime-2007-2010.jpg?q=80",
         "heroUrl": "https://imgd.aeplcdn.com/664x374/cw/cars/discontinued/hyundai/getz-prime-2007-2010.jpg?q=80",
         "yearVariants": {
@@ -844,6 +912,7 @@
       {
         "name": "Terracan",
         "slug": "terracan",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/736x/57/0d/f6/570df63ec719abd8049d60ec3a10c1c4.jpg",
         "heroUrl": "https://i.pinimg.com/736x/57/0d/f6/570df63ec719abd8049d60ec3a10c1c4.jpg",
         "yearVariants": {
@@ -863,6 +932,7 @@
       {
         "name": "Seltos",
         "slug": "seltos",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/736x/84/a1/2b/84a12b0dcdde96bf5ce6b477b365e52d.jpg",
         "heroUrl": "https://i.pinimg.com/736x/84/a1/2b/84a12b0dcdde96bf5ce6b477b365e52d.jpg",
         "yearVariants": {
@@ -875,6 +945,7 @@
       {
         "name": "Sonet",
         "slug": "sonet",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/1200x/01/ef/c7/01efc7ec4e64c12b43eeabf89df953c1.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/01/ef/c7/01efc7ec4e64c12b43eeabf89df953c1.jpg",
         "yearVariants": {
@@ -887,6 +958,7 @@
       {
         "name": "Carens",
         "slug": "carens",
+        "segment": "MPV",
         "thumbnailUrl": "https://images.timesdrive.in/photo/msid-151016131,thumbsize-440752/151016131.jpg",
         "heroUrl": "https://images.timesdrive.in/photo/msid-151016131,thumbsize-440752/151016131.jpg",
         "yearVariants": {
@@ -899,6 +971,7 @@
       {
         "name": "Carnival",
         "slug": "carnival",
+        "segment": "MPV",
         "thumbnailUrl": "https://i.pinimg.com/1200x/73/78/f5/7378f5f3c4422f98ab4fed33d681fb71.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/73/78/f5/7378f5f3c4422f98ab4fed33d681fb71.jpg",
         "yearVariants": {
@@ -911,6 +984,7 @@
       {
         "name": "EV6",
         "slug": "ev6",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/736x/9d/05/a1/9d05a15afc9c48adac36ca1e8fd1e9af.jpg",
         "heroUrl": "https://i.pinimg.com/736x/9d/05/a1/9d05a15afc9c48adac36ca1e8fd1e9af.jpg",
         "yearVariants": {
@@ -923,6 +997,7 @@
       {
         "name": "Syros",
         "slug": "syros",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/736x/02/30/79/0230796c74a1f8e523da245839122eb9.jpg",
         "heroUrl": "https://i.pinimg.com/736x/02/30/79/0230796c74a1f8e523da245839122eb9.jpg",
         "yearVariants": {
@@ -935,6 +1010,7 @@
       {
         "name": "Carnival",
         "slug": "carnival",
+        "segment": "MPV",
         "thumbnailUrl": "https://i.pinimg.com/1200x/7e/db/93/7edb93ba062aa35487003f071ee7a2fb.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/7e/db/93/7edb93ba062aa35487003f071ee7a2fb.jpg",
         "yearVariants": {
@@ -947,6 +1023,7 @@
       {
         "name": "Carens Clavis EV",
         "slug": "carens-clavis-ev",
+        "segment": "MPV",
         "thumbnailUrl": "https://i.pinimg.com/736x/80/60/52/8060521ec259b3d9a767aa55b9948131.jpg",
         "heroUrl": "https://i.pinimg.com/736x/80/60/52/8060521ec259b3d9a767aa55b9948131.jpg",
         "yearVariants": {
@@ -966,6 +1043,7 @@
       {
         "name": "Fortuner",
         "slug": "fortuner",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/736x/43/d5/4c/43d54cc95b69273683db454dd13201f8.jpg",
         "heroUrl": "https://i.pinimg.com/736x/43/d5/4c/43d54cc95b69273683db454dd13201f8.jpg",
         "yearVariants": {
@@ -978,6 +1056,7 @@
       {
         "name": "Innova Crysta",
         "slug": "innova-crysta",
+        "segment": "MPV",
         "thumbnailUrl": "https://i.pinimg.com/1200x/fe/e6/ee/fee6eea7b191112a744e2bf23a277871.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/fe/e6/ee/fee6eea7b191112a744e2bf23a277871.jpg",
         "yearVariants": {
@@ -990,6 +1069,7 @@
       {
         "name": "Innova HyCross",
         "slug": "innova-hycross",
+        "segment": "MPV",
         "thumbnailUrl": "https://i.pinimg.com/1200x/32/5d/12/325d12ace67d80391e6d4e9c9ce64a93.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/32/5d/12/325d12ace67d80391e6d4e9c9ce64a93.jpg",
         "yearVariants": {
@@ -1002,6 +1082,7 @@
       {
         "name": "Urban Cruiser Hyryder",
         "slug": "urban-cruiser-hyryder",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/1200x/22/74/b0/2274b057a095ed94e8d032823893b714.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/22/74/b0/2274b057a095ed94e8d032823893b714.jpg",
         "yearVariants": {
@@ -1014,6 +1095,7 @@
       {
         "name": "Glanza",
         "slug": "glanza",
+        "segment": "Hatchback",
         "thumbnailUrl": "https://i.pinimg.com/1200x/c4/5c/49/c45c491a2b03ea5ae3ed35ab25c5826f.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/c4/5c/49/c45c491a2b03ea5ae3ed35ab25c5826f.jpg",
         "yearVariants": {
@@ -1026,6 +1108,7 @@
       {
         "name": "Rumion",
         "slug": "rumion",
+        "segment": "MPV",
         "thumbnailUrl": "https://i.pinimg.com/736x/94/f2/2c/94f22cd7139acffc0acaa660460af55b.jpg",
         "heroUrl": "https://i.pinimg.com/736x/94/f2/2c/94f22cd7139acffc0acaa660460af55b.jpg",
         "yearVariants": {
@@ -1038,6 +1121,7 @@
       {
         "name": "Camry",
         "slug": "camry",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/1200x/2a/9e/7c/2a9e7c28a7f282a17317ca1669b672aa.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/2a/9e/7c/2a9e7c28a7f282a17317ca1669b672aa.jpg",
         "yearVariants": {
@@ -1050,6 +1134,7 @@
       {
         "name": "Hilux",
         "slug": "hilux",
+        "segment": "Pickup",
         "thumbnailUrl": "https://i.pinimg.com/1200x/f5/47/89/f54789062afead51b6d9feb27f08985c.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/f5/47/89/f54789062afead51b6d9feb27f08985c.jpg",
         "yearVariants": {
@@ -1062,6 +1147,7 @@
       {
         "name": "Vellfire",
         "slug": "vellfire",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/1200x/28/a8/85/28a885ff888f228977a8c23a82c0e3bc.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/28/a8/85/28a885ff888f228977a8c23a82c0e3bc.jpg",
         "yearVariants": {
@@ -1074,6 +1160,7 @@
       {
         "name": "Qualis",
         "slug": "qualis",
+        "segment": "MPV",
         "thumbnailUrl": "https://imgd.aeplcdn.com/642x336/cw/cars/discontinued/toyota/qualis-2002-2004.jpg?q=80",
         "heroUrl": "https://imgd.aeplcdn.com/642x336/cw/cars/discontinued/toyota/qualis-2002-2004.jpg?q=80",
         "yearVariants": {
@@ -1086,6 +1173,7 @@
       {
         "name": "Corolla",
         "slug": "corolla",
+        "segment": "Sedan",
         "thumbnailUrl": "https://i.pinimg.com/736x/74/61/4d/74614d884940788ce8d1a6ef46fcb8a9.jpg",
         "heroUrl": "https://i.pinimg.com/736x/74/61/4d/74614d884940788ce8d1a6ef46fcb8a9.jpg",
         "yearVariants": {
@@ -1098,6 +1186,7 @@
       {
         "name": "Corolla Altis",
         "slug": "corolla-altis",
+        "segment": "Sedan",
         "thumbnailUrl": "https://i.pinimg.com/736x/cd/40/c0/cd40c01ea67173642bb26f59c49e993e.jpg",
         "heroUrl": "https://i.pinimg.com/736x/cd/40/c0/cd40c01ea67173642bb26f59c49e993e.jpg",
         "yearVariants": {
@@ -1110,6 +1199,7 @@
       {
         "name": "Innova",
         "slug": "innova",
+        "segment": "MPV",
         "thumbnailUrl": "https://i.pinimg.com/1200x/41/6e/c7/416ec742b1a24948ba8f3aea14d2ca59.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/41/6e/c7/416ec742b1a24948ba8f3aea14d2ca59.jpg",
         "yearVariants": {
@@ -1122,6 +1212,7 @@
       {
         "name": "Etios",
         "slug": "etios",
+        "segment": "Sedan",
         "thumbnailUrl": "https://i.pinimg.com/1200x/6f/d0/26/6fd0260db08648258bb5491563d05737.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/6f/d0/26/6fd0260db08648258bb5491563d05737.jpg",
         "yearVariants": {
@@ -1134,6 +1225,7 @@
       {
         "name": "Etios Liva",
         "slug": "etios-liva",
+        "segment": "Hatchback",
         "thumbnailUrl": "https://i.pinimg.com/1200x/4b/39/c7/4b39c7069902408ac7153f34aea82135.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/4b/39/c7/4b39c7069902408ac7153f34aea82135.jpg",
         "yearVariants": {
@@ -1146,6 +1238,7 @@
       {
         "name": "Yaris",
         "slug": "yaris",
+        "segment": "Sedan",
         "thumbnailUrl": "https://i.pinimg.com/736x/3e/79/6e/3e796e28387349a501139c40665a82c6.jpg",
         "heroUrl": "https://i.pinimg.com/736x/3e/79/6e/3e796e28387349a501139c40665a82c6.jpg",
         "yearVariants": {
@@ -1158,6 +1251,7 @@
       {
         "name": "Urban Cruiser",
         "slug": "urban-cruiser",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/736x/8c/3f/93/8c3f93ad11e511372cd0695dcc2b9b0f.jpg",
         "heroUrl": "https://i.pinimg.com/736x/8c/3f/93/8c3f93ad11e511372cd0695dcc2b9b0f.jpg",
         "yearVariants": {
@@ -1170,6 +1264,7 @@
       {
         "name": "Fortuner Legender",
         "slug": "fortuner-legender",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/1200x/1a/83/49/1a83491906fde60d05f18ff3e524d4fc.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/1a/83/49/1a83491906fde60d05f18ff3e524d4fc.jpg",
         "yearVariants": {
@@ -1182,6 +1277,7 @@
       {
         "name": "Land Cruiser 300",
         "slug": "land-cruiser-300",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/1200x/4b/ea/b1/4beab1a8f8805ee53e3eb53941798c46.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/4b/ea/b1/4beab1a8f8805ee53e3eb53941798c46.jpg",
         "yearVariants": {
@@ -1194,6 +1290,7 @@
       {
         "name": "Urban Cruiser Taisor",
         "slug": "urban-cruiser-taisor",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/736x/df/71/72/df7172f32468f6336289d37446726fd1.jpg",
         "heroUrl": "https://i.pinimg.com/736x/df/71/72/df7172f32468f6336289d37446726fd1.jpg",
         "yearVariants": {
@@ -1213,6 +1310,7 @@
       {
         "name": "City",
         "slug": "city",
+        "segment": "Sedan",
         "thumbnailUrl": "https://i.pinimg.com/1200x/a1/1d/4d/a11d4d8c1fde1134f0d56a9b1ca02da5.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/a1/1d/4d/a11d4d8c1fde1134f0d56a9b1ca02da5.jpg",
         "yearVariants": {
@@ -1225,6 +1323,7 @@
       {
         "name": "City Hybrid",
         "slug": "city-hybrid",
+        "segment": "Sedan",
         "thumbnailUrl": "https://i.pinimg.com/1200x/67/d2/34/67d234b5a3b2724b21b2ee1b18a8d51b.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/67/d2/34/67d234b5a3b2724b21b2ee1b18a8d51b.jpg",
         "yearVariants": {
@@ -1237,6 +1336,7 @@
       {
         "name": "Amaze",
         "slug": "amaze",
+        "segment": "Sedan",
         "thumbnailUrl": "https://i.pinimg.com/736x/16/22/a4/1622a4535ac091afabbbfdb261f30b39.jpg",
         "heroUrl": "https://i.pinimg.com/736x/16/22/a4/1622a4535ac091afabbbfdb261f30b39.jpg",
         "yearVariants": {
@@ -1249,6 +1349,7 @@
       {
         "name": "Elevate",
         "slug": "elevate",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/736x/d4/32/81/d43281343a326e9a4be9dd18d8a7db87.jpg",
         "heroUrl": "https://i.pinimg.com/736x/d4/32/81/d43281343a326e9a4be9dd18d8a7db87.jpg",
         "yearVariants": {
@@ -1261,6 +1362,7 @@
       {
         "name": "WR-V New",
         "slug": "wr-v-new",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/1200x/ec/ae/36/ecae361fe986d7007c667cec50fcac16.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/ec/ae/36/ecae361fe986d7007c667cec50fcac16.jpg",
         "yearVariants": {
@@ -1273,6 +1375,7 @@
       {
         "name": "Jazz",
         "slug": "jazz",
+        "segment": "Hatchback",
         "thumbnailUrl": "https://i.pinimg.com/1200x/95/8a/09/958a091f390056de0a2655f18209e5c4.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/95/8a/09/958a091f390056de0a2655f18209e5c4.jpg",
         "yearVariants": {
@@ -1285,6 +1388,7 @@
       {
         "name": "Brio",
         "slug": "brio",
+        "segment": "Hatchback",
         "thumbnailUrl": "https://i.pinimg.com/1200x/c4/f7/4b/c4f74b10ee653e9b5bb132308dda0cc8.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/c4/f7/4b/c4f74b10ee653e9b5bb132308dda0cc8.jpg",
         "yearVariants": {
@@ -1297,6 +1401,7 @@
       {
         "name": "Civic",
         "slug": "civic",
+        "segment": "Sedan",
         "thumbnailUrl": "https://i.pinimg.com/1200x/23/a4/65/23a46599d58a9185d596830870fdb94d.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/23/a4/65/23a46599d58a9185d596830870fdb94d.jpg",
         "yearVariants": {
@@ -1309,6 +1414,7 @@
       {
         "name": "Accord",
         "slug": "accord",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/1200x/c4/1c/6f/c41c6f80a46cff980a7a028e59025b2a.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/c4/1c/6f/c41c6f80a46cff980a7a028e59025b2a.jpg",
         "yearVariants": {
@@ -1321,6 +1427,7 @@
       {
         "name": "CR-V",
         "slug": "cr-v",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/736x/d2/16/24/d216242d7b57988c5186a9ec345aabf5.jpg",
         "heroUrl": "https://i.pinimg.com/736x/d2/16/24/d216242d7b57988c5186a9ec345aabf5.jpg",
         "yearVariants": {
@@ -1333,6 +1440,7 @@
       {
         "name": "BR-V",
         "slug": "br-v",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/1200x/b8/db/20/b8db20e7c52f197ceb830c490ee78cb8.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/b8/db/20/b8db20e7c52f197ceb830c490ee78cb8.jpg",
         "yearVariants": {
@@ -1345,6 +1453,7 @@
       {
         "name": "Mobilio",
         "slug": "mobilio",
+        "segment": "MPV",
         "thumbnailUrl": "https://i.pinimg.com/1200x/c9/30/6e/c9306e14ecf1b0d7721557100082333e.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/c9/30/6e/c9306e14ecf1b0d7721557100082333e.jpg",
         "yearVariants": {
@@ -1357,6 +1466,7 @@
       {
         "name": "WR-V (Old)",
         "slug": "wr-v-old",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/1200x/9a/6d/54/9a6d54e4dda1716f2725da0495ed9a09.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/9a/6d/54/9a6d54e4dda1716f2725da0495ed9a09.jpg",
         "yearVariants": {
@@ -1371,11 +1481,13 @@
   {
     "make": "NISSAN",
     "slug": "nissan",
+   
     "logoUrl": "https://pub-42af405ceba340aebd5fb14bbd59d42d.r2.dev/Saved%20Pictures/car-garage/car_images/company_logos/nissan.png",
     "models": [
       {
         "name": "Magnite",
         "slug": "magnite",
+         "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/736x/46/1a/be/461abe90979c4f169d33612832c753fc.jpg",
         "heroUrl": "https://i.pinimg.com/736x/46/1a/be/461abe90979c4f169d33612832c753fc.jpg",
         "yearVariants": {
@@ -1388,6 +1500,7 @@
       {
         "name": "Kicks",
         "slug": "kicks",
+         "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/1200x/d3/3e/df/d33edfa59d879805e3f633711b53dbe1.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/d3/3e/df/d33edfa59d879805e3f633711b53dbe1.jpg",
         "yearVariants": {
@@ -1400,6 +1513,7 @@
       {
         "name": "Micra",
         "slug": "micra",
+         "segment": "Hatchback",
         "thumbnailUrl": "https://i.pinimg.com/736x/3a/95/71/3a9571e7fb16deb36563c8a13ba0f9f5.jpg",
         "heroUrl": "https://i.pinimg.com/736x/3a/95/71/3a9571e7fb16deb36563c8a13ba0f9f5.jpg",
         "yearVariants": {
@@ -1412,6 +1526,7 @@
       {
         "name": "Micra Active",
         "slug": "micra-active",
+         "segment": "Hatchback",
         "thumbnailUrl": "https://i.pinimg.com/1200x/b0/40/e3/b040e36c764771b73fe6145b370438f6.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/b0/40/e3/b040e36c764771b73fe6145b370438f6.jpg",
         "yearVariants": {
@@ -1424,6 +1539,7 @@
       {
         "name": "Sunny",
         "slug": "sunny",
+         "segment": "Sedan",
         "thumbnailUrl": "https://imgd.aeplcdn.com/1920x1080/ec/94/C0/9725/img/m/Nissan-Sunny-Right-Front-Three-Quarter-48975_ol.jpg?v=201711021421&q=80&q=80",
         "heroUrl": "https://imgd.aeplcdn.com/1920x1080/ec/94/C0/9725/img/m/Nissan-Sunny-Right-Front-Three-Quarter-48975_ol.jpg?v=201711021421&q=80&q=80",
         "yearVariants": {
@@ -1436,6 +1552,7 @@
       {
         "name": "Terrano",
         "slug": "terrano",
+         "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/736x/49/f5/39/49f53998b56ac267a0577c40b4d320f7.jpg",
         "heroUrl": "https://i.pinimg.com/736x/49/f5/39/49f53998b56ac267a0577c40b4d320f7.jpg",
         "yearVariants": {
@@ -1448,6 +1565,7 @@
       {
         "name": "Evalia",
         "slug": "evalia",
+         "segment": "MPV",
         "thumbnailUrl": "https://i.pinimg.com/736x/e6/fc/90/e6fc9064bd93630eab8b6bab7b10c72a.jpg",
         "heroUrl": "https://i.pinimg.com/736x/e6/fc/90/e6fc9064bd93630eab8b6bab7b10c72a.jpg",
         "yearVariants": {
@@ -1460,6 +1578,7 @@
       {
         "name": "X-Trail",
         "slug": "xtrail",
+         "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/1200x/60/59/1a/60591a961d5f0e515f682e2bc4ee14cf.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/60/59/1a/60591a961d5f0e515f682e2bc4ee14cf.jpg",
         "yearVariants": {
@@ -1472,6 +1591,7 @@
       {
         "name": "Teana",
         "slug": "teana",
+         "segment": "Luxury",
         "thumbnailUrl": "https://imgd.aeplcdn.com/642x336/cw/cars/discontinued/nissan/teana-2007-2014.jpg?q=80",
         "heroUrl": "https://imgd.aeplcdn.com/642x336/cw/cars/discontinued/nissan/teana-2007-2014.jpg?q=80",
         "yearVariants": {
@@ -1484,6 +1604,7 @@
       {
         "name": "GT-R",
         "slug": "gt-r",
+         "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/736x/e5/e7/b6/e5e7b606a3731367ac3d0f765cd0eeb9.jpg",
         "heroUrl": "https://i.pinimg.com/736x/e5/e7/b6/e5e7b606a3731367ac3d0f765cd0eeb9.jpg",
         "yearVariants": {
@@ -1496,6 +1617,7 @@
       {
         "name": "370Z",
         "slug": "370z",
+         "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/1200x/2b/5e/03/2b5e03350b7f8c900b7a5754afc8c555.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/2b/5e/03/2b5e03350b7f8c900b7a5754afc8c555.jpg",
         "yearVariants": {
@@ -1508,6 +1630,7 @@
       {
         "name": "Datsun GO",
         "slug": "datsun-go-discontinued",
+         "segment": "Hatchback",
         "thumbnailUrl": "https://i.pinimg.com/1200x/ec/87/46/ec87468667159ea74f0eb0d728678dd2.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/ec/87/46/ec87468667159ea74f0eb0d728678dd2.jpg",
         "yearVariants": {
@@ -1520,6 +1643,7 @@
       {
         "name": "Datsun GO+",
         "slug": "datsun-go-plus",
+         "segment": "MPV",
         "thumbnailUrl": "https://i.pinimg.com/1200x/90/81/7c/90817c87dce94c2ccc7c3c169d1c2917.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/90/81/7c/90817c87dce94c2ccc7c3c169d1c2917.jpg",
         "yearVariants": {
@@ -1532,6 +1656,7 @@
       {
         "name": "Datsun Redi-GO",
         "slug": "datsun-redi-go",
+         "segment": "Hatchback",
         "thumbnailUrl": "https://i.pinimg.com/736x/a9/bf/ba/a9bfba3d116b2723d80f05d462976b88.jpg",
         "heroUrl": "https://i.pinimg.com/736x/a9/bf/ba/a9bfba3d116b2723d80f05d462976b88.jpg",
         "yearVariants": {
@@ -1551,6 +1676,7 @@
       {
         "name": "Kwid",
         "slug": "kwid",
+        "segment": "Hatchback",
         "thumbnailUrl": "https://i.pinimg.com/736x/7a/57/3b/7a573b3132b307e13c0ca7ecd8eb256d.jpg",
         "heroUrl": "https://i.pinimg.com/736x/7a/57/3b/7a573b3132b307e13c0ca7ecd8eb256d.jpg",
         "yearVariants": {
@@ -1563,6 +1689,7 @@
       {
         "name": "Triber",
         "slug": "triber",
+        "segment": "MPV",
         "thumbnailUrl": "https://i.pinimg.com/1200x/54/ee/fa/54eefa7a95ed404486a8e531103ac7be.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/54/ee/fa/54eefa7a95ed404486a8e531103ac7be.jpg",
         "yearVariants": {
@@ -1575,6 +1702,7 @@
       {
         "name": "Kiger",
         "slug": "kiger",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/1200x/ef/32/ea/ef32ea510f57da4230d57bfa6d1f1e2a.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/ef/32/ea/ef32ea510f57da4230d57bfa6d1f1e2a.jpg",
         "yearVariants": {
@@ -1587,6 +1715,7 @@
       {
         "name": "Duster",
         "slug": "duster",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/1200x/99/ae/d6/99aed62b7eaf59bdf3972d12e1f364c4.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/99/ae/d6/99aed62b7eaf59bdf3972d12e1f364c4.jpg",
         "yearVariants": {
@@ -1599,6 +1728,7 @@
       {
         "name": "Fluence",
         "slug": "fluence",
+        "segment": "Sedan",
         "thumbnailUrl": "https://i.pinimg.com/736x/c4/61/e8/c461e89cc227cceceaa685ee8962292b.jpg",
         "heroUrl": "https://i.pinimg.com/736x/c4/61/e8/c461e89cc227cceceaa685ee8962292b.jpg",
         "yearVariants": {
@@ -1611,6 +1741,7 @@
       {
         "name": "Koleos",
         "slug": "koleos-",
+        "segment": "SUV",
         "thumbnailUrl": "https://imgd.aeplcdn.com/642x336/cw/cars/renault/kolese.jpg?q=80",
         "heroUrl": "https://imgd.aeplcdn.com/642x336/cw/cars/renault/kolese.jpg?q=80",
         "yearVariants": {
@@ -1623,6 +1754,7 @@
       {
         "name": "Scala",
         "slug": "scala",
+        "segment": "Sedan",
         "thumbnailUrl": "https://i.pinimg.com/1200x/7b/d1/63/7bd16391dd66654a9b758becf6c10f68.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/7b/d1/63/7bd16391dd66654a9b758becf6c10f68.jpg",
         "yearVariants": {
@@ -1635,6 +1767,7 @@
       {
         "name": "Pulse",
         "slug": "pulse",
+        "segment": "Hatchback",
         "thumbnailUrl": "https://i.pinimg.com/1200x/77/5f/6a/775f6a1c0ce0d306ba2c219b7ed77d41.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/77/5f/6a/775f6a1c0ce0d306ba2c219b7ed77d41.jpg",
         "yearVariants": {
@@ -1647,6 +1780,7 @@
       {
         "name": "Lodgy",
         "slug": "lodgy",
+        "segment": "MPV",
         "thumbnailUrl": "https://imgd.aeplcdn.com/664x374/cw/ec/10448/Renault-Lodgy-Right-Front-Three-Quarter-73220.jpg?v=201711021421&q=80",
         "heroUrl": "https://imgd.aeplcdn.com/664x374/cw/ec/10448/Renault-Lodgy-Right-Front-Three-Quarter-73220.jpg?v=201711021421&q=80",
         "yearVariants": {
@@ -1659,6 +1793,7 @@
       {
         "name": "Logan (Mahindra-Renault)",
         "slug": "logan",
+        "segment": "Sedan",
         "thumbnailUrl": "https://i.pinimg.com/736x/68/0c/cc/680ccc7166227dd8df793fea99f34280.jpg",
         "heroUrl": "https://i.pinimg.com/736x/68/0c/cc/680ccc7166227dd8df793fea99f34280.jpg",
         "yearVariants": {
@@ -1678,6 +1813,7 @@
       {
         "name": "Kushaq",
         "slug": "kushaq",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/736x/c0/9c/06/c09c0637549e0a775bd6465b06510a49.jpg",
         "heroUrl": "https://i.pinimg.com/736x/c0/9c/06/c09c0637549e0a775bd6465b06510a49.jpg",
         "yearVariants": {
@@ -1690,6 +1826,7 @@
       {
         "name": "Slavia",
         "slug": "slavia",
+        "segment": "Sedan",
         "thumbnailUrl": "https://i.pinimg.com/736x/27/74/64/27746419b46d72c9ef5b433eae0cd14e.jpg",
         "heroUrl": "https://i.pinimg.com/736x/27/74/64/27746419b46d72c9ef5b433eae0cd14e.jpg",
         "yearVariants": {
@@ -1702,6 +1839,7 @@
       {
         "name": "Octavia",
         "slug": "octavia",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/1200x/5b/f1/0c/5bf10c6e0f4c6cd9742c8a29414ca075.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/5b/f1/0c/5bf10c6e0f4c6cd9742c8a29414ca075.jpg",
         "yearVariants": {
@@ -1714,6 +1852,7 @@
       {
         "name": "Superb",
         "slug": "superb",
+        "segment": "Luxury",
         "thumbnailUrl": "https://cdn.yoursite.com/images/skoda/superb/thumb.jpg",
         "heroUrl": "https://cdn.yoursite.com/images/skoda/superb/hero.jpg",
         "yearVariants": {
@@ -1726,6 +1865,7 @@
       {
         "name": "Kodiaq",
         "slug": "kodiaq",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/1200x/72/31/43/723143350df0accfc29f3f438cf1f79a.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/72/31/43/723143350df0accfc29f3f438cf1f79a.jpg",
         "yearVariants": {
@@ -1738,6 +1878,7 @@
       {
         "name": "Fabia",
         "slug": "fabia",
+        "segment": "Hatchback",
         "thumbnailUrl": "https://i.pinimg.com/736x/0a/24/a7/0a24a7688cf304a362c4e8860061b3c7.jpg",
         "heroUrl": "https://i.pinimg.com/736x/0a/24/a7/0a24a7688cf304a362c4e8860061b3c7.jpg",
         "yearVariants": {
@@ -1750,6 +1891,7 @@
       {
         "name": "Rapid",
         "slug": "rapid",
+        "segment": "Sedan",
         "thumbnailUrl": "https://i.pinimg.com/1200x/f4/e2/e0/f4e2e0a8b34083b6e468546fc3238101.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/f4/e2/e0/f4e2e0a8b34083b6e468546fc3238101.jpg",
         "yearVariants": {
@@ -1762,6 +1904,7 @@
       {
         "name": "Laura",
         "slug": "laura",
+        "segment": "Sedan",
         "thumbnailUrl": "https://i.pinimg.com/736x/35/e8/70/35e870e9f7a395bebc0af3207681d20d.jpg",
         "heroUrl": "https://i.pinimg.com/736x/35/e8/70/35e870e9f7a395bebc0af3207681d20d.jpg",
         "yearVariants": {
@@ -1774,6 +1917,7 @@
       {
         "name": "Yeti",
         "slug": "yeti",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/1200x/e3/79/42/e379425448aa7296cc5b5646013b3c2c.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/e3/79/42/e379425448aa7296cc5b5646013b3c2c.jpg",
         "yearVariants": {
@@ -1786,6 +1930,7 @@
       {
         "name": "Roomster",
         "slug": "roomster",
+        "segment": "MPV",
         "thumbnailUrl": "https://i.pinimg.com/1200x/20/fe/8a/20fe8a606ecbcef929c1d0b5be519df2.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/20/fe/8a/20fe8a606ecbcef929c1d0b5be519df2.jpg",
         "yearVariants": {
@@ -1798,6 +1943,7 @@
       {
         "name": "Octavia RS",
         "slug": "octavia-rs",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/1200x/e2/31/74/e23174533be595abafa1b0a5b7657db1.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/e2/31/74/e23174533be595abafa1b0a5b7657db1.jpg",
         "yearVariants": {
@@ -1810,6 +1956,7 @@
       {
         "name": "Octavia RS 245",
         "slug": "octavia-rs-245",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/736x/69/05/03/690503208ac6a7a343a1db77a8ea8ba3.jpg",
         "heroUrl": "https://i.pinimg.com/736x/69/05/03/690503208ac6a7a343a1db77a8ea8ba3.jpg",
         "yearVariants": {
@@ -1829,6 +1976,7 @@
     {
       "name": "Taigun",
       "slug": "taigun",
+      "segment": "SUV",
       "thumbnailUrl": "https://i.pinimg.com/736x/32/60/ae/3260ae5401b0c6a75831150b34ec6a29.jpg",
       "heroUrl": "https://i.pinimg.com/736x/32/60/ae/3260ae5401b0c6a75831150b34ec6a29.jpg",
       "yearVariants": {
@@ -1841,6 +1989,7 @@
     {
       "name": "Virtus",
       "slug": "virtus",
+      "segment": "Sedan",
       "thumbnailUrl": "https://i.pinimg.com/736x/e1/22/90/e12290bc4a6c43d747bba4fe132beea9.jpg",
       "heroUrl": "https://i.pinimg.com/736x/e1/22/90/e12290bc4a6c43d747bba4fe132beea9.jpg",
       "yearVariants": {
@@ -1853,6 +2002,7 @@
     {
       "name": "Tiguan",
       "slug": "tiguan",
+      "segment": "SUV",
       "thumbnailUrl": "https://i.pinimg.com/736x/71/f1/76/71f176167faa62ca59051a6c48936962.jpg",
       "heroUrl": "https://i.pinimg.com/736x/71/f1/76/71f176167faa62ca59051a6c48936962.jpg",
       "yearVariants": {
@@ -1866,66 +2016,77 @@
     {
       "name": "Polo",
       "slug": "polo",
+      "segment": "Hatchback",
       "thumbnailUrl": "https://i.pinimg.com/736x/e6/5a/a1/e65aa19c99f9c168a68cdc39ade7a8f8.jpg",
       "heroUrl": "https://i.pinimg.com/736x/e6/5a/a1/e65aa19c99f9c168a68cdc39ade7a8f8.jpg"
     },
     {
       "name": "Vento",
       "slug": "vento",
+      "segment": "Sedan",
       "thumbnailUrl": "https://i.pinimg.com/736x/a9/62/09/a962092089b9c03a26a3ef248884f5b3.jpg",
       "heroUrl": "https://i.pinimg.com/736x/a9/62/09/a962092089b9c03a26a3ef248884f5b3.jpg"
     },
     {
       "name": "Ameo",
       "slug": "ameo",
+      "segment": "Sedan",
       "thumbnailUrl": "https://i.pinimg.com/736x/a2/56/01/a256015310d945dec88b03061236fb9b.jpg",
       "heroUrl": "https://i.pinimg.com/736x/a2/56/01/a256015310d945dec88b03061236fb9b.jpg"
     },
     {
       "name": "Jetta",
       "slug": "jetta",
+      "segment": "Luxury",
       "thumbnailUrl": "https://i.pinimg.com/1200x/c2/0d/36/c20d3623c796b6a1d221526ba292064a.jpg",
       "heroUrl": "https://i.pinimg.com/1200x/c2/0d/36/c20d3623c796b6a1d221526ba292064a.jpg"
     },
     {
       "name": "Passat",
       "slug": "passat",
+      "segment": "Luxury",
       "thumbnailUrl": "https://i.pinimg.com/736x/c3/14/bf/c314bf63392a5e730138d2d70ee7190f.jpg",
       "heroUrl": "https://i.pinimg.com/736x/c3/14/bf/c314bf63392a5e730138d2d70ee7190f.jpg"
     },
     {
       "name": "Touareg",
       "slug": "touareg",
+      "segment": "Luxury",
       "thumbnailUrl": "https://i.pinimg.com/1200x/bc/cd/e9/bccde9de2aba6fb840ad966ff271ef84.jpg",
       "heroUrl": "https://i.pinimg.com/1200x/bc/cd/e9/bccde9de2aba6fb840ad966ff271ef84.jpg"
     },
     {
       "name": "Phaeton",
       "slug": "phaeton",
+      "segment": "Luxury",
       "thumbnailUrl": "https://i.pinimg.com/1200x/bc/cd/e9/bccde9de2aba6fb840ad966ff271ef84.jpg",
       "heroUrl": "https://i.pinimg.com/1200x/bc/cd/e9/bccde9de2aba6fb840ad966ff271ef84.jpg"
     },
     {
       "name": "T-Roc",
       "slug": "t-roc",
+      "segment": "SUV",
       "thumbnailUrl": "https://i.pinimg.com/1200x/c8/a8/f8/c8a8f89e1144ce72f0f5e1bfb4ecc794.jpg",
       "heroUrl": "https://i.pinimg.com/1200x/c8/a8/f8/c8a8f89e1144ce72f0f5e1bfb4ecc794.jpg"
     },
     {
       "name": "Tiguan AllSpace",
       "slug": "tiguan-allspace",
+      "segment": "SUV",
       "thumbnailUrl": "https://i.pinimg.com/736x/71/f1/76/71f176167faa62ca59051a6c48936962.jpg",
       "heroUrl": "https://i.pinimg.com/736x/71/f1/76/71f176167faa62ca59051a6c48936962.jpg"
     },
     {
       "name": "Polo GTI",
       "slug": "polo-gti",
+      "segment": "Hatchback",
       "thumbnailUrl": "https://i.pinimg.com/736x/3c/57/b1/3c57b1998c10a9f0a31afaff7ccdf7d5.jpg",
       "heroUrl": "https://i.pinimg.com/736x/3c/57/b1/3c57b1998c10a9f0a31afaff7ccdf7d5.jpg"
     },
     {
       "name": "Golf GTI",
       "slug": "golf-gti",
+      "segment": "Hatchback",
       "thumbnailUrl": "https://i.pinimg.com/1200x/9a/4c/13/9a4c1301c7cd505c084168b5ff3b5208.jpg",
       "heroUrl": "https://i.pinimg.com/1200x/9a/4c/13/9a4c1301c7cd505c084168b5ff3b5208.jpg"
     }
@@ -1939,6 +2100,7 @@
     {
       "name": "Hector",
       "slug": "hector",
+      "segment": "SUV",
       "thumbnailUrl": "https://i.pinimg.com/1200x/7c/6b/f5/7c6bf508f617ba5ce5fc43f7d9debe6b.jpg",
       "heroUrl": "https://i.pinimg.com/1200x/7c/6b/f5/7c6bf508f617ba5ce5fc43f7d9debe6b.jpg",
       "yearVariants": {
@@ -1951,6 +2113,7 @@
     {
       "name": "Hector Plus",
       "slug": "hector-plus",
+      "segment": "SUV",
       "thumbnailUrl": "https://i.pinimg.com/736x/09/2f/7e/092f7e6bcfa39c388d1ade23f4e4600c.jpg",
       "heroUrl": "https://i.pinimg.com/736x/09/2f/7e/092f7e6bcfa39c388d1ade23f4e4600c.jpg",
       "yearVariants": {
@@ -1963,6 +2126,7 @@
     {
       "name": "Astor",
       "slug": "astor",
+      "segment": "SUV",
       "thumbnailUrl": "https://i.pinimg.com/1200x/80/91/a5/8091a58190f98992f501f25cb3e214ce.jpg",
       "heroUrl": "https://i.pinimg.com/1200x/80/91/a5/8091a58190f98992f501f25cb3e214ce.jpg",
       "yearVariants": {
@@ -1975,6 +2139,7 @@
     {
       "name": "Gloster",
       "slug": "gloster",
+      "segment": "Luxury",
       "thumbnailUrl": "https://i.pinimg.com/736x/e4/b5/7b/e4b57b7830485c2480d5462d094d586f.jpg",
       "heroUrl": "https://i.pinimg.com/736x/e4/b5/7b/e4b57b7830485c2480d5462d094d586f.jpg",
       "yearVariants": {
@@ -1987,6 +2152,7 @@
     {
       "name": "ZS EV",
       "slug": "zs-ev",
+      "segment": "SUV",
       "thumbnailUrl": "https://i.pinimg.com/1200x/9e/fb/e4/9efbe41398223012352ea393add45cd3.jpg",
       "heroUrl": "https://i.pinimg.com/1200x/9e/fb/e4/9efbe41398223012352ea393add45cd3.jpg",
       "yearVariants": {
@@ -1999,6 +2165,7 @@
     {
       "name": "Comet EV",
       "slug": "comet-ev",
+      "segment": "Hatchback",
       "thumbnailUrl": "https://i.pinimg.com/1200x/2c/b9/05/2cb905d1678503d8a8f1c52cae25d97d.jpg",
       "heroUrl": "https://i.pinimg.com/1200x/2c/b9/05/2cb905d1678503d8a8f1c52cae25d97d.jpg",
       "yearVariants": {
@@ -2011,6 +2178,7 @@
     {
       "name": "Windsor EV",
       "slug": "windsor-ev",
+      "segment": "MPV",
       "thumbnailUrl": "https://imgd.aeplcdn.com/1920x1080/n/cw/ec/174611/windsor-ev-exterior-right-front-three-quarter-84.png?isig=0&q=80&q=80",
       "heroUrl": "https://imgd.aeplcdn.com/1920x1080/n/cw/ec/174611/windsor-ev-exterior-right-front-three-quarter-84.png?isig=0&q=80&q=80",
       "yearVariants": {
@@ -2030,6 +2198,7 @@
     {
       "name": "Compass",
       "slug": "compass",
+      "segment": "SUV",
       "thumbnailUrl": "https://i.pinimg.com/736x/ce/4e/b9/ce4eb97bcf1e0076f36767d2a1a928b3.jpg",
       "heroUrl": "https://i.pinimg.com/736x/ce/4e/b9/ce4eb97bcf1e0076f36767d2a1a928b3.jpg",
       "yearVariants": {
@@ -2042,6 +2211,7 @@
     {
       "name": "Grand Cherokee",
       "slug": "grand-cherokee",
+      "segment": "Luxury",
       "thumbnailUrl": "https://i.pinimg.com/736x/fd/a0/8d/fda08d918e20339438164957f1c9e140.jpg",
       "heroUrl": "https://i.pinimg.com/736x/fd/a0/8d/fda08d918e20339438164957f1c9e140.jpg",
       "yearVariants": {
@@ -2054,6 +2224,7 @@
     {
       "name": "Meridian",
       "slug": "meridian",
+      "segment": "SUV",
       "thumbnailUrl": "https://i.pinimg.com/736x/db/d8/01/dbd801fa22ca0495cfb9132e7ca11dde.jpg",
       "heroUrl": "https://i.pinimg.com/736x/db/d8/01/dbd801fa22ca0495cfb9132e7ca11dde.jpg",
       "yearVariants": {
@@ -2066,6 +2237,7 @@
     {
       "name": "Wrangler",
       "slug": "wrangler",
+      "segment": "Luxury",
       "thumbnailUrl": "https://i.pinimg.com/1200x/ad/9d/50/ad9d505797a3134c6892b1830eb0de96.jpg",
       "heroUrl": "https://i.pinimg.com/1200x/ad/9d/50/ad9d505797a3134c6892b1830eb0de96.jpg",
       "yearVariants": {
@@ -2085,6 +2257,7 @@
       {
         "name": "X1",
         "slug": "x1",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/736x/2c/ae/75/2cae75c9aef790c284cb41cc459b7d84.jpg",
         "heroUrl": "https://i.pinimg.com/736x/2c/ae/75/2cae75c9aef790c284cb41cc459b7d84.jpg",
         "yearVariants": {
@@ -2097,6 +2270,7 @@
       {
         "name": "X3",
         "slug": "x3",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/1200x/d6/b5/4f/d6b54ffdadd23921a68b86f20ea8ca69.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/d6/b5/4f/d6b54ffdadd23921a68b86f20ea8ca69.jpg",
         "yearVariants": {
@@ -2109,6 +2283,7 @@
       {
         "name": "X4",
         "slug": "x4",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/736x/13/84/93/13849390da0b3806c32502a82ae6917b.jpg",
         "heroUrl": "https://i.pinimg.com/736x/13/84/93/13849390da0b3806c32502a82ae6917b.jpg",
         "yearVariants": {
@@ -2121,6 +2296,7 @@
       {
         "name": "X5",
         "slug": "x5",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/1200x/0d/96/e1/0d96e1fb1189ce7f56cca74e5810dcbb.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/0d/96/e1/0d96e1fb1189ce7f56cca74e5810dcbb.jpg",
         "yearVariants": {
@@ -2133,6 +2309,7 @@
       {
         "name": "X7",
         "slug": "x7",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/736x/a2/e2/3a/a2e23a58c0d7221f39c4608c61e5a1b5.jpg",
         "heroUrl": "https://i.pinimg.com/736x/a2/e2/3a/a2e23a58c0d7221f39c4608c61e5a1b5.jpg",
         "yearVariants": {
@@ -2145,11 +2322,12 @@
         {
       "name": "X6",
       "slug": "x6",
+      "segment": "Luxury",
       "thumbnailUrl": "https://i.pinimg.com/736x/32/ac/81/32ac81549b47568df5864ce48c1d858d.jpg",
       "heroUrl": "https://i.pinimg.com/736x/32/ac/81/32ac81549b47568df5864ce48c1d858d.jpg",
       "yearVariants": {
         "2024": {
-          "heroUrl": "hhttps://i.pinimg.com/736x/32/ac/81/32ac81549b47568df5864ce48c1d858d.jpg",
+          "heroUrl": "https://i.pinimg.com/736x/32/ac/81/32ac81549b47568df5864ce48c1d858d.jpg",
           "thumbnailUrl": "https://i.pinimg.com/736x/32/ac/81/32ac81549b47568df5864ce48c1d858d.jpg"
         }
       }
@@ -2157,6 +2335,7 @@
     {
       "name": "6 Series",
       "slug": "6-series",
+      "segment": "Luxury",
       "thumbnailUrl": "https://i.pinimg.com/736x/e9/4f/04/e94f0456468bbf34cfd1dd9410f745f1.jpg",
       "heroUrl": "https://i.pinimg.com/736x/e9/4f/04/e94f0456468bbf34cfd1dd9410f745f1.jpg",
       "yearVariants": {
@@ -2169,6 +2348,7 @@
     {
       "name": "Z4",
       "slug": "z4",
+      "segment": "Luxury",
       "thumbnailUrl": "https://i.pinimg.com/736x/a0/a6/31/a0a63104f7eab5bc92af75455a5f655d.jpg",
       "heroUrl": "https://i.pinimg.com/736x/a0/a6/31/a0a63104f7eab5bc92af75455a5f655d.jpg",
       "yearVariants": {
@@ -2181,6 +2361,7 @@
     {
       "name": "M2",
       "slug": "m2",
+      "segment": "Luxury",
       "thumbnailUrl": "https://i.pinimg.com/736x/1d/22/9b/1d229b0bcab3322e28303c61db6cf3b9.jpg",
       "heroUrl": "https://i.pinimg.com/736x/1d/22/9b/1d229b0bcab3322e28303c61db6cf3b9.jpg",
       "yearVariants": {
@@ -2193,6 +2374,7 @@
     {
       "name": "M3",
       "slug": "m3",
+      "segment": "Luxury",
       "thumbnailUrl": "https://i.pinimg.com/1200x/49/e0/a5/49e0a5b545e909b1baa3458ad602bbd3.jpg",
       "heroUrl": "https://i.pinimg.com/1200x/49/e0/a5/49e0a5b545e909b1baa3458ad602bbd3.jpg",
       "yearVariants": {
@@ -2205,6 +2387,7 @@
     {
       "name": "M4",
       "slug": "m4",
+      "segment": "Luxury",
       "thumbnailUrl": "https://i.pinimg.com/1200x/7a/e2/4e/7ae24e6a932de45f1dd6cebe666150e9.jpg",
       "heroUrl": "https://i.pinimg.com/1200x/7a/e2/4e/7ae24e6a932de45f1dd6cebe666150e9.jpg",
       "yearVariants": {
@@ -2217,6 +2400,7 @@
     {
       "name": "M5",
       "slug": "m5",
+      "segment": "Luxury",
       "thumbnailUrl": "https://i.pinimg.com/1200x/57/27/ce/5727ce8fa702182f13e691bd335f2bb4.jpg",
       "heroUrl": "https://i.pinimg.com/1200x/57/27/ce/5727ce8fa702182f13e691bd335f2bb4.jpg",
       "yearVariants": {
@@ -2229,6 +2413,7 @@
     {
       "name": "i3",
       "slug": "i3",
+      "segment": "Luxury",
       "thumbnailUrl": "https://i.pinimg.com/1200x/37/2d/bb/372dbb49f351bf8032b26ef46ddf2075.jpg",
       "heroUrl": "https://i.pinimg.com/1200x/37/2d/bb/372dbb49f351bf8032b26ef46ddf2075.jpg",
       "yearVariants": {
@@ -2241,6 +2426,7 @@
     {
       "name": "i7",
       "slug": "i7",
+      "segment": "Luxury",
       "thumbnailUrl": "https://i.pinimg.com/736x/ce/a4/ea/cea4ea6593b48123387f9337baaa06eb.jpg",
       "heroUrl": "https://i.pinimg.com/736x/ce/a4/ea/cea4ea6593b48123387f9337baaa06eb.jpg",
       "yearVariants": {
@@ -2253,6 +2439,7 @@
       {
         "name": "3 Series",
         "slug": "3-series",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/1200x/47/b8/23/47b823824479a8b1ddea4b49441329fa.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/47/b8/23/47b823824479a8b1ddea4b49441329fa.jpg",
         "yearVariants": {
@@ -2265,6 +2452,7 @@
       {
         "name": "5 Series",
         "slug": "5-series",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/736x/5f/67/24/5f67245a9a912c44b69e2372ff1f298e.jpg",
         "heroUrl": "https://i.pinimg.com/736x/5f/67/24/5f67245a9a912c44b69e2372ff1f298e.jpg",
         "yearVariants": {
@@ -2277,6 +2465,7 @@
       {
         "name": "7 Series",
         "slug": "7-series",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/1200x/a2/e8/53/a2e853fe8aa25c29bced0ee06c485a89.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/a2/e8/53/a2e853fe8aa25c29bced0ee06c485a89.jpg",
         "yearVariants": {
@@ -2289,6 +2478,7 @@
       {
         "name": "iX",
         "slug": "ix",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/1200x/ad/db/c2/addbc2280dd9c8f04ed67e16f19efcb7.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/ad/db/c2/addbc2280dd9c8f04ed67e16f19efcb7.jpg",
         "yearVariants": {
@@ -2301,6 +2491,7 @@
       {
         "name": "i4",
         "slug": "i4",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/1200x/6d/6c/b5/6d6cb50d5a94022df5c8fe5cd631c4c2.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/6d/6c/b5/6d6cb50d5a94022df5c8fe5cd631c4c2.jpg",
         "yearVariants": {
@@ -2320,6 +2511,7 @@
       {
         "name": "A-Class",
         "slug": "a-class",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/736x/2d/b2/5d/2db25d468062c25c5ecc104bc33e240c.jpg",
         "heroUrl": "https://i.pinimg.com/736x/2d/b2/5d/2db25d468062c25c5ecc104bc33e240c.jpg",
         "yearVariants": {
@@ -2332,6 +2524,7 @@
       {
         "name": "C-Class",
         "slug": "c-class",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/1200x/e6/a7/b2/e6a7b2f8a36856cef95465635d7b8b75.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/e6/a7/b2/e6a7b2f8a36856cef95465635d7b8b75.jpg",
         "yearVariants": {
@@ -2344,6 +2537,7 @@
       {
         "name": "E-Class",
         "slug": "e-class",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/1200x/b6/b1/af/b6b1af234da27533577d54db1778a32d.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/b6/b1/af/b6b1af234da27533577d54db1778a32d.jpg",
         "yearVariants": {
@@ -2356,6 +2550,7 @@
       {
         "name": "S-Class",
         "slug": "s-class",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/1200x/c0/e6/77/c0e67736d10f32e86066aad2f65f088c.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/c0/e6/77/c0e67736d10f32e86066aad2f65f088c.jpg",
         "yearVariants": {
@@ -2368,6 +2563,7 @@
       {
         "name": "GLA",
         "slug": "gla",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/1200x/25/38/a1/2538a176efe0f1ff0213de5147492510.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/25/38/a1/2538a176efe0f1ff0213de5147492510.jpg",
         "yearVariants": {
@@ -2380,6 +2576,7 @@
       {
         "name": "GLB",
         "slug": "glb",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/1200x/a3/88/d7/a388d7c2df9c08361c0332548938f67d.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/a3/88/d7/a388d7c2df9c08361c0332548938f67d.jpg",
         "yearVariants": {
@@ -2392,6 +2589,7 @@
       {
         "name": "GLC",
         "slug": "glc",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/1200x/da/90/a6/da90a6888b235cf9cd8f84bbc1d8e712.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/da/90/a6/da90a6888b235cf9cd8f84bbc1d8e712.jpg",
         "yearVariants": {
@@ -2404,6 +2602,7 @@
       {
         "name": "GLE",
         "slug": "gle",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/1200x/fe/c2/0f/fec20f7dfbb9d1639a6529a04eea4435.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/fe/c2/0f/fec20f7dfbb9d1639a6529a04eea4435.jpg",
         "yearVariants": {
@@ -2416,6 +2615,7 @@
       {
         "name": "GLS",
         "slug": "gls",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/736x/36/31/24/3631243677916d9277079763a8c29004.jpg",
         "heroUrl": "https://i.pinimg.com/736x/36/31/24/3631243677916d9277079763a8c29004.jpg",
         "yearVariants": {
@@ -2428,6 +2628,7 @@
       {
         "name": "EQB",
         "slug": "eqb",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/1200x/b8/98/c9/b898c9029461ed9b03ecb616e03cf6af.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/b8/98/c9/b898c9029461ed9b03ecb616e03cf6af.jpg",
         "yearVariants": {
@@ -2440,6 +2641,7 @@
       {
         "name": "EQS",
         "slug": "eqs",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/1200x/55/64/ae/5564ae52717f1781e93c420c6a7400e8.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/55/64/ae/5564ae52717f1781e93c420c6a7400e8.jpg",
         "yearVariants": {
@@ -2452,6 +2654,7 @@
        {
       "name": "CLA",
       "slug": "cla",
+      "segment": "Luxury",
       "thumbnailUrl": "https://i.pinimg.com/1200x/6f/f1/a2/6ff1a24b9ca66bb5af2f080f9dc5f2e5.jpg",
       "heroUrl": "https://i.pinimg.com/1200x/6f/f1/a2/6ff1a24b9ca66bb5af2f080f9dc5f2e5.jpg",
       "yearVariants": { "2024": { "heroUrl": "https://i.pinimg.com/1200x/6f/f1/a2/6ff1a24b9ca66bb5af2f080f9dc5f2e5.jpg", "thumbnailUrl": "https://i.pinimg.com/1200x/6f/f1/a2/6ff1a24b9ca66bb5af2f080f9dc5f2e5.jpg" } }
@@ -2459,6 +2662,7 @@
     {
       "name": "CLS",
       "slug": "cls",
+      "segment": "Luxury",
       "thumbnailUrl": "https://i.pinimg.com/1200x/47/e7/9f/47e79fbcc3161fc803c517afa9c9efe9.jpg",
       "heroUrl": "https://i.pinimg.com/1200x/47/e7/9f/47e79fbcc3161fc803c517afa9c9efe9.jpg",
       "yearVariants": { 
@@ -2469,6 +2673,7 @@
     {
       "name": "A-Class Limousine",
       "slug": "a-class-limousine",
+      "segment": "Luxury",
       "thumbnailUrl": "https://i.pinimg.com/1200x/7f/51/4d/7f514daae2d6d83e859242ec335d544b.jpg",
       "heroUrl": "https://i.pinimg.com/1200x/7f/51/4d/7f514daae2d6d83e859242ec335d544b.jpg",
       "yearVariants": { 
@@ -2479,6 +2684,7 @@
     {
       "name": "Maybach S-Class",
       "slug": "maybach-s-class",
+      "segment": "Luxury",
       "thumbnailUrl": "https://i.pinimg.com/736x/ca/61/ee/ca61eeb094b3c6dd0c122db48642966c.jpg",
       "heroUrl": "https://i.pinimg.com/736x/ca/61/ee/ca61eeb094b3c6dd0c122db48642966c.jpg",
       "yearVariants": { 
@@ -2489,6 +2695,7 @@
     {
       "name": "G-Class",
       "slug": "g-class",
+      "segment": "Luxury",
       "thumbnailUrl": "https://i.pinimg.com/736x/a8/62/eb/a862ebf2986be6da46389b8220bb67e8.jpg",
       "heroUrl": "https://i.pinimg.com/736x/a8/62/eb/a862ebf2986be6da46389b8220bb67e8.jpg",
       "yearVariants": { 
@@ -2499,6 +2706,7 @@
     {
       "name": "SL",
       "slug": "sl",
+      "segment": "Luxury",
       "thumbnailUrl": "https://i.pinimg.com/736x/9a/4b/4e/9a4b4e135b1e4d6b81efd3661e9b6bf9.jpg",
       "heroUrl": "https://i.pinimg.com/736x/9a/4b/4e/9a4b4e135b1e4d6b81efd3661e9b6bf9.jpg",
       "yearVariants": { 
@@ -2509,6 +2717,7 @@
     {
       "name": "SLK",
       "slug": "slk",
+      "segment": "Luxury",
       "thumbnailUrl": "https://i.pinimg.com/736x/b2/5b/ee/b25bee43feca22b8e6788fc706f9bb48.jpg",
       "heroUrl": "https://i.pinimg.com/736x/b2/5b/ee/b25bee43feca22b8e6788fc706f9bb48.jpg",
       "yearVariants": { 
@@ -2519,6 +2728,7 @@
     {
       "name": "AMG GT",
       "slug": "amg-gt",
+      "segment": "Luxury",
       "thumbnailUrl": "https://i.pinimg.com/736x/c7/d0/3b/c7d03bfae5d13cfa0bbad980718c719e.jpg",
       "heroUrl": "https://i.pinimg.com/736x/c7/d0/3b/c7d03bfae5d13cfa0bbad980718c719e.jpg",
       "yearVariants": { 
@@ -2529,6 +2739,7 @@
     {
       "name": "EQA",
       "slug": "eqa",
+      "segment": "Luxury",
       "thumbnailUrl": "https://i.pinimg.com/1200x/59/91/7d/59917d1f7c876104452f1548a8acda1e.jpg",
       "heroUrl": "https://i.pinimg.com/1200x/59/91/7d/59917d1f7c876104452f1548a8acda1e.jpg",
       "yearVariants": { 
@@ -2539,6 +2750,7 @@
     {
       "name": "EQC",
       "slug": "eqc",
+      "segment": "Luxury",
       "thumbnailUrl": "https://i.pinimg.com/1200x/e6/88/a4/e688a4f4bd8bfe1a3dc95abd695caaf2.jpg",
       "heroUrl": "https://i.pinimg.com/1200x/e6/88/a4/e688a4f4bd8bfe1a3dc95abd695caaf2.jpg",
       "yearVariants": { 
@@ -2549,6 +2761,7 @@
     {
       "name": "EQE",
       "slug": "eqe",
+      "segment": "Luxury",
       "thumbnailUrl": "https://i.pinimg.com/1200x/09/fb/67/09fb67b513c41e76be566b0c86379b86.jpg",
       "heroUrl": "https://i.pinimg.com/1200x/09/fb/67/09fb67b513c41e76be566b0c86379b86.jpg",
       "yearVariants": { 
@@ -2559,6 +2772,7 @@
     {
       "name": "EQV",
       "slug": "eqv",
+      "segment": "MPV",
       "thumbnailUrl": "https://i.pinimg.com/736x/63/24/f1/6324f13324c3496fae3570d2f165fc37.jpg",
       "heroUrl": "https://i.pinimg.com/736x/63/24/f1/6324f13324c3496fae3570d2f165fc37.jpg",
       "yearVariants": { 
@@ -2576,6 +2790,7 @@
       {
         "name": "A4",
         "slug": "a4",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/1200x/7c/b9/96/7cb996614565a3b69811095a4beb58b0.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/7c/b9/96/7cb996614565a3b69811095a4beb58b0.jpg",
         "yearVariants": {
@@ -2588,6 +2803,7 @@
       {
         "name": "A6",
         "slug": "a6",
+         "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/736x/d8/12/4c/d8124c4215f0acf92b2784b7f293ad03.jpg",
         "heroUrl": "https://i.pinimg.com/736x/d8/12/4c/d8124c4215f0acf92b2784b7f293ad03.jpg",
         "yearVariants": {
@@ -2600,6 +2816,7 @@
       {
         "name": "Q3",
         "slug": "q3",
+         "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/1200x/c0/83/7c/c0837c0efd34e785f68ed4e7cdf80fe4.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/c0/83/7c/c0837c0efd34e785f68ed4e7cdf80fe4.jpg",
         "yearVariants": {
@@ -2612,6 +2829,7 @@
       {
         "name": "Q5",
         "slug": "q5",
+         "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/736x/d9/11/6d/d9116d72da52477200d59268718b9738.jpg",
         "heroUrl": "https://i.pinimg.com/736x/d9/11/6d/d9116d72da52477200d59268718b9738.jpg",
         "yearVariants": {
@@ -2624,6 +2842,7 @@
       {
         "name": "Q7",
         "slug": "q7",
+         "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/736x/6b/e1/88/6be188e66529235628599c5be80cdcad.jpg",
         "heroUrl": "https://i.pinimg.com/736x/6b/e1/88/6be188e66529235628599c5be80cdcad.jpg",
         "yearVariants": {
@@ -2636,6 +2855,7 @@
       {
         "name": "Q8",
         "slug": "q8",
+         "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/736x/49/ea/b3/49eab3faf870a5dff0b4e19c25378531.jpg",
         "heroUrl": "https://i.pinimg.com/736x/49/ea/b3/49eab3faf870a5dff0b4e19c25378531.jpg",
         "yearVariants": {
@@ -2648,6 +2868,7 @@
       {
         "name": "e-tron",
         "slug": "e-tron",
+         "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/736x/3a/c1/8c/3ac18cfae36e8b690622bf533e472b4f.jpg",
         "heroUrl": "https://i.pinimg.com/736x/3a/c1/8c/3ac18cfae36e8b690622bf533e472b4f.jpg",
         "yearVariants": {
@@ -2667,6 +2888,7 @@
       {
         "name": "XC40",
         "slug": "xc40",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/736x/b4/e8/c0/b4e8c01583c6339f9d1268960ebf1fad.jpg",
         "heroUrl": "https://i.pinimg.com/736x/b4/e8/c0/b4e8c01583c6339f9d1268960ebf1fad.jpg",
         "yearVariants": {
@@ -2679,6 +2901,7 @@
       {
         "name": "XC40 Recharge",
         "slug": "xc40-recharge",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/736x/b7/e8/0f/b7e80f1a9bc5ad44301bde8aac9f4eb8.jpg",
         "heroUrl": "https://i.pinimg.com/736x/b7/e8/0f/b7e80f1a9bc5ad44301bde8aac9f4eb8.jpg",
         "yearVariants": {
@@ -2691,6 +2914,7 @@
       {
         "name": "XC60",
         "slug": "xc60",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/736x/2b/29/fa/2b29fa3548598d5c03d1280b501dc896.jpg",
         "heroUrl": "https://i.pinimg.com/736x/2b/29/fa/2b29fa3548598d5c03d1280b501dc896.jpg",
         "yearVariants": {
@@ -2703,6 +2927,7 @@
       {
         "name": "XC90",
         "slug": "xc90",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/1200x/6b/34/9c/6b349c73af12f6a8ffc7f521b881725a.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/6b/34/9c/6b349c73af12f6a8ffc7f521b881725a.jpg",
         "yearVariants": {
@@ -2715,6 +2940,7 @@
       {
         "name": "S90",
         "slug": "s90",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/1200x/28/53/dd/2853dd3c05486482a98ffebe67fea74b.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/28/53/dd/2853dd3c05486482a98ffebe67fea74b.jpg",
         "yearVariants": {
@@ -2734,6 +2960,7 @@
       {
         "name": "C3",
         "slug": "c3",
+        "segment": "Hatchback",
         "thumbnailUrl": "https://i.pinimg.com/736x/cb/3c/0d/cb3c0ddad7659f7a2da7b9964b0c84fb.jpg",
         "heroUrl": "https://i.pinimg.com/736x/cb/3c/0d/cb3c0ddad7659f7a2da7b9964b0c84fb.jpg",
         "yearVariants": {
@@ -2746,6 +2973,7 @@
       {
         "name": "C3 Aircross",
         "slug": "c3-aircross",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/1200x/3d/06/9d/3d069d570727e263a6a9b9670ead5534.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/3d/06/9d/3d069d570727e263a6a9b9670ead5534.jpg",
         "yearVariants": {
@@ -2758,6 +2986,7 @@
       {
         "name": "eC3",
         "slug": "ec3",
+        "segment": "Hatchback",
         "thumbnailUrl": "https://i.pinimg.com/736x/49/ab/9c/49ab9c3d17a9d41de19cf32f0a9efb84.jpg",
         "heroUrl": "https://i.pinimg.com/736x/49/ab/9c/49ab9c3d17a9d41de19cf32f0a9efb84.jpg",
         "yearVariants": {
@@ -2770,6 +2999,7 @@
       {
         "name": "C5 Aircross",
         "slug": "c5-aircross",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/1200x/f6/1c/b8/f61cb85763e0d224599ba234c5421992.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/f6/1c/b8/f61cb85763e0d224599ba234c5421992.jpg",
         "yearVariants": {
@@ -2789,6 +3019,7 @@
       {
         "name": "NX350h",
         "slug": "nx350h",
+         "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/736x/1f/57/4c/1f574c2e8353503385d4306754dfeb95.jpg",
         "heroUrl": "https://i.pinimg.com/736x/1f/57/4c/1f574c2e8353503385d4306754dfeb95.jpg",
         "yearVariants": {
@@ -2801,6 +3032,7 @@
       {
         "name": "RX350h",
         "slug": "rx350h",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/1200x/ed/37/66/ed3766da509d8078147de822681a118c.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/ed/37/66/ed3766da509d8078147de822681a118c.jpg",
         "yearVariants": {
@@ -2813,6 +3045,7 @@
       {
         "name": "ES300h",
         "slug": "es300h",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/1200x/60/d7/f3/60d7f368d6184115f10a6fcb1b785f35.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/60/d7/f3/60d7f368d6184115f10a6fcb1b785f35.jpg",
         "yearVariants": {
@@ -2825,6 +3058,7 @@
       {
         "name": "LX500d",
         "slug": "lx500d",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/1200x/14/f6/62/14f66278b030f15d5619741121e4ed17.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/14/f6/62/14f66278b030f15d5619741121e4ed17.jpg",
         "yearVariants": {
@@ -2844,6 +3078,7 @@
       {
         "name": "Atto 3",
         "slug": "atto-3",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/736x/ca/9a/60/ca9a604715ef7b69fea2b89b363bd871.jpg",
         "heroUrl": "https://i.pinimg.com/736x/ca/9a/60/ca9a604715ef7b69fea2b89b363bd871.jpg",
         "yearVariants": {
@@ -2856,6 +3091,7 @@
       {
         "name": "Seal",
         "slug": "seal",
+         "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/originals/41/35/bb/4135bbc04068c432d1b46d1a01bc6196.jpg",
         "heroUrl": "https://i.pinimg.com/originals/41/35/bb/4135bbc04068c432d1b46d1a01bc6196.jpg",
         "yearVariants": {
@@ -2868,6 +3104,7 @@
       {
         "name": "e6",
         "slug": "e6",
+        "segment": "MPV",
         "thumbnailUrl": "https://i.pinimg.com/736x/d7/de/5c/d7de5cd7339fb63b4f4bb0024778c8a7.jpg",
         "heroUrl": "https://i.pinimg.com/736x/d7/de/5c/d7de5cd7339fb63b4f4bb0024778c8a7.jpg",
         "yearVariants": {
@@ -2887,6 +3124,7 @@
       {
         "name": "Macan",
         "slug": "macan",
+         "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/736x/a8/7d/27/a87d2794c556848d1988cd7a1669fe69.jpg",
         "heroUrl": "https://i.pinimg.com/736x/a8/7d/27/a87d2794c556848d1988cd7a1669fe69.jpg",
         "yearVariants": {
@@ -2899,6 +3137,7 @@
       {
         "name": "Cayenne",
         "slug": "cayenne",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/736x/80/58/8f/80588fa20be8a13e2cdafe228b0d7fbb.jpg",
         "heroUrl": "https://i.pinimg.com/736x/80/58/8f/80588fa20be8a13e2cdafe228b0d7fbb.jpg",
         "yearVariants": {
@@ -2911,6 +3150,7 @@
       {
         "name": "Panamera",
         "slug": "panamera",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/1200x/e4/8c/09/e48c09480b66708b000f99b00ae0ee32.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/e4/8c/09/e48c09480b66708b000f99b00ae0ee32.jpg",
         "yearVariants": {
@@ -2923,6 +3163,7 @@
       {
         "name": "Taycan",
         "slug": "taycan",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/736x/e5/80/ea/e580eaa281d16be5adc12b01e7e213c7.jpg",
         "heroUrl": "https://i.pinimg.com/736x/e5/80/ea/e580eaa281d16be5adc12b01e7e213c7.jpg",
         "yearVariants": {
@@ -2942,6 +3183,7 @@
       {
         "name": "F-Pace",
         "slug": "f-pace",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/736x/22/cd/c0/22cdc08738833929f554797e1bf148ea.jpg",
         "heroUrl": "https://i.pinimg.com/736x/22/cd/c0/22cdc08738833929f554797e1bf148ea.jpg",
         "yearVariants": {
@@ -2954,6 +3196,7 @@
       {
         "name": "I-Pace",
         "slug": "i-pace",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/736x/16/8b/17/168b179fb4312b18cf5cc696179924df.jpg",
         "heroUrl": "https://i.pinimg.com/736x/16/8b/17/168b179fb4312b18cf5cc696179924df.jpg",
         "yearVariants": {
@@ -2966,6 +3209,7 @@
       {
         "name": "XF",
         "slug": "xf",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/736x/fe/ec/d8/feecd808aff8095c5ced0616ab77f96d.jpg",
         "heroUrl": "https://i.pinimg.com/736x/fe/ec/d8/feecd808aff8095c5ced0616ab77f96d.jpg",
         "yearVariants": {
@@ -2985,6 +3229,7 @@
       {
         "name": "Defender",
         "slug": "defender",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/736x/40/4a/9b/404a9b6eb47a308601cb0bbbb8a76cfc.jpg",
         "heroUrl": "https://i.pinimg.com/736x/40/4a/9b/404a9b6eb47a308601cb0bbbb8a76cfc.jpg",
         "yearVariants": {
@@ -2997,6 +3242,7 @@
       {
         "name": "Discovery",
         "slug": "discovery",
+         "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/1200x/c6/77/68/c67768aad9bd131c46c10333ad0cc163.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/c6/77/68/c67768aad9bd131c46c10333ad0cc163.jpg",
         "yearVariants": {
@@ -3009,6 +3255,7 @@
       {
         "name": "Range Rover",
         "slug": "range-rover",
+         "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/736x/af/5c/92/af5c92de8a30b74911523eda0478b716.jpg",
         "heroUrl": "https://i.pinimg.com/736x/af/5c/92/af5c92de8a30b74911523eda0478b716.jpg",
         "yearVariants": {
@@ -3021,6 +3268,7 @@
       {
         "name": "Range Rover Sport",
         "slug": "range-rover-sport",
+         "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/736x/02/c7/57/02c7572f356e31a9cc9adb179d7aecb0.jpg",
         "heroUrl": "https://i.pinimg.com/736x/02/c7/57/02c7572f356e31a9cc9adb179d7aecb0.jpg",
         "yearVariants": {
@@ -3033,6 +3281,7 @@
       {
         "name": "Range Rover Evoque",
         "slug": "range-rover-evoque",
+         "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/1200x/a5/c9/bc/a5c9bc641ae57333c99f9d456456c835.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/a5/c9/bc/a5c9bc641ae57333c99f9d456456c835.jpg",
         "yearVariants": {
@@ -3045,6 +3294,7 @@
       {
         "name": "Range Rover Velar",
         "slug": "range-rover-velar",
+         "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/736x/af/5c/92/af5c92de8a30b74911523eda0478b716.jpg",
         "heroUrl": "https://i.pinimg.com/736x/af/5c/92/af5c92de8a30b74911523eda0478b716.jpg",
         "yearVariants": {
@@ -3064,6 +3314,7 @@
       {
         "name": "Cooper",
         "slug": "cooper",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/1200x/c6/27/03/c627037eafda40c743f87d9d61bea97d.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/c6/27/03/c627037eafda40c743f87d9d61bea97d.jpg",
         "yearVariants": {
@@ -3076,6 +3327,7 @@
       {
         "name": "Cooper Convertible",
         "slug": "cooper-convertible",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/736x/29/61/e3/2961e3efd88154e533bbeb93ea87dd20.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/29/61/e3/2961e3efd88154e533bbeb93ea87dd20.jpg",
         "yearVariants": {
@@ -3088,6 +3340,7 @@
       {
         "name": "Countryman",
         "slug": "countryman",
+        "segment": "Luxury",
         "thumbnailUrl": "https://i.pinimg.com/736x/02/ba/ec/02baecbc8bfaa3c037f374251914019d.jpg",
         "heroUrl": "https://i.pinimg.com/736x/02/ba/ec/02baecbc8bfaa3c037f374251914019d.jpg",
         "yearVariants": {
@@ -3107,6 +3360,7 @@
       {
         "name": "MU-X",
         "slug": "mu-x",
+        "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/1200x/7d/19/b5/7d19b58d7a1cfaecae0d4089d37498b6.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/7d/19/b5/7d19b58d7a1cfaecae0d4089d37498b6.jpg",
         "yearVariants": {
@@ -3119,6 +3373,7 @@
       {
         "name": "D-Max V-Cross",
         "slug": "d-max-v-cross",
+        "segment": "Pickup",
         "thumbnailUrl": "https://i.pinimg.com/736x/9f/28/12/9f2812d0588e34f0b89a04cd3d2a2bd3.jpg",
         "heroUrl": "https://i.pinimg.com/736x/9f/28/12/9f2812d0588e34f0b89a04cd3d2a2bd3.jpg",
         "yearVariants": {
@@ -3138,6 +3393,7 @@
       {
         "name": "Gurkha",
         "slug": "gurkha",
+         "segment": "SUV",
         "thumbnailUrl": "https://i.pinimg.com/1200x/dd/cc/8b/ddcc8b34181ef5a76827a13934dc355c.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/dd/cc/8b/ddcc8b34181ef5a76827a13934dc355c.jpg",
         "yearVariants": {
@@ -3150,6 +3406,7 @@
       {
         "name": "Trax Cruiser",
         "slug": "trax-cruiser",
+        "segment": "MPV",
         "thumbnailUrl": "https://buscdn.cardekho.com/in/force/trax-cruiser/force-trax-cruiser.jpg",
         "heroUrl": "https://buscdn.cardekho.com/in/force/trax-cruiser/force-trax-cruiser.jpg",
         "yearVariants": {
@@ -3162,6 +3419,7 @@
       {
         "name": "Trax Toofan",
         "slug": "trax-toofan",
+         "segment": "MPV",
         "thumbnailUrl": "https://i.pinimg.com/1200x/66/60/d8/6660d8670e4025c6bac778f78848fa2d.jpg",
         "heroUrl": "https://i.pinimg.com/1200x/66/60/d8/6660d8670e4025c6bac778f78848fa2d.jpg",
         "yearVariants": {
@@ -3181,6 +3439,7 @@
       {
         "name": "Qute",
         "slug": "qute",
+        "segment": "Hatchback",
         "thumbnailUrl": "https://i.pinimg.com/736x/ff/41/49/ff4149054287bf27288cecb37037a3ec.jpg",
         "heroUrl": "https://i.pinimg.com/736x/ff/41/49/ff4149054287bf27288cecb37037a3ec.jpg",
         "yearVariants": {

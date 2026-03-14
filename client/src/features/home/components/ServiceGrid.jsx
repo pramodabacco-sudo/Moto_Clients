@@ -30,7 +30,16 @@ export default function ServiceGrid({ services = [] }) {
   const { theme } = useTheme();
   const router = useRouter();
 
-  if (!services.length) return null;
+  if (!services.length) {
+    return (
+      <View style={{ paddingVertical: 20 }}>
+        <SectionHeader title="Our Services" />
+        <Text style={{ textAlign: "center", opacity: 0.6, marginTop: 10 }}>
+          No services available for this category
+        </Text>
+      </View>
+    );
+  }
 
   return (
     <View>

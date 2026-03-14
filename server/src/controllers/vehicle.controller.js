@@ -5,9 +5,12 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const filePath = path.join(__dirname, "../data/cars-data.json");
+const carsPath = path.join(__dirname, "../data/cars-data.json");
+const bikesPath = path.join(__dirname, "../data/bikes-data.json");
 
-const getData = () => {
+const getData = (type = "car") => {
+  const filePath = type === "bike" ? bikesPath : carsPath;
+
   const data = fs.readFileSync(filePath, "utf-8");
   return JSON.parse(data);
 };
@@ -15,9 +18,11 @@ const getData = () => {
 // GET ALL BRANDS
 export const getBrands = async (req, res) => {
   try {
-    const cars = getData();
+    const { type = "car" } = req.query;
 
-    const brands = cars.map((b) => ({
+    const vehicles = getData(type);
+
+    const brands = vehicles.map((b) => ({
       name: b.make,
       slug: b.slug,
       logoUrl: b.logoUrl,
@@ -33,10 +38,11 @@ export const getBrands = async (req, res) => {
 export const getModels = async (req, res) => {
   try {
     const { brandSlug } = req.params;
+    const { type = "car" } = req.query;
 
-    const cars = getData();
+    const vehicles = getData(type);
 
-    const brand = cars.find((b) => b.slug === brandSlug);
+    const brand = vehicles.find((b) => b.slug === brandSlug);
 
     if (!brand) {
       return res.status(404).json({ message: "Brand not found" });

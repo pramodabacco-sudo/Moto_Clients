@@ -11,10 +11,11 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useRouter } from "expo-router";
+import { useRouter, useLocalSearchParams } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { useState, useMemo, useEffect } from "react";
 import { useTheme } from "../../../src/hooks/useTheme.js";
+import api from "../../services/apiClient.js";
 
 const { width } = Dimensions.get("window");
 const CARD_SIZE = (width - 48) / 3;
@@ -32,6 +33,7 @@ const ACCENT_COLORS = [
 
 export default function VehicleBrandScreen() {
   const router = useRouter();
+  const { type } = useLocalSearchParams();
   const { theme } = useTheme();
 
   const [query, setQuery] = useState("");
@@ -39,16 +41,20 @@ export default function VehicleBrandScreen() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchBrands();
-  }, []);
+    if (type) {
+      fetchBrands();
+    }
+  }, [type]);
 
   const fetchBrands = async () => {
     try {
-      const res = await fetch("http://10.0.2.2:8000/api/vehicles/brands");
-      const data = await res.json();
-      setBrands(data);
+      const res = await api.get("/vehicles/brands", {
+        params: { type },
+      });
+
+      setBrands(res.data);
     } catch (err) {
-      console.log("Brand fetch error:", err);
+      console.log("Brand fetch error:", err.response?.data || err.message);
     } finally {
       setLoading(false);
     }
@@ -66,8 +72,8 @@ export default function VehicleBrandScreen() {
   const cardBg = isDark ? "#2c2c2e" : "#f8f8f8";
   const textPrimary = isDark ? "#f5f5f5" : "#111111";
   const textSecondary = isDark ? "#8e8e93" : "#6b6b6b";
-  const border = isDark ? "#3a3a3c" : "#ffffff";
-  const accent = "#005eff";
+  const border = isDark ? "#3a3a3c" : "#e8e8e8";
+  const accent = "#0044ff";
 
   const renderItem = ({ item, index }) => {
     const color = ACCENT_COLORS[index % ACCENT_COLORS.length];
@@ -84,18 +90,19 @@ export default function VehicleBrandScreen() {
         onPress={() =>
           router.push({
             pathname: "/vehicle/model",
-            params: { brandSlug: item.slug },
+            params: {
+              type,
+              brandSlug: item.slug,
+              brandData: JSON.stringify({
+                name: item.name,
+                logoUrl: item.logoUrl,
+              }),
+            },
           })
         }
         activeOpacity={0.7}
       >
-        <View
-          style={[
-            styles.logoCircle,
-            { backgroundColor: "white" + "18" },
-            { borderWidth: 2, borderColor: "#5B23FF" },
-          ]}
-        >
+        <View style={[styles.logoCircle, { backgroundColor: color + "18" }]}>
           <Image
             source={{ uri: item.logoUrl }}
             style={styles.logoImage}

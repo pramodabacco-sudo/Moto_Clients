@@ -6,19 +6,20 @@ import {
   StyleSheet,
   Platform,
   ActivityIndicator,
+  Image,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 import { useTheme } from "../../../src/hooks/useTheme.js";
-import { setSelectedVehicle } from "./vehicle.service";
+import { setSelectedVehicle, setGuestVehicle } from "./vehicle.service";
+import { useAuth } from "../../providers/AuthProvider";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-// ─── Fuel options grouped by category ───────────────────────────────────────
 const FUEL_CATEGORIES = [
   {
     category: "Conventional",
-    icon: "flame-outline",
     color: "#0033ff",
     options: [
       { label: "Petrol", icon: "flame-outline" },
@@ -29,7 +30,6 @@ const FUEL_CATEGORIES = [
   },
   {
     category: "Electric & Hybrid",
-    icon: "flash-outline",
     color: "#27ae60",
     options: [
       { label: "Electric (BEV)", icon: "flash-outline" },
@@ -55,7 +55,6 @@ const FUEL_CATEGORIES = [
   },
   {
     category: "Bi-Fuel",
-    icon: "git-merge-outline",
     color: "#8e44ad",
     options: [
       { label: "Petrol + CNG", icon: "git-merge-outline" },
@@ -66,11 +65,22 @@ const FUEL_CATEGORIES = [
   },
   {
     category: "Hydrogen",
-    icon: "water-outline",
     color: "#2980b9",
     options: [
       { label: "Petrol + Hydrogen", icon: "flame-outline" },
       { label: "Hydrogen (Fuel Cell)", icon: "water-outline" },
+    ],
+  },
+];
+
+const BIKE_FUEL_OPTIONS = [
+  {
+    category: "Fuel Type",
+    color: "#0033ff",
+    options: [
+      { label: "Petrol", icon: "flame-outline" },
+      { label: "Electric", icon: "flash-outline" },
+      { label: "Petrol + Electric (Hybrid)", icon: "battery-charging-outline" },
     ],
   },
 ];
@@ -91,16 +101,42 @@ const TRANSMISSION_OPTIONS = [
   { label: "AMT", icon: "construct-outline", desc: "Automated manual" },
 ];
 
+const BIKE_TRANSMISSION_OPTIONS = [
+  {
+    label: "Manual",
+    icon: "settings-outline",
+    desc: "Clutch + gear shifting",
+  },
+  {
+    label: "Automatic",
+    icon: "speedometer-outline",
+    desc: "CVT / Scooter automatic",
+  },
+  {
+    label: "Semi-Automatic",
+    icon: "git-branch-outline",
+    desc: "Clutchless gear shifting",
+  },
+];
+
 export default function VehicleSpecsScreen() {
   const router = useRouter();
   const { theme } = useTheme();
-  const { brandSlug, model } = useLocalSearchParams();
+  const { user } = useAuth();
+
+  // model.jsx must now pass brandData as well (see note below)
+  const { type, brandSlug, brandData, model } = useLocalSearchParams();
 
   const modelObj = JSON.parse(model);
+  const brandObj = brandData ? JSON.parse(brandData) : null;
 
   const [fuel, setFuel] = useState(null);
   const [transmission, setTransmission] = useState(null);
   const [saving, setSaving] = useState(false);
+
+  const fuelCategories = type === "bike" ? BIKE_FUEL_OPTIONS : FUEL_CATEGORIES;
+  const transmissionOptions =
+    type === "bike" ? BIKE_TRANSMISSION_OPTIONS : TRANSMISSION_OPTIONS;
 
   const isDark = theme.dark;
   const surface = isDark ? "#1c1c1e" : "#ffffff";
@@ -116,18 +152,40 @@ export default function VehicleSpecsScreen() {
     if (isContinueDisabled) return;
     setSaving(true);
     try {
-      await setSelectedVehicle({
-        brand: brandSlug,
-        model: modelObj.slug,
+      // ✅ KEY FIX: save full objects, not just slugs
+      const vehicleData = {
+        brand: {
+          slug: brandSlug,
+          name: brandObj?.name ?? brandSlug,
+          logoUrl: brandObj?.logoUrl ?? null,
+        },
+        model: {
+          slug: modelObj.slug,
+          name: modelObj.name,
+          thumbnailUrl: modelObj.thumbnailUrl ?? null,
+        },
         fuelType: fuel,
         transmission,
-      });
+      };
+
+      await setSelectedVehicle(vehicleData);
+
+      
+
+      // Save guest vehicle only if user not logged in
+      if (!user) {
+        await setGuestVehicle(vehicleData);
+        const stored = await AsyncStorage.getItem("GUEST_VEHICLE");
+        console.log("Guest vehicle stored:", stored);
+      }
       router.replace("/(tabs)/home");
     } catch (e) {
       console.warn("Vehicle save failed:", e.message);
       setSaving(false);
     }
   };
+
+  const previewImage = modelObj.thumbnailUrl ?? brandObj?.logoUrl ?? null;
 
   return (
     <SafeAreaView
@@ -162,7 +220,7 @@ export default function VehicleSpecsScreen() {
             Almost done! 🎉
           </Text>
           <Text style={[styles.heroSub, { color: textSecondary }]}>
-            Tell us a bit more about your car
+            Tell us a bit more about your {type === "bike" ? "bike" : "car"}
           </Text>
         </View>
 
@@ -174,16 +232,26 @@ export default function VehicleSpecsScreen() {
           ]}
         >
           <View
-            style={[styles.summaryIconWrap, { backgroundColor: accent + "18" }]}
+            style={[styles.summaryIconWrap, { backgroundColor: accent + "12" }]}
           >
-            <Ionicons name="car-sport-outline" size={22} color={accent} />
+            {previewImage ? (
+              <Image
+                source={{ uri: previewImage }}
+                style={styles.summaryImage}
+                resizeMode="contain"
+              />
+            ) : (
+              <Ionicons name="car-sport-outline" size={22} color={accent} />
+            )}
           </View>
           <View style={styles.summaryBody}>
             <Text style={[styles.summaryName, { color: textPrimary }]}>
-              {modelObj.name}
+              {brandObj?.name
+                ? `${brandObj.name} ${modelObj.name}`
+                : modelObj.name}
             </Text>
             <Text style={[styles.summaryMeta, { color: textSecondary }]}>
-              {fuel ? fuel : "No fuel type selected"}
+              {fuel ?? "No fuel type selected"}
               {transmission ? ` · ${transmission}` : ""}
             </Text>
           </View>
@@ -192,7 +260,7 @@ export default function VehicleSpecsScreen() {
           )}
         </View>
 
-        {/* ── Fuel Type ─────────────────────────────────────────── */}
+        {/* Fuel Type */}
         <View style={styles.section}>
           <Text style={[styles.sectionTitle, { color: textPrimary }]}>
             Fuel Type
@@ -200,18 +268,14 @@ export default function VehicleSpecsScreen() {
           <Text style={[styles.sectionSub, { color: textSecondary }]}>
             Select the fuel your car runs on
           </Text>
-
-          {FUEL_CATEGORIES.map((cat) => (
+          {fuelCategories.map((cat) => (
             <View key={cat.category} style={styles.categoryBlock}>
-              {/* Category Header */}
               <View style={styles.catHeader}>
                 <View style={[styles.catDot, { backgroundColor: cat.color }]} />
                 <Text style={[styles.catLabel, { color: textSecondary }]}>
                   {cat.category}
                 </Text>
               </View>
-
-              {/* Fuel Options */}
               <View
                 style={[
                   styles.fuelGroup,
@@ -255,7 +319,7 @@ export default function VehicleSpecsScreen() {
                         style={[
                           styles.fuelLabel,
                           {
-                            color: isSelected ? textPrimary : textPrimary,
+                            color: textPrimary,
                             fontWeight: isSelected ? "700" : "500",
                           },
                         ]}
@@ -281,22 +345,21 @@ export default function VehicleSpecsScreen() {
           ))}
         </View>
 
-        {/* ── Transmission ──────────────────────────────────────── */}
+        {/* Transmission */}
         <View style={[styles.section, { marginBottom: 40 }]}>
           <Text style={[styles.sectionTitle, { color: textPrimary }]}>
             Transmission
           </Text>
           <Text style={[styles.sectionSub, { color: textSecondary }]}>
-            How does your car change gears?
+            How does your {type === "bike" ? "bike" : "car"} change gears?
           </Text>
-
           <View
             style={[
               styles.fuelGroup,
               { backgroundColor: surface, borderColor: border },
             ]}
           >
-            {TRANSMISSION_OPTIONS.map((opt, idx) => {
+            {transmissionOptions.map((opt, idx) => {
               const isSelected = transmission === opt.label;
               const isLast = idx === TRANSMISSION_OPTIONS.length - 1;
               return (
@@ -359,7 +422,7 @@ export default function VehicleSpecsScreen() {
         </View>
       </ScrollView>
 
-      {/* Footer / Continue */}
+      {/* Footer */}
       <View
         style={[
           styles.footer,
@@ -401,9 +464,7 @@ const styles = StyleSheet.create({
   backBtn: { minWidth: 44 },
   headerTitle: { fontSize: 16, fontWeight: "700", letterSpacing: 0.3 },
   headerRight: { minWidth: 44 },
-
   scroll: { paddingHorizontal: 16, paddingBottom: 20 },
-
   heroWrap: { paddingTop: 22, paddingBottom: 16 },
   heroEyebrow: {
     fontSize: 11,
@@ -418,7 +479,6 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   heroSub: { fontSize: 14 },
-
   summaryCard: {
     flexDirection: "row",
     alignItems: "center",
@@ -434,16 +494,17 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   summaryIconWrap: {
-    width: 44,
+    width: 54,
     height: 44,
     borderRadius: 12,
     alignItems: "center",
     justifyContent: "center",
+    overflow: "hidden",
   },
+  summaryImage: { width: 54, height: 40 },
   summaryBody: { flex: 1 },
   summaryName: { fontSize: 15, fontWeight: "700" },
   summaryMeta: { fontSize: 12, marginTop: 2 },
-
   section: { marginBottom: 28 },
   sectionTitle: {
     fontSize: 17,
@@ -452,7 +513,6 @@ const styles = StyleSheet.create({
     marginBottom: 3,
   },
   sectionSub: { fontSize: 12, marginBottom: 14 },
-
   categoryBlock: { marginBottom: 14 },
   catHeader: {
     flexDirection: "row",
@@ -467,7 +527,6 @@ const styles = StyleSheet.create({
     letterSpacing: 0.8,
     textTransform: "uppercase",
   },
-
   fuelGroup: {
     borderRadius: 14,
     borderWidth: StyleSheet.hairlineWidth,
@@ -478,7 +537,6 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     elevation: 1,
   },
-
   fuelRow: {
     flexDirection: "row",
     alignItems: "center",
@@ -495,14 +553,7 @@ const styles = StyleSheet.create({
   },
   fuelLabel: { flex: 1, fontSize: 14 },
   transDesc: { fontSize: 11, marginTop: 1 },
-
-  radioEmpty: {
-    width: 18,
-    height: 18,
-    borderRadius: 9,
-    borderWidth: 1.5,
-  },
-
+  radioEmpty: { width: 18, height: 18, borderRadius: 9, borderWidth: 1.5 },
   footer: {
     paddingHorizontal: 16,
     paddingTop: 12,

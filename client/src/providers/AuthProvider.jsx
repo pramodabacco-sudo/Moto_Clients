@@ -3,6 +3,10 @@ import { createContext, useEffect, useState, useContext } from "react";
 import api from "../services/apiClient";
 import { ENDPOINTS } from "../services/endpoints";
 import { setToken, removeToken, getToken } from "../services/storage.service";
+import {
+  getGuestVehicle,
+  clearGuestVehicle,
+} from "../features/vehicle/vehicle.service";
 
 export const AuthContext = createContext();
 
@@ -34,9 +38,15 @@ export function AuthProvider({ children }) {
   // ===============================
   const verifyOtp = async (payload) => {
     const { data } = await api.post(ENDPOINTS.AUTH.VERIFY_OTP, payload);
+
     await setToken(data.token);
     api.defaults.headers.common.Authorization = `Bearer ${data.token}`;
-    setUser(data.user);
+
+    await syncGuestVehicle();
+
+    // Refresh profile so vehicles appear
+    await fetchProfile();
+
     return data;
   };
 
@@ -80,6 +90,28 @@ export function AuthProvider({ children }) {
     // Merge updated data into local state
     setUser(data.data);
     return data.data;
+  };
+
+  const syncGuestVehicle = async () => {
+    try {
+      const guestVehicle = await getGuestVehicle();
+      if (!guestVehicle?.brand || !guestVehicle?.model) return;
+      if (!guestVehicle) return;
+
+      await api.post(ENDPOINTS.AUTH.VEHICLES, {
+        vehicleType: guestVehicle.type ?? "car",
+        brandSlug: guestVehicle.brand.name,
+        modelSlug: guestVehicle.model.name,
+        fuelType: guestVehicle.fuelType,
+      });
+
+      await clearGuestVehicle();
+    } catch (err) {
+      console.warn(
+        "Guest vehicle sync failed:",
+        err?.response?.data || err?.message,
+      );
+    }
   };
 
   // ===============================

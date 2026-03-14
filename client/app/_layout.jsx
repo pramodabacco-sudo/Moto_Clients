@@ -9,6 +9,7 @@ import { Ionicons } from "@expo/vector-icons";
 import Toast from "react-native-toast-message";
 
 import { AuthProvider, useAuth } from "../src/providers/AuthProvider";
+import { VehicleProvider } from "../src/providers/VehicleProvider";
 import { ThemeProvider } from "../src/providers/ThemeProvider";
 import { QueryProvider } from "../src/providers/QueryProvider";
 import { CartProvider } from "../src/providers/CartProvider";
@@ -151,16 +152,18 @@ export default function RootLayout() {
       <SafeAreaProvider>
         <ThemeProvider>
           <AuthProvider>
-            <QueryProvider>
-              <CartProvider>
-                <LoginSheetProvider>
-                  <AppGuard>
-                    <Stack screenOptions={{ headerShown: false }} />
-                    <ChatWidget />
-                  </AppGuard>
-                </LoginSheetProvider>
-              </CartProvider>
-            </QueryProvider>
+            <VehicleProvider>
+              <QueryProvider>
+                <CartProvider>
+                  <LoginSheetProvider>
+                    <AppGuard>
+                      <Stack screenOptions={{ headerShown: false }} />
+                      <ChatWidget />
+                    </AppGuard>
+                  </LoginSheetProvider>
+                </CartProvider>
+              </QueryProvider>
+            </VehicleProvider>
           </AuthProvider>
         </ThemeProvider>
       </SafeAreaProvider>
