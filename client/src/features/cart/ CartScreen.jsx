@@ -84,7 +84,6 @@ const emptyStyles = StyleSheet.create({
 // ── Cart item row ─────────────────────────────────────────────────────────────
 function CartItem({ item, theme, addToCart, removeFromCart, onDelete }) {
   const subtotal = item.price * item.quantity;
-  
 
   return (
     <View
@@ -139,40 +138,42 @@ function CartItem({ item, theme, addToCart, removeFromCart, onDelete }) {
         </Text>
 
         {/* Qty controls */}
-        <View style={itemStyles.qtyRow}>
-          <TouchableOpacity
-            style={[
-              itemStyles.qtyBtn,
-              {
-                backgroundColor: theme.colors.primary + "15",
-                borderColor: theme.colors.primary + "30",
-              },
-            ]}
-            onPress={() => removeFromCart(item.id)}
-          >
-            <Ionicons name="remove" size={14} color={theme.colors.primary} />
-          </TouchableOpacity>
-          <Text style={[itemStyles.qty, { color: theme.colors.text }]}>
-            {item.quantity}
-          </Text>
-          <TouchableOpacity
-            style={[
-              itemStyles.qtyBtn,
-              { backgroundColor: theme.colors.primary },
-            ]}
-            onPress={() => addToCart(item)}
-          >
-            <Ionicons name="add" size={14} color="#fff" />
-          </TouchableOpacity>
-          <Text
-            style={[
-              itemStyles.unitPrice,
-              { color: theme.colors.textSecondary },
-            ]}
-          >
-            ₹{item.price} each
-          </Text>
-        </View>
+        {item.source !== "service" && (
+          <View style={itemStyles.qtyRow}>
+            <TouchableOpacity
+              style={[
+                itemStyles.qtyBtn,
+                {
+                  backgroundColor: theme.colors.primary + "15",
+                  borderColor: theme.colors.primary + "30",
+                },
+              ]}
+              onPress={() => removeFromCart(item.id)}
+            >
+              <Ionicons name="remove" size={14} color={theme.colors.primary} />
+            </TouchableOpacity>
+            <Text style={[itemStyles.qty, { color: theme.colors.text }]}>
+              {item.quantity}
+            </Text>
+            <TouchableOpacity
+              style={[
+                itemStyles.qtyBtn,
+                { backgroundColor: theme.colors.primary },
+              ]}
+              onPress={() => addToCart(item)}
+            >
+              <Ionicons name="add" size={14} color="#fff" />
+            </TouchableOpacity>
+            <Text
+              style={[
+                itemStyles.unitPrice,
+                { color: theme.colors.textSecondary },
+              ]}
+            >
+              ₹{item.price} each
+            </Text>
+          </View>
+        )}
       </View>
 
       {/* Delete */}
@@ -433,7 +434,13 @@ export default function CartScreen() {
             styles.checkoutBtn,
             { backgroundColor: theme.colors.primary },
           ]}
-          onPress={() => router.push("/checkout")}
+          onPress={() => {
+            if (cartType === "service") {
+              router.push("/service-garage"); // 🔧 new flow
+            } else {
+              router.push("/checkout"); // existing store flow
+            }
+          }}
           activeOpacity={0.88}
         >
           <Text style={styles.checkoutText}>Proceed to Checkout</Text>

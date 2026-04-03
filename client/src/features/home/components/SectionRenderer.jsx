@@ -12,7 +12,17 @@ export default function SectionRenderer({ section }) {
       return <PromoCarousel banners={PROMO_BANNERS} />;
 
     case "services":
-      return <ServiceGrid services={section.data || []} />;
+      return (
+        <ServiceGrid
+          services={
+            Array.isArray(section.data)
+              ? section.data
+              : Array.isArray(section.data?.services)
+                ? section.data.services
+                : []
+          }
+        />
+      );
 
     case "vehicleSelector":
       return (
