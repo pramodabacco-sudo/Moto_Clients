@@ -28,7 +28,7 @@ router.put(
   "/profile-image",
   authenticate,
   upload.single("image"),
-  uploadProfileImage
+  uploadProfileImage,
 );
 
 export default router;
