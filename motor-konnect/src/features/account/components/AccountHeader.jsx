@@ -4,12 +4,15 @@ import {
   TouchableOpacity,
   StyleSheet,
   Dimensions,
+  Image,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "../../../hooks/useTheme";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { useRouter } from "expo-router";
+import api from "../../../services/apiClient";
+import { Buffer } from "buffer";
 
 const { width } = Dimensions.get("window");
 
@@ -27,6 +30,23 @@ export default function AccountHeader() {
         .toUpperCase()
     : "?";
 
+  const [imageUrl, setImageUrl] = useState(null);
+
+  useEffect(() => {
+    const loadImage = async () => {
+      try {
+        const res = await api.get("/auth/profile-image", {
+          responseType: "arraybuffer",
+        });
+        const base64 = `data:image/jpeg;base64,${Buffer.from(res.data).toString("base64")}`;
+        setImageUrl(base64);
+      } catch {
+        setImageUrl(null);
+      }
+    };
+    if (user) loadImage();
+  }, [user]);
+
   return (
     <View style={styles.container}>
       <View style={styles.left}>
@@ -41,9 +61,16 @@ export default function AccountHeader() {
               { backgroundColor: theme.colors.primary + "20" },
             ]}
           >
-            <Text style={[styles.initials, { color: theme.colors.primary }]}>
-              {initials}
-            </Text>
+            {imageUrl ? (
+              <Image
+                source={{ uri: imageUrl }}
+                style={styles.avatarImage}
+              />
+            ) : (
+              <Text style={[styles.initials, { color: theme.colors.primary }]}>
+                {initials}
+              </Text>
+            )}
           </View>
         </TouchableOpacity>
 
@@ -109,6 +136,12 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     alignItems: "center",
     justifyContent: "center",
+    overflow: "hidden",
+  },
+  avatarImage: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
   },
   initials: {
     fontSize: 18,

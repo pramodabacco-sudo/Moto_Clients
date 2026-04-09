@@ -24,7 +24,6 @@ import { useCart } from "../src/hooks/useCart";
 import { useAuth } from "../src/providers/AuthProvider";
 import axios from "axios";
 
-// ✅ Same base URL used everywhere — matches the working /marketplace/book call
 const BASE_URL = "https://cqw6v494-8000.inc1.devtunnels.ms/api/v1";
 // const BASE_URL = "https://ld3bgq17-8000.inc1.devtunnels.ms/api/v1";
 
@@ -115,13 +114,13 @@ export default function ServiceConfirmScreen() {
   //       Alert.alert(
   //         "Booking Confirmed 🚗",
   //         `${succeeded.length} service${succeeded.length > 1 ? "s" : ""} booked. Garage has received your request.`,
-  //         [{ text: "OK", onPress: () => router.replace("/(tabs)/services") }]
+  //         [{ text: "OK", onPress: () => router.replace("/(tabs)/home") }]
   //       );
   //     } else {
   //       Alert.alert(
   //         "Partially Confirmed ⚠️",
   //         `${succeeded.length} booked, ${failed.length} failed. Please try again for failed services.`,
-  //         [{ text: "OK", onPress: () => router.replace("/(tabs)/services") }]
+  //         [{ text: "OK", onPress: () => router.replace("/(tabs)/home") }]
   //       );
   //     }
   //   } catch (err) {
@@ -189,7 +188,7 @@ export default function ServiceConfirmScreen() {
       clearCart();
 
       Alert.alert("Booking Confirmed 🚗", "Garage has received your request.", [
-        { text: "OK", onPress: () => router.replace("/(tabs)/services") },
+        { text: "OK", onPress: () => router.replace("/(tabs)/home") },
       ]);
     } catch (err) {
       console.error("❌ Booking error:", err?.response?.data || err.message);
