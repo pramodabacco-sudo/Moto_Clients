@@ -8,6 +8,7 @@ import {
   Platform,
   Modal,
   Pressable,
+  Image,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
@@ -198,10 +199,18 @@ export default function VehiclesScreen() {
                 <View
                   style={[
                     styles.heroIconWrap,
-                    { backgroundColor: theme.colors.primary + "20" },
+                    { backgroundColor: theme.colors.primary + "12" },
                   ]}
                 >
-                  <Ionicons name="car-sport-outline" size={36} color={theme.colors.primary} />
+                  {vehicle.model?.thumbnailUrl || vehicle.brand?.logoUrl ? (
+                    <Image
+                      source={{ uri: vehicle.model?.thumbnailUrl || vehicle.brand?.logoUrl }}
+                      style={styles.heroVehicleImage}
+                      resizeMode="contain"
+                    />
+                  ) : (
+                    <Ionicons name="car-sport-outline" size={36} color={theme.colors.primary} />
+                  )}
                 </View>
                 <View style={styles.heroText}>
                   <View style={styles.heroNameRow}>
@@ -412,12 +421,17 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   heroIconWrap: {
-    width: 56,
-    height: 56,
-    borderRadius: 14,
+    width: 90,
+    height: 64,
+    borderRadius: 12,
     alignItems: "center",
     justifyContent: "center",
     flexShrink: 0,
+    overflow: "hidden",
+  },
+  heroVehicleImage: {
+    width: 90,
+    height: 60,
   },
   heroText: { flex: 1, gap: 4 },
   heroNameRow: { flexDirection: "row", alignItems: "center", gap: 6 },
