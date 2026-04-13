@@ -61,3 +61,22 @@ export const getSubServiceById = async (req, res, next) => {
     next(error);
   }
 };
+
+
+/**
+ * GET /api/services/search?q=ac&vehicleType=CAR
+ */
+export const searchServices = async (req, res, next) => {
+  try {
+    const { q, vehicleType } = req.query;
+
+    if (!q || q.trim().length < 2) {
+      return res.status(400).json({ message: "Query too short" });
+    }
+
+    const data = await serviceService.searchServices(q.trim(), vehicleType);
+    res.status(200).json(data);
+  } catch (error) {
+    next(error);
+  }
+};

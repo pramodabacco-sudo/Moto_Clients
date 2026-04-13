@@ -1,3 +1,4 @@
+// client/src/features/home/HomeScreen.jsx
 import { Animated, StyleSheet, RefreshControl, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useTheme } from "../../hooks/useTheme";
@@ -6,7 +7,6 @@ import { useRef, useState, useEffect, useMemo } from "react";
 import SectionRenderer from "./components/SectionRenderer";
 import StickyHeader from "./components/StickyHeader";
 import HomeHeader from "./components/HomeHeader";
-import VehicleSelector from "./components/VehicleSelector";
 import api from "../../services/apiClient";
 
 import { useAuth } from "../../providers/AuthProvider";
@@ -21,6 +21,7 @@ export default function HomeScreen() {
   const [packages, setPackages] = useState([]);
 
   const [selectedVehicleType, setSelectedVehicleType] = useState("Car");
+  const [searchQuery, setSearchQuery] = useState("");
 
   const { user } = useAuth();
   const { openLoginSheet } = useLoginSheet();
@@ -60,8 +61,27 @@ export default function HomeScreen() {
     }
   }, []);
 
+  // Filter services based on search query
+  const filteredServices = useMemo(() => {
+    const q = searchQuery.trim().toLowerCase();
+    if (!q) return services;
+    return services.filter(
+      (s) =>
+        (s.name || "").toLowerCase().includes(q) ||
+        (s.description || "").toLowerCase().includes(q) ||
+        (s.section?.name || "").toLowerCase().includes(q)
+    );
+  }, [services, searchQuery]);
+
+  const isSearching = searchQuery.trim().length > 0;
+
   const sections = useMemo(() => {
-    console.log("📦 SECTIONS PACKAGES:", packages);
+    if (isSearching) {
+      // When searching, only show the service grid (filtered)
+      return [
+        { id: "services", type: "services", data: filteredServices },
+      ];
+    }
 
     return [
       // ✅ IMPORTANT FIX → pass data
@@ -79,14 +99,19 @@ export default function HomeScreen() {
       { id: "curated", type: "curated" },
       { id: "assist", type: "assist" },
     ];
-  }, [services, packages, selectedVehicleType]);
+  }, [services, filteredServices,packages, selectedVehicleType, isSearching]);
 
   return (
     <SafeAreaView
       style={{ flex: 1, backgroundColor: theme.colors.background }}
       edges={["top"]}
     >
-      <StickyHeader scrollY={scrollY} />
+      <StickyHeader
+        scrollY={scrollY}
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
+        onSearchClear={() => setSearchQuery("")}
+      />
 
       <Animated.FlatList
         data={sections}
@@ -100,15 +125,17 @@ export default function HomeScreen() {
           );
         }}
         ListHeaderComponent={
-          <View style={styles.homeHeaderWrap}>
-            <HomeHeader />
-          </View>
+          !isSearching ? (
+            <View style={styles.homeHeaderWrap}>
+              <HomeHeader />
+            </View>
+          ) : null
         }
         contentContainerStyle={{ paddingBottom: 80 }}
         showsVerticalScrollIndicator={false}
         onScroll={Animated.event(
           [{ nativeEvent: { contentOffset: { y: scrollY } } }],
-          { useNativeDriver: false },
+          { useNativeDriver: false }
         )}
         scrollEventThrottle={16}
         refreshControl={

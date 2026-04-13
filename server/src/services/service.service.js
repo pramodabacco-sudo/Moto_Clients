@@ -99,8 +99,38 @@ const getSubServiceById = async (id, vehicleType) => {
   });
 };
 
+
+/**
+ * Search services by name, description, section, or main service name
+ */
+const searchServices = async (q, vehicleType) => {
+  const vehicleTypeId = await getVehicleTypeId(vehicleType);
+
+  return await prisma.service.findMany({
+    where: {
+      isActive: true,
+      ...(vehicleTypeId && { vehicleTypeId }),
+      OR: [
+        { name: { contains: q, mode: "insensitive" } },
+        { description: { contains: q, mode: "insensitive" } },
+        { section: { name: { contains: q, mode: "insensitive" } } },
+        { section: { mainService: { name: { contains: q, mode: "insensitive" } } } },
+      ],
+    },
+    include: {
+      section: {
+        include: { mainService: true },
+      },
+      vehicleType: true,
+    },
+    orderBy: { name: "asc" },
+    take: 30,
+  });
+};
+
 export default {
   getMainServices,
   getMainServiceById,
   getSubServiceById,
+  searchServices,
 };
