@@ -19,7 +19,7 @@ export default function AccountQuickActions() {
     {
       title: "Order History",
       icon: "cube-outline",
-      path: "/orders",
+      path: "/service-history",
       badge: null,
     },
     {

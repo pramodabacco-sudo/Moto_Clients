@@ -1,19 +1,14 @@
+// client/src/features/home/components/StickyHeader.jsx
 import { StyleSheet, Animated } from "react-native";
 import { useTheme } from "../../../hooks/useTheme";
-import SearchBar from "./SearchBar";
+import HomeSearchBar from "./HomeSearchBar";
 
-export default function StickyHeader({ scrollY }) {
+export default function StickyHeader({ scrollY, searchQuery, onSearchChange, onSearchClear }) {
   const { theme } = useTheme();
 
   const shadowOpacity = scrollY?.interpolate({
     inputRange: [0, 20],
     outputRange: [0, 0.12],
-    extrapolate: "clamp",
-  });
-
-  const borderOpacity = scrollY?.interpolate({
-    inputRange: [0, 20],
-    outputRange: [0, 1],
     extrapolate: "clamp",
   });
 
@@ -29,7 +24,11 @@ export default function StickyHeader({ scrollY }) {
         },
       ]}
     >
-      <SearchBar />
+      <HomeSearchBar
+        value={searchQuery}
+        onChangeText={onSearchChange}
+        onClear={onSearchClear}
+      />
     </Animated.View>
   );
 }

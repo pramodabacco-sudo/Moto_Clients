@@ -69,4 +69,20 @@ router.post("/marketplace/book", async (req, res) => {
   }
 });
 
+router.get("/marketplace/my-bookings", async (req, res) => {
+  try {
+    const response = await axios.get(
+      `${CRM_API}/marketplace/my-bookings`,  // ← /api/marketplace/my-bookings
+      { params: req.query },
+    );
+    return res.json(response.data);
+  } catch (error) {
+    console.error("Proxy error /marketplace/my-bookings:", error?.response?.data || error.message);
+    return res
+      .status(error?.response?.status || 500)
+      .json(error?.response?.data || { success: false, message: "Failed to fetch bookings" });
+  }
+});
+
 export default router;
+

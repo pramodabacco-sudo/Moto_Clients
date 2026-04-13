@@ -4,6 +4,7 @@ import {
   getMainServices,
   getMainServiceById,
   getSubServiceById,
+  searchServices,
 } from "../controllers/service.controller.js";
 
 router.get("/", getMainServices);

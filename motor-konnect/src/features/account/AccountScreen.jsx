@@ -5,7 +5,7 @@ import { useTheme } from "../../hooks/useTheme";
 import AccountHeader from "./components/AccountHeader";
 import AccountQuickActions from "./components/AccountQuickActions";
 import WalletCard from "./components/WalletCard";
-import MembershipCard from "./components/MembershipCard";
+// import MembershipCard from "./components/MembershipCard";
 import AccountMenuList from "./components/AccountMenuList";
 import AccountFooter from "./components/AccountFooter";
 
@@ -23,7 +23,7 @@ export default function AccountScreen() {
       >
         <AccountHeader />
         <AccountQuickActions />
-        <MembershipCard />
+        {/* <MembershipCard /> */}
         <AccountMenuList />
         <AccountFooter />
       </ScrollView>
