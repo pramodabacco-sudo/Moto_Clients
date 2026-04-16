@@ -174,10 +174,10 @@ model GarageService {
   garageId  String
   serviceId String
 
-  price Float? // vendor override price
-
   garage  Garage  @relation(fields: [garageId], references: [id])
   service Service @relation(fields: [serviceId], references: [id])
+
+  pricing GarageServicePricing[] // 🔥 relation
 
   @@unique([garageId, serviceId])
   @@index([serviceId])
@@ -262,14 +262,18 @@ model GarageMarketplaceService {
 }
 
 model GarageServicePricing {
-  id              Int    @id @default(autoincrement())
-  garageServiceId Int
-  carType         String // 🔑 Matches VehicleSegment (SEDAN, SUV, etc.)
-  price           Float
-  discount        Float  @default(0)
+  id              String @id @default(uuid())
+  garageServiceId String
 
-  // Relations
-  garageMarketplaceService GarageMarketplaceService @relation(fields: [garageServiceId], references: [id], onDelete: Cascade)
+  carType  String
+  price    Float
+  discount Float  @default(0)
+
+  garageService              GarageService             @relation(fields: [garageServiceId], references: [id], onDelete: Cascade)
+  GarageMarketplaceService   GarageMarketplaceService? @relation(fields: [garageMarketplaceServiceId], references: [id])
+  garageMarketplaceServiceId Int?
+
+  @@index([garageServiceId])
 }
 
 // Update your existing MarketplaceBooking model to include these snapshots
