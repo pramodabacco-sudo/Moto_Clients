@@ -74,7 +74,7 @@ export const getNotifications = async (req, res) => {
         n."bookingId",
         n."packageId",
         n."isActive",
-        n."createdAt",
+       n."createdAt",
         u."companyName" as "garageName"
 
       FROM "AppNotification" n
@@ -140,13 +140,11 @@ export const getNotifications = async (req, res) => {
 function formatTime(date) {
   if (!date) return "";
 
-  // Convert both times to IST
-  const IST_OFFSET = 5.5 * 60 * 60 * 1000;
+  // 🔥 Fix wrong interpretation (UTC → IST correction)
+  const created = new Date(date);
+  const corrected = new Date(created.getTime() + (5.5 * 60 * 60 * 1000));
 
-  const nowIST = Date.now() + IST_OFFSET;
-  const createdIST = new Date(date).getTime() + IST_OFFSET;
-
-  const diff = nowIST - createdIST;
+  const diff = Date.now() - corrected.getTime();
 
   const mins = Math.floor(diff / 60_000);
   if (mins < 1) return "Just now";
@@ -159,8 +157,9 @@ function formatTime(date) {
   if (days === 1) return "Yesterday";
   if (days < 7) return `${days} days ago`;
 
-  return new Date(createdIST).toLocaleDateString("en-IN", {
+  return corrected.toLocaleDateString("en-IN", {
     day: "numeric",
     month: "short",
+    timeZone: "Asia/Kolkata",
   });
 }
