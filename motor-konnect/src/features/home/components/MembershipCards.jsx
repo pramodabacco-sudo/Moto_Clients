@@ -1,176 +1,268 @@
 import {
   View,
   Text,
-  TouchableOpacity,
   StyleSheet,
   Dimensions,
+  FlatList,
+  Platform,
 } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
+import { useMemo, useEffect, useState, useRef } from "react";
 import SectionHeader from "./SectionHeader";
+import api from "../../../services/apiClient";
 
 const { width } = Dimensions.get("window");
-const CARD_W = (width - 32 - 12) / 2;
 
-const PLANS = [
-  {
-    id: "miles",
-    name: "Miles",
-    tagline: "Roadside Hero",
-    perks: ["Free Towing", "SOS 24x7", "Flat Tyre Help"],
-    icon: "car-sport-outline",
-    gradient: ["#7c3aed", "#4f46e5"],
-    path: "/membership/miles",
-  },
-  {
-    id: "warranty",
-    name: "Warranty",
-    tagline: "Save Big",
-    perks: ["Save ₹30,000", "AMC Plans", "Priority Service"],
-    icon: "shield-checkmark-outline",
-    gradient: ["#7c3aed", "#4f46e5"],
-    path: "/membership/warranty",
-  },
-];
+// Classic UI Dimensions
+const CARD_WIDTH = width * 0.75;
+const SPACING = 16;
+const SIDE_SPACING = (width - CARD_WIDTH) / 2;
 
-export default function MembershipCards() {
-  const router = useRouter();
+export default function PopularServicesCards() {
+  const [services, setServices] = useState([]);
+  const flatListRef = useRef(null);
+  const scrollIndex = useRef(0);
+
+  // Fetch Services
+  useEffect(() => {
+    const loadServices = async () => {
+      try {
+        const res = await api.get(`/services`);
+        setServices(res.data || []);
+      } catch (err) {
+        console.log("❌ SERVICE FETCH ERROR:", err.message);
+      }
+    };
+    loadServices();
+  }, []);
+
+  // Prepare Loop Data (3x the data for seamless infinite feel)
+  const carouselData = useMemo(() => {
+    if (services.length === 0) return [];
+    return [...services, ...services, ...services];
+  }, [services]);
+
+  // Auto-scroll logic
+  useEffect(() => {
+    if (carouselData.length === 0) return;
+
+    // Start in the middle set of data
+    const startIndex = services.length;
+    scrollIndex.current = startIndex;
+
+    // Small delay to ensure FlatList is mounted before initial scroll
+    const initTimeout = setTimeout(() => {
+      flatListRef.current?.scrollToIndex({
+        index: startIndex,
+        animated: false,
+      });
+    }, 100);
+
+    const interval = setInterval(() => {
+      if (!flatListRef.current) return;
+
+      const nextIndex = scrollIndex.current + 1;
+      const totalItems = carouselData.length;
+
+      // If we reach the end of the third set, jump back to the middle set
+      if (nextIndex >= totalItems - 1) {
+        scrollIndex.current = services.length;
+        flatListRef.current?.scrollToIndex({
+          index: scrollIndex.current,
+          animated: false,
+        });
+      } else {
+        scrollIndex.current = nextIndex;
+        flatListRef.current?.scrollToIndex({
+          index: scrollIndex.current,
+          animated: true,
+        });
+      }
+    }, 4000);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(initTimeout);
+    };
+  }, [carouselData, services.length]);
+
+  const renderItem = ({ item }) => (
+    <View style={[styles.cardContainer, { width: CARD_WIDTH }]}>
+      <View style={styles.card}>
+        <View style={styles.topRow}>
+          <View style={styles.iconContainer}>
+            <Ionicons
+              name={getServiceIcon(item.name)}
+              size={24}
+              color="#1a1a1a"
+            />
+          </View>
+          <View style={styles.verifiedBadge}>
+            <Ionicons name="checkmark-circle" size={14} color="#007AFF" />
+            <Text style={styles.verifiedText}>Verified</Text>
+          </View>
+        </View>
+
+        <View style={styles.content}>
+          <Text style={styles.categoryText}>PREMIUM SERVICE</Text>
+          <Text style={styles.title} numberOfLines={1}>
+            {item.name}
+          </Text>
+          <Text style={styles.subtitle}>Professional-grade maintenance</Text>
+        </View>
+
+        <View style={styles.footer}>
+          <View style={styles.ratingBox}>
+            <Ionicons name="star" size={14} color="#FF9500" />
+            <Text style={styles.ratingText}>4.9 (120+)</Text>
+          </View>
+          {/* <Ionicons name="arrow-forward-circle" size={32} color="#1a1a1a" /> */}
+        </View>
+      </View>
+    </View>
+  );
 
   return (
-    <View>
-      <SectionHeader title="Membership Plans" seeAllPath="/membership" />
-      <View style={styles.row}>
-        {PLANS.map((plan) => (
-          <TouchableOpacity
-            key={plan.id}
-            onPress={() => router.push(plan.path)}
-            activeOpacity={0.88}
-            style={styles.cardTouch}
-          >
-            <LinearGradient
-              colors={plan.gradient}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={styles.card}
-            >
-              {/* Header */}
-              <View style={styles.cardHeader}>
-                <View style={styles.iconWrap}>
-                  <Ionicons name={plan.icon} size={20} color="#fff" />
-                </View>
-              </View>
+    <View style={styles.container}>
+      <SectionHeader title="Popular Services" seeAllPath="/services" />
 
-              <Text style={styles.planName}>{plan.name}</Text>
-              <Text style={styles.tagline}>{plan.tagline}</Text>
-
-              <View style={styles.divider} />
-
-              {/* Perks */}
-              {plan.perks.map((perk) => (
-                <View key={perk} style={styles.perkRow}>
-                  <Ionicons
-                    name="checkmark-circle"
-                    size={12}
-                    color="rgba(255,255,255,0.8)"
-                  />
-                  <Text style={styles.perkText}>{perk}</Text>
-                </View>
-              ))}
-
-              {/* CTA */}
-              <View style={styles.cta}>
-                <Text style={styles.ctaText}>Explore</Text>
-                <Ionicons name="arrow-forward" size={12} color="#fff" />
-              </View>
-
-              {/* Decorative */}
-              <View style={styles.decor} />
-            </LinearGradient>
-          </TouchableOpacity>
-        ))}
-      </View>
+      {carouselData.length === 0 ? (
+        <View style={styles.loader}>
+          <Text style={styles.emptyText}>Loading...</Text>
+        </View>
+      ) : (
+        <FlatList
+          ref={flatListRef}
+          data={carouselData}
+          keyExtractor={(_, index) => index.toString()}
+          renderItem={renderItem}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          snapToInterval={CARD_WIDTH + SPACING}
+          snapToAlignment="center"
+          decelerationRate="fast"
+          // This padding ensures the cards stay centered
+          contentContainerStyle={{
+            paddingHorizontal: SIDE_SPACING,
+          }}
+          ItemSeparatorComponent={() => <View style={{ width: SPACING }} />}
+          // getItemLayout prevents the "out of range" error by telling FlatList the size of items in advance
+          getItemLayout={(data, index) => ({
+            length: CARD_WIDTH + SPACING,
+            offset: (CARD_WIDTH + SPACING) * index,
+            index,
+          })}
+          // Optimization
+          removeClippedSubviews={false}
+        />
+      )}
     </View>
   );
 }
 
+function getServiceIcon(name = "") {
+  const n = name.toLowerCase();
+  if (n.includes("tyre")) return "construct-outline";
+  if (n.includes("battery")) return "flash-outline";
+  if (n.includes("ac")) return "thermometer-outline";
+  if (n.includes("wash")) return "sparkles-outline";
+  return "settings-outline";
+}
+
 const styles = StyleSheet.create({
-  row: {
-    flexDirection: "row",
-    gap: 12,
-  },
-  cardTouch: {
-    flex: 1,
+  container: { paddingVertical: 10 },
+  cardContainer: {
+    paddingVertical: 10,
   },
   card: {
-    borderRadius: 18,
-    padding: 16,
-    minHeight: 200,
-    overflow: "hidden",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.15,
-    shadowRadius: 10,
-    elevation: 6,
+    backgroundColor: "#fff",
+    borderRadius: 24,
+    padding: 20,
+    height: 185,
+    borderWidth: 1,
+    borderColor: "#F0F0F0",
+    justifyContent: "space-between",
+    ...Platform.select({
+      ios: {
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.08,
+        shadowRadius: 12,
+      },
+      android: { elevation: 3 },
+    }),
   },
-  cardHeader: {
-    marginBottom: 10,
+  topRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
   },
-  iconWrap: {
-    width: 38,
-    height: 38,
-    borderRadius: 11,
-    backgroundColor: "rgba(255,255,255,0.2)",
+  iconContainer: {
+    width: 44,
+    height: 44,
+    borderRadius: 12,
+    backgroundColor: "#F8F9FA",
     alignItems: "center",
     justifyContent: "center",
+    borderWidth: 1,
+    borderColor: "#EEE",
   },
-  planName: {
-    color: "#fff",
-    fontSize: 17,
-    fontWeight: "800",
-    letterSpacing: -0.2,
-  },
-  tagline: {
-    color: "rgba(255,255,255,0.7)",
-    fontSize: 11,
-    marginTop: 2,
-    marginBottom: 10,
-  },
-  divider: {
-    height: 0.5,
-    backgroundColor: "rgba(255,255,255,0.25)",
-    marginBottom: 10,
-  },
-  perkRow: {
+  verifiedBadge: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 5,
-    marginBottom: 5,
+    backgroundColor: "#F0F7FF",
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 8,
+    gap: 4,
   },
-  perkText: {
-    color: "rgba(255,255,255,0.9)",
-    fontSize: 11,
-    fontWeight: "500",
-    flex: 1,
+  verifiedText: {
+    fontSize: 10,
+    fontWeight: "700",
+    color: "#007AFF",
+    textTransform: "uppercase",
   },
-  cta: {
+  content: { marginTop: 10 },
+  categoryText: {
+    fontSize: 10,
+    fontWeight: "800",
+    color: "#8E8E93",
+    letterSpacing: 1,
+    marginBottom: 2,
+  },
+  title: {
+    color: "#1a1a1a",
+    fontSize: 19,
+    fontWeight: "700",
+    letterSpacing: -0.5,
+  },
+  subtitle: {
+    color: "#636366",
+    fontSize: 12,
+    marginTop: 2,
+  },
+  footer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  ratingBox: {
     flexDirection: "row",
     alignItems: "center",
     gap: 4,
-    marginTop: 10,
   },
-  ctaText: {
-    color: "#fff",
+  ratingText: {
     fontSize: 12,
-    fontWeight: "700",
+    fontWeight: "600",
+    color: "#1a1a1a",
   },
-  decor: {
-    position: "absolute",
-    right: -20,
-    top: -20,
-    width: 90,
-    height: 90,
-    borderRadius: 45,
-    backgroundColor: "rgba(255,255,255,0.1)",
+  loader: {
+    height: 180,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  emptyText: {
+    color: "#999",
+    fontSize: 14,
   },
 });

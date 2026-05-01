@@ -4,16 +4,15 @@ import {
   TouchableOpacity,
   StyleSheet,
   Dimensions,
+  ScrollView,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "../../../hooks/useTheme.js";
-import { useRouter } from "expo-router";
-import SectionHeader from "./SectionHeader.jsx";
+import { useRouter, useLocalSearchParams } from "expo-router";
 
 const { width } = Dimensions.get("window");
-const CARD_SIZE = (width - 32 - 12) / 2; // 2 cols, 16px side padding, 12px gap
+const CARD_SIZE = (width - 32 - 12) / 2;
 
-// Fallback icon map if API doesn't return icons
 const ICON_MAP = {
   default: "construct-outline",
   tyre: "ellipse-outline",
@@ -22,94 +21,134 @@ const ICON_MAP = {
   wash: "water-outline",
   ac: "thermometer-outline",
   denting: "hammer-outline",
-  insurance: "shield-checkmark-outline",
-  sos: "alert-circle-outline",
 };
 
-export default function ServiceGrid({ services = [] }) {
+export default function ServiceGrid() {
   const { theme } = useTheme();
   const router = useRouter();
 
-  if (!services.length) {
-    return (
-      <View style={{ paddingVertical: 20 }}>
-        <SectionHeader title="Our Services" />
-        <Text style={{ textAlign: "center", opacity: 0.6, marginTop: 10 }}>
-          No services available for this category
-        </Text>
-      </View>
-    );
+  // ✅ Also extract carType — passed from GarageList via navigation params
+  const { garageId, garageName, services, garage, carType } =
+    useLocalSearchParams();
+
+  // parse services for grid display
+  let parsedServices = [];
+  try {
+    parsedServices = services ? JSON.parse(services) : [];
+  } catch (e) {
+    parsedServices = [];
   }
 
   return (
-    <View>
-      <SectionHeader title="Our Services" />
-      <View style={styles.grid}>
-        {services.map((item) => {
-          const iconKey = item.iconKey?.toLowerCase() || "default";
-          const iconName = ICON_MAP[iconKey] || ICON_MAP.default;
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={{ paddingBottom: 40 }}
+    >
+      {/* Header */}
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => router.back()}>
+          <Ionicons name="arrow-back" size={22} color={theme.colors.text} />
+        </TouchableOpacity>
 
-          return (
-            <TouchableOpacity
-              key={item.id}
-              style={[
-                styles.card,
-                {
-                  backgroundColor:
-                    theme.colors.card || theme.colors.surface || "#fff",
-                  borderColor: theme.colors.border,
-                },
-              ]}
-              onPress={() => router.push(`/services/${item.id}`)}
-              activeOpacity={0.75}
-            >
-              {/* Icon */}
-              <View
-                style={[
-                  styles.iconWrap,
-                  { backgroundColor: theme.colors.primary + "15" },
-                ]}
-              >
-                <Ionicons
-                  name={item.ionicon || iconName}
-                  size={24}
-                  color={theme.colors.primary}
-                />
-              </View>
-
-              {/* Name */}
-              <Text
-                style={[styles.name, { color: theme.colors.text }]}
-                numberOfLines={2}
-              >
-                {item.name}
-              </Text>
-
-              {/* Optional price tag */}
-              {item.startingPrice ? (
-                <Text
-                  style={[styles.price, { color: theme.colors.textSecondary }]}
-                >
-                  From ₹{item.startingPrice}
-                </Text>
-              ) : null}
-
-              {/* Arrow */}
-              <Ionicons
-                name="chevron-forward"
-                size={14}
-                color={theme.colors.textSecondary}
-                style={styles.arrow}
-              />
-            </TouchableOpacity>
-          );
-        })}
+        <Text style={[styles.headerTitle, { color: theme.colors.text }]}>
+          {garageName || "Services"}
+        </Text>
       </View>
-    </View>
+
+      {/* Empty State */}
+      {!parsedServices.length ? (
+        <Text style={styles.emptyText}>No services available</Text>
+      ) : (
+        <View style={styles.grid}>
+          {parsedServices.map((main) => {
+            const iconKey = main.name?.toLowerCase() || "default";
+            const iconName = ICON_MAP[iconKey] || ICON_MAP.default;
+
+            return (
+              <TouchableOpacity
+                key={main.id}
+                style={[
+                  styles.card,
+                  {
+                    backgroundColor:
+                      theme.colors.card || theme.colors.surface || "#fff",
+                    borderColor: theme.colors.border,
+                  },
+                ]}
+                activeOpacity={0.75}
+                onPress={() =>
+                  router.push({
+                    pathname: "/services/[id]",
+                    params: {
+                      id: main.id,
+                      mainService: JSON.stringify(main),
+                      title: main.name,
+                      garageId: garageId,
+                      garageName: garageName,
+                      garage: garage,
+                      // ✅ Forward carType so the service details screen
+                      // shows the correct vehicle-type pricing (LUXURY, SUV etc.)
+                      carType: carType,
+                    },
+                  })
+                }
+              >
+                {/* Icon */}
+                <View
+                  style={[
+                    styles.iconWrap,
+                    {
+                      backgroundColor: theme.colors.primary + "15",
+                    },
+                  ]}
+                >
+                  <Ionicons
+                    name={iconName}
+                    size={24}
+                    color={theme.colors.primary}
+                  />
+                </View>
+
+                {/* Name */}
+                <Text
+                  style={[styles.name, { color: theme.colors.text }]}
+                  numberOfLines={2}
+                >
+                  {main.name}
+                </Text>
+
+                {/* Arrow */}
+                <Ionicons
+                  name="chevron-forward"
+                  size={14}
+                  color={theme.colors.textSecondary}
+                  style={styles.arrow}
+                />
+              </TouchableOpacity>
+            );
+          })}
+        </View>
+      )}
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 12,
+  },
+  headerTitle: {
+    fontSize: 18,
+    fontWeight: "700",
+    marginLeft: 12,
+  },
+  emptyText: {
+    textAlign: "center",
+    marginTop: 20,
+    opacity: 0.6,
+  },
   grid: {
     flexDirection: "row",
     flexWrap: "wrap",
@@ -120,11 +159,6 @@ const styles = StyleSheet.create({
     padding: 16,
     borderRadius: 16,
     borderWidth: 0.5,
-    // shadow
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.06,
-    shadowRadius: 6,
     elevation: 3,
   },
   iconWrap: {
@@ -138,12 +172,7 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 14,
     fontWeight: "600",
-    lineHeight: 19,
     marginBottom: 4,
-  },
-  price: {
-    fontSize: 12,
-    fontWeight: "500",
   },
   arrow: {
     position: "absolute",

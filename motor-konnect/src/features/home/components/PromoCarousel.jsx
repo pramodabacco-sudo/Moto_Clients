@@ -7,6 +7,7 @@ import {
   Dimensions,
   TouchableOpacity,
 } from "react-native";
+import { useRouter } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -16,6 +17,7 @@ const CARD_WIDTH = width * 0.92;
 export default function PremiumPromoCarousel({ banners = [] }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const flatListRef = useRef(null);
+  const router = useRouter();
 
   useEffect(() => {
     if (!banners || banners.length <= 1) return;
@@ -28,7 +30,7 @@ export default function PremiumPromoCarousel({ banners = [] }) {
   }, [activeIndex, banners]);
 
   const onViewRef = useRef(({ viewableItems }) => {
-    if (viewableItems.length > 0) {
+    if (viewableItems && viewableItems.length > 0) {
       setActiveIndex(viewableItems[0].index ?? 0);
     }
   });
@@ -49,14 +51,14 @@ export default function PremiumPromoCarousel({ banners = [] }) {
         contentContainerStyle={{ paddingHorizontal: 16 }}
         keyExtractor={(_, i) => i.toString()}
         renderItem={({ item }) => (
-          <TouchableOpacity activeOpacity={0.95} style={styles.cardWrapper}>
+          /* ✅ CHANGED: Removed outer TouchableOpacity to allow button click */
+          <View style={styles.cardWrapper}>
             <LinearGradient
               colors={["#1e1b4b", "#312e81", "#4338ca"]}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
               style={styles.card}
             >
-              {/* Header: Title & Price */}
               <View style={styles.header}>
                 <Text style={styles.title} numberOfLines={1}>
                   {item?.name}
@@ -66,12 +68,10 @@ export default function PremiumPromoCarousel({ banners = [] }) {
                 </View>
               </View>
 
-              {/* Description */}
               <Text style={styles.description} numberOfLines={2}>
                 {item?.description}
               </Text>
 
-              {/* ✅ LIMIT SERVICES TO 2 */}
               <View style={styles.servicesBox}>
                 {item?.services?.slice(0, 2).map((s, i) => (
                   <View key={i} style={styles.serviceRow}>
@@ -87,7 +87,6 @@ export default function PremiumPromoCarousel({ banners = [] }) {
                 ))}
               </View>
 
-              {/* Footer: Garage & CTA */}
               <View style={styles.footer}>
                 <View style={styles.garageInfo}>
                   <Ionicons
@@ -100,20 +99,48 @@ export default function PremiumPromoCarousel({ banners = [] }) {
                   </Text>
                 </View>
 
-                <TouchableOpacity style={styles.btn}>
-                  <Text style={styles.btnText}>Book Now</Text>
-                  <Ionicons name="arrow-forward" size={14} color="#fff" />
+                {/* ✅ Button is now primary touch responder */}
+                <TouchableOpacity
+                  style={styles.btn}
+                  activeOpacity={0.7}
+                  onPress={() => {
+                    // ✅ Extract ID from multiple possible locations
+                    const extractedGarageId =
+                      item.garageId || item.userId || item.user?.id;
+
+                    if (!extractedGarageId) {
+                      console.error(
+                        "❌ DATA ERROR: No ID found in package item:",
+                        item,
+                      );
+                      alert(
+                        "Technical Error: Garage ID missing from this package.",
+                      );
+                      return;
+                    }
+
+                    const packageData = {
+                      ...item,
+                      garageId: extractedGarageId, // Normalize to garageId
+                    };
+
+                    router.push({
+                      pathname: `/package-details/${item.id}`,
+                      params: { packageData: JSON.stringify(packageData) },
+                    });
+                  }}
+                >
+                  <Text style={styles.btnText}>View Details</Text>
+                  <Ionicons name="eye-outline" size={14} color="#fff" />
                 </TouchableOpacity>
               </View>
 
-              {/* Decorative Circle */}
               <View style={styles.decor} />
             </LinearGradient>
-          </TouchableOpacity>
+          </View>
         )}
       />
 
-      {/* Pagination dots */}
       <View style={styles.dots}>
         {banners.map((_, i) => (
           <View
@@ -139,13 +166,15 @@ const styles = StyleSheet.create({
     width: CARD_WIDTH,
     marginRight: 16,
     borderRadius: 24,
-    elevation: 8,
+    // Add elevation to the wrapper
     shadowColor: "#000",
-    shadowOpacity: 0.3,
-    shadowRadius: 10,
+    shadowOpacity: 0.2,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 5,
   },
   card: {
-    height: 190, // Reduced height since we only show 2 services
+    height: 190,
     borderRadius: 24,
     padding: 20,
     overflow: "hidden",
@@ -164,7 +193,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   priceBadge: {
-    backgroundColor: "#4f46e5",
+    backgroundColor: "rgba(79, 70, 229, 0.6)",
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 12,
@@ -194,13 +223,14 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   btn: {
-    backgroundColor: "rgba(255,255,255,0.2)",
+    backgroundColor: "rgba(255,255,255,0.25)",
     flexDirection: "row",
     alignItems: "center",
-    paddingVertical: 8,
-    paddingHorizontal: 15,
-    borderRadius: 15,
-    gap: 5,
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    borderRadius: 14,
+    gap: 6,
+    zIndex: 10, // Ensure it's on top
   },
   btnText: { color: "#fff", fontSize: 13, fontWeight: "700" },
   decor: {

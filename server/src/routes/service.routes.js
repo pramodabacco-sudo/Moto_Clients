@@ -1,14 +1,14 @@
-import express from "express";
-const router = express.Router();
-import {
-  getMainServices,
-  getMainServiceById,
-  getSubServiceById,
-  searchServices,
-} from "../controllers/service.controller.js";
+  import express from "express";
+  const router = express.Router();
+  import {
+    getMainServices,
+    getMainServiceById,
+    getSubServiceById,
+    searchServices,
+  } from "../controllers/service.controller.js";
 
-router.get("/", getMainServices);
-router.get("/:id", getMainServiceById);
-router.get("/sub-services/:id", getSubServiceById);
+  router.get("/", getMainServices);
+  router.get("/:id", getMainServiceById);
+  router.get("/sub-services/:id", getSubServiceById);
 
-export default router;
+  export default router;

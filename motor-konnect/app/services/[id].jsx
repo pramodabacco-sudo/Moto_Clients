@@ -1,4 +1,5 @@
-//app/services/[id].jsx
+// app/services/[id].jsx
+
 import {
   View,
   Text,
@@ -8,68 +9,90 @@ import {
   Animated,
   StyleSheet,
   Platform,
+  Alert,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState, useRef } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import api from "../../src/services/apiClient";
-import { useTheme } from "../../src/hooks/useTheme";
 import { useCart } from "../../src/hooks/useCart";
-// or correct relative path
 
-// ─── Tokens ───────────────────────────────────────────────────────────────────
+// ─── Tokens ─────────────────────────────────────────────
 const C = {
   bg: "#FFFFFF",
   pageBg: "#F5F6FA",
   card: "#FFFFFF",
   cardBorder: "#EBEBF0",
-  cardShadow: "#00000010",
   accent: "#0062ff",
-  accentLight: "#FFF3EC",
   green: "#16A34A",
   greenLight: "#F0FDF4",
   text: "#111118",
   textSub: "#6B6B80",
   textMuted: "#ABABC0",
-  sectionBg: "#F5F6FA",
   divider: "#F0F0F5",
   priceColor: "#006fff",
   oldPriceColor: "#ABABC0",
 };
 
-// ─── Price Display ─────────────────────────────────────────────────────────────
-function PriceDisplay({
-  finalPrice,
-  originalPrice,
-  hasDiscount,
-  discountLabel,
+// ─── Price Helper ───────────────────────────────────────
+// Uses the selectedCarType to filter the service's pricing array
+const getServicePrice = (service, selectedCarType) => {
+  if (service.pricing && service.pricing.length > 0) {
+    const carTypeUpper = selectedCarType?.toUpperCase();
+    const pricingObj = service.pricing.find((p) => p.carType === carTypeUpper);
+
+    if (pricingObj) {
+      const price = parseFloat(pricingObj.price);
+      const discount = parseFloat(pricingObj.discount || 0);
+      return Math.max(price - discount, 0);
+    }
+  }
+
+  // Fallback to standard price if no segment-specific pricing is found
+  if (service.price !== undefined && service.price !== null) {
+    const hasDiscount = !!(service.discountType && service.discountValue);
+    if (!hasDiscount) return service.price;
+    if (service.discountType === "PERCENTAGE") {
+      return Math.round(
+        service.price - (service.price * service.discountValue) / 100,
+      );
+    }
+    if (service.discountType === "FLAT") {
+      return Math.max(service.price - service.discountValue, 0);
+    }
+    return service.price;
+  }
+
+  // Final fallback: take the lowest available price
+  if (service.pricing && service.pricing.length > 0) {
+    const prices = service.pricing.map((p) => p.price - (p.discount || 0));
+    return Math.min(...prices);
+  }
+
+  return 0;
+};
+
+// ─── Service Card ───────────────────────────────────────
+function ServiceCard({
+  service,
+  index,
+  onPress,
+  garageId,
+  garageName,
+  garage,
+  selectedCarType,
 }) {
-  return (
-    <View style={styles.priceRow}>
-      <Text style={styles.finalPrice}>₹{finalPrice}</Text>
-
-      {originalPrice && originalPrice !== finalPrice && (
-        <Text style={styles.oldPrice}>₹{originalPrice}</Text>
-      )}
-
-      {hasDiscount && discountLabel && (
-        <View style={styles.saveBadge}>
-          <Text style={styles.saveBadgeText}>{discountLabel}</Text>
-        </View>
-      )}
-    </View>
-  );
-}
-
-// ─── Service Card ─────────────────────────────────────────────────────────────
-function ServiceCard({ service, onPress, index }) {
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const slideAnim = useRef(new Animated.Value(16)).current;
   const scaleAnim = useRef(new Animated.Value(1)).current;
-  const { addToCart, cartItems } = useCart();
 
-  const isAdded = cartItems.some((item) => item.id === service.id);
+  const { addToCart, removeFromCart, clearCart, cartItems } = useCart();
+
+  const isAdded = cartItems.find(
+    (item) => String(item.id) === String(service.id),
+  );
+
   useEffect(() => {
     Animated.parallel([
       Animated.timing(fadeAnim, {
@@ -89,38 +112,74 @@ function ServiceCard({ service, onPress, index }) {
 
   const onPressIn = () =>
     Animated.spring(scaleAnim, {
-      toValue: 0.975,
+      toValue: 0.97,
       useNativeDriver: true,
     }).start();
   const onPressOut = () =>
-    Animated.spring(scaleAnim, {
-      toValue: 1,
-      tension: 200,
-      friction: 7,
-      useNativeDriver: true,
-    }).start();
+    Animated.spring(scaleAnim, { toValue: 1, useNativeDriver: true }).start();
 
-  const hasDiscount = !!(service.discountType && service.discountValue);
+  const finalPrice = getServicePrice(service, selectedCarType);
 
-  const finalPrice = (() => {
-    if (!hasDiscount) return service.price;
-    if (service.discountType === "PERCENTAGE")
-      return Math.round(
-        service.price - (service.price * service.discountValue) / 100,
+  let originalPrice = service.price;
+  if (service.pricing) {
+    const pObj = service.pricing.find(
+      (p) => p.carType === selectedCarType?.toUpperCase(),
+    );
+    if (pObj) originalPrice = pObj.price;
+  }
+
+  const handleCartAction = () => {
+    if (isAdded) {
+      removeFromCart(service.id);
+      return;
+    }
+
+    const existingService = cartItems.find((item) => item.source === "service");
+
+    if (
+      existingService &&
+      String(existingService.garageId) !== String(garageId)
+    ) {
+      Alert.alert(
+        "Replace Cart Items?",
+        `Your cart contains services from "${existingService.garageName}". You can only select services from one garage at a time. \n\nDo you want to clear your cart and add this service from "${garageName}"?`,
+        [
+          { text: "Cancel", style: "cancel" },
+          {
+            text: "Continue",
+            onPress: () => {
+              clearCart();
+              executeAddToCart();
+            },
+          },
+        ],
       );
-    if (service.discountType === "FLAT")
-      return Math.max(service.price - service.discountValue, 0);
-    return service.price;
-  })();
+    } else {
+      executeAddToCart();
+    }
+  };
 
-  const originalPrice =
-    service.originalPrice || (hasDiscount ? service.price : null);
+  const executeAddToCart = () => {
+    let garageObject = {};
+    try {
+      garageObject = typeof garage === "string" ? JSON.parse(garage) : garage;
+    } catch (e) {
+      console.log("Error parsing garage context", e);
+    }
 
-  const discountLabel = hasDiscount
-    ? service.discountType === "PERCENTAGE"
-      ? `${service.discountValue}% off`
-      : `₹${service.discountValue} off`
-    : null;
+    addToCart({
+      id: service.id,
+      title: service.name,
+      price: finalPrice,
+      carType: selectedCarType,
+      image: service.image || null,
+      source: "service",
+      slug: service.slug,
+      garageId,
+      garageName,
+      garage: garageObject,
+    });
+  };
 
   return (
     <Animated.View
@@ -139,30 +198,22 @@ function ServiceCard({ service, onPress, index }) {
       >
         <View style={styles.cardBody}>
           <Text style={styles.serviceName}>{service.name}</Text>
+          <View style={styles.priceRow}>
+            <Text style={styles.finalPrice}>₹{finalPrice}</Text>
+            {originalPrice > finalPrice && (
+              <Text style={styles.oldPrice}>₹{originalPrice}</Text>
+            )}
+            <View style={styles.vehicleTypeTag}>
+              <Text style={styles.vehicleTypeText}>{selectedCarType}</Text>
+            </View>
+          </View>
 
-          <PriceDisplay
-            finalPrice={finalPrice}
-            originalPrice={originalPrice}
-            hasDiscount={hasDiscount}
-            discountLabel={discountLabel}
-          />
-
-          {/* ✅ ADD TO CART BUTTON */}
           <TouchableOpacity
-            onPress={() =>
-              addToCart({
-                id: service.id,
-                title: service.name,
-                price: finalPrice,
-                image: service.image || null,
-                source: "service",
-                slug: service.slug,
-              })
-            }
+            onPress={handleCartAction}
             style={[styles.addBtn, isAdded && styles.addedBtn]}
           >
             <Text style={styles.addBtnText}>
-              {isAdded ? "Added" : "Add to Cart"}
+              {isAdded ? "Remove from Cart" : "Add to Cart"}
             </Text>
           </TouchableOpacity>
         </View>
@@ -175,8 +226,16 @@ function ServiceCard({ service, onPress, index }) {
   );
 }
 
-// ─── Section ──────────────────────────────────────────────────────────────────
-function Section({ section, sectionIndex, router }) {
+// ─── Section ────────────────────────────────────────────
+function Section({
+  section,
+  sectionIndex,
+  router,
+  garageId,
+  garageName,
+  garage,
+  selectedCarType,
+}) {
   return (
     <View style={styles.sectionBlock}>
       <View style={styles.sectionHeaderRow}>
@@ -185,18 +244,24 @@ function Section({ section, sectionIndex, router }) {
           {section.services?.length ?? 0} services
         </Text>
       </View>
-
-      {section.services.map((service, idx) => (
+      {section.services?.map((service, idx) => (
         <ServiceCard
-          key={service.id}
+          // key={service.id}
+          key={`${service.id}-${idx}`}
           service={service}
           index={sectionIndex * 8 + idx}
+          garageId={garageId}
+          garageName={garageName}
+          garage={garage}
+          selectedCarType={selectedCarType}
           onPress={() =>
             router.push({
               pathname: "/sub-service/[id]",
               params: {
-                id: service.id, // keep for existing UI
-                externalServiceId: service.slug, // 🔥 VERY IMPORTANT
+                id: service.id,
+                externalServiceId: service.slug,
+                carType: selectedCarType,
+                service: JSON.stringify(service),
               },
             })
           }
@@ -206,43 +271,60 @@ function Section({ section, sectionIndex, router }) {
   );
 }
 
-// ─── Screen ───────────────────────────────────────────────────────────────────
+// ─── Screen ─────────────────────────────────────────────
 export default function ServiceDetailsScreen() {
-  const { id } = useLocalSearchParams();
+  const { id, mainService, garageId, garageName, garage, carType } =
+    useLocalSearchParams();
   const router = useRouter();
   const { cartItems } = useCart();
 
+  // ✅ ROOT FIX: Use carType from params.
+  // Defaulting to "SEDAN" only if absolutely necessary (e.g., initial render or direct link)
+  const selectedCarType = carType || "SEDAN";
+
   const total = cartItems.reduce(
-    (sum, item) => sum + item.price * item.quantity,
+    (sum, item) => sum + item.price * (item.quantity || 1),
     0,
   );
 
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
-
   const titleFade = useRef(new Animated.Value(0)).current;
   const titleSlide = useRef(new Animated.Value(-12)).current;
 
   useEffect(() => {
-    loadService();
-  }, [id]);
+    // Debug log to trace the navigation chain
+    console.log(`[ServiceDetails] ID: ${id}, carType: ${carType}`);
+
+    if (mainService) {
+      try {
+        const parsed = JSON.parse(mainService);
+        setData(parsed);
+        setLoading(false);
+        Animated.parallel([
+          Animated.timing(titleFade, {
+            toValue: 1,
+            duration: 380,
+            useNativeDriver: true,
+          }),
+          Animated.timing(titleSlide, {
+            toValue: 0,
+            duration: 380,
+            useNativeDriver: true,
+          }),
+        ]).start();
+      } catch {
+        loadService();
+      }
+    } else if (id) {
+      loadService();
+    }
+  }, [id, mainService, carType]);
 
   const loadService = async () => {
     try {
       const res = await api.get(`/services/${id}`);
       setData(res.data);
-      Animated.parallel([
-        Animated.timing(titleFade, {
-          toValue: 1,
-          duration: 380,
-          useNativeDriver: true,
-        }),
-        Animated.timing(titleSlide, {
-          toValue: 0,
-          duration: 380,
-          useNativeDriver: true,
-        }),
-      ]).start();
     } catch (e) {
       console.log("Error fetching service details", e.message);
     } finally {
@@ -250,96 +332,76 @@ export default function ServiceDetailsScreen() {
     }
   };
 
-  // ─── Render Loading ───────────────────────────────────────────────────────
   if (loading) {
     return (
-      <SafeAreaView style={styles.centerScreen} edges={["top"]}>
+      <SafeAreaView style={styles.centerScreen}>
         <ActivityIndicator size="large" color={C.accent} />
-        <Text style={styles.loadingText}>Loading...</Text>
+        <Text>Loading...</Text>
       </SafeAreaView>
     );
   }
 
-  // ─── Render Error ─────────────────────────────────────────────────────────
-  if (!data) {
+  if (!data)
     return (
-      <SafeAreaView style={styles.centerScreen} edges={["top"]}>
-        <Ionicons name="alert-circle-outline" size={44} color={C.textMuted} />
-        <Text style={styles.notFoundText}>Service not found</Text>
+      <SafeAreaView style={styles.centerScreen}>
+        <Text>Service not found</Text>
       </SafeAreaView>
     );
-  }
 
   return (
-    <SafeAreaView style={styles.screen} edges={["top"]}>
-      {/* ─── Header ─────────────────────────────────────────────────────────── */}
-      <View style={[styles.header, { borderBottomColor: C.divider }]}>
-        <TouchableOpacity
-          onPress={() => router.back()}
-          style={styles.backBtn}
-          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-        >
+    <SafeAreaView style={styles.screen}>
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => router.back()}>
           <Ionicons
             name={Platform.OS === "ios" ? "chevron-back" : "arrow-back"}
             size={22}
             color={C.accent}
           />
-          {Platform.OS === "ios" && (
-            <Text style={[styles.backLabel, { color: C.accent }]}>Back</Text>
-          )}
         </TouchableOpacity>
-        <Text style={[styles.headerTitle, { color: C.text }]}>Services</Text>
-        <View style={styles.headerRight} />
+        <Text style={styles.headerTitle}>{data.name}</Text>
       </View>
 
-      {/* ─── Content ───────────────────────────────────────────────────────── */}
       <ScrollView
         style={styles.scrollView}
-        contentContainerStyle={styles.scrollContent}
-        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingHorizontal: 16 }}
       >
-        {/* Page title */}
         <Animated.View
-          style={[
-            styles.pageHeader,
-            { opacity: titleFade, transform: [{ translateY: titleSlide }] },
-          ]}
+          style={{
+            opacity: titleFade,
+            transform: [{ translateY: titleSlide }],
+          }}
         >
           <Text style={styles.pageTitle}>{data.name}</Text>
-          <Text style={styles.pageSubtitle}>
-            {data.sections?.reduce(
-              (acc, s) => acc + (s.services?.length ?? 0),
-              0,
-            )}{" "}
-            services available
-          </Text>
+          <View style={styles.infoBanner}>
+            <Ionicons name="car-outline" size={16} color={C.accent} />
+            <Text style={styles.infoBannerText}>
+              Showing prices for {selectedCarType}
+            </Text>
+          </View>
         </Animated.View>
 
-        {/* Sections */}
-        {data.sections.map((section, si) => (
+        {data.sections?.map((section, si) => (
           <Section
             key={section.id}
             section={section}
             sectionIndex={si}
             router={router}
+            garageId={garageId}
+            garageName={garageName}
+            garage={garage}
+            selectedCarType={selectedCarType}
           />
         ))}
-
-        <View style={{ height: 40 }} />
+        <View style={{ height: 100 }} />
       </ScrollView>
+
       {cartItems.length > 0 && (
         <View style={styles.cartBar}>
           <View>
-            <Text style={styles.cartCount}>
-              {cartItems.length} items in cart
-            </Text>
+            <Text style={styles.cartCount}>{cartItems.length} items</Text>
             <Text style={styles.cartTotal}>₹{total}</Text>
           </View>
-
-          <TouchableOpacity
-            style={styles.viewCartBtn}
-            onPress={() => router.push("/cart")}
-          >
+          <TouchableOpacity onPress={() => router.push("/cart")}>
             <Text style={styles.viewCartText}>View Cart</Text>
           </TouchableOpacity>
         </View>
@@ -348,218 +410,100 @@ export default function ServiceDetailsScreen() {
   );
 }
 
-// ─── Styles ───────────────────────────────────────────────────────────────────
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    backgroundColor: C.pageBg,
-  },
-  scrollView: {
-    flex: 1,
-  },
-  scrollContent: {
-    padding: 16,
-    paddingTop: 10, // Reduced top padding since header exists now
-  },
-  centerScreen: {
-    flex: 1,
-    backgroundColor: C.pageBg,
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 10,
-  },
-  loadingText: {
-    color: C.textSub,
-    fontSize: 14,
-    marginTop: 6,
-  },
-  notFoundText: {
-    color: C.textMuted,
-    fontSize: 15,
-    fontWeight: "600",
-    marginTop: 6,
-  },
-
-  // ── Header
+  screen: { flex: 1, backgroundColor: C.pageBg },
+  scrollView: { flex: 1 },
+  centerScreen: { flex: 1, alignItems: "center", justifyContent: "center" },
   header: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    borderBottomWidth: 0.5,
-    backgroundColor: C.bg,
+    padding: 16,
+    backgroundColor: "#fff",
   },
-  backBtn: {
-    flexDirection: "row",
-    alignItems: "center",
-    minWidth: 60,
-  },
-  backLabel: {
-    fontSize: 16,
-    marginLeft: 2,
-  },
-  headerTitle: {
-    fontSize: 17,
-    fontWeight: "700",
-  },
-  headerRight: {
-    minWidth: 60,
-  },
-
-  // ── Page header
-  pageHeader: {
-    marginBottom: 24,
-    paddingHorizontal: 2,
-  },
+  headerTitle: { fontSize: 17, fontWeight: "700", marginLeft: 10 },
   pageTitle: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: "800",
-    color: C.text,
-    letterSpacing: -0.5,
+    marginTop: 16,
     marginBottom: 4,
   },
-  pageSubtitle: {
-    fontSize: 13,
-    color: C.textSub,
-    fontWeight: "500",
+  infoBanner: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 16,
+    backgroundColor: "#eef2ff",
+    padding: 8,
+    borderRadius: 8,
+    alignSelf: "flex-start",
   },
-
-  // ── Section
-  sectionBlock: {
-    marginBottom: 24,
+  infoBannerText: {
+    marginLeft: 6,
+    fontSize: 12,
+    fontWeight: "600",
+    color: C.accent,
   },
+  sectionBlock: { marginBottom: 24 },
   sectionHeaderRow: {
     flexDirection: "row",
-    alignItems: "center",
     justifyContent: "space-between",
     marginBottom: 12,
-    paddingHorizontal: 2,
   },
-  sectionTitle: {
-    fontSize: 16,
-    fontWeight: "700",
-    color: C.text,
-    letterSpacing: -0.2,
-  },
-  sectionCount: {
-    fontSize: 12,
-    color: C.textSub,
-    fontWeight: "500",
-  },
-
-  // ── Card
+  sectionTitle: { fontSize: 16, fontWeight: "700" },
+  sectionCount: { fontSize: 12, color: "#666" },
   card: {
     flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: C.card,
+    backgroundColor: "#fff",
+    padding: 14,
     borderRadius: 14,
-    borderWidth: 1,
-    borderColor: C.cardBorder,
-    paddingHorizontal: 16,
-    paddingVertical: 14,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.05,
-    shadowRadius: 6,
-    elevation: 2,
+    marginBottom: 10,
   },
-  cardBody: {
-    flex: 1,
-    gap: 6,
-  },
-  serviceName: {
-    fontSize: 15,
-    fontWeight: "600",
-    color: C.text,
-    lineHeight: 20,
-  },
-  arrowWrap: {
-    marginLeft: 10,
-  },
-
-  // ── Price row
+  cardBody: { flex: 1 },
+  serviceName: { fontSize: 15, fontWeight: "600" },
   priceRow: {
     flexDirection: "row",
     alignItems: "center",
     gap: 8,
-    flexWrap: "wrap",
+    marginVertical: 4,
   },
-  finalPrice: {
-    fontSize: 16,
-    fontWeight: "700",
-    color: C.priceColor,
-    letterSpacing: -0.3,
-  },
-  oldPrice: {
-    fontSize: 13,
-    fontWeight: "500",
-    color: C.oldPriceColor,
-    textDecorationLine: "line-through",
-    textDecorationColor: C.oldPriceColor,
-  },
-  saveBadge: {
-    backgroundColor: C.greenLight,
-    borderRadius: 6,
-    paddingHorizontal: 7,
+  finalPrice: { fontSize: 16, fontWeight: "700", color: "#006fff" },
+  oldPrice: { textDecorationLine: "line-through", color: "#999", fontSize: 13 },
+  vehicleTypeTag: {
+    backgroundColor: "#f3f4f6",
+    paddingHorizontal: 6,
     paddingVertical: 2,
+    borderRadius: 4,
   },
-  saveBadgeText: {
-    fontSize: 11,
-    fontWeight: "700",
-    color: C.green,
+  vehicleTypeText: { fontSize: 10, color: "#6b7280", fontWeight: "700" },
+  saveBadge: {
+    backgroundColor: "#e6f7ed",
+    paddingHorizontal: 6,
+    borderRadius: 6,
   },
+  saveBadgeText: { color: "#16A34A", fontSize: 11, fontWeight: "600" },
   addBtn: {
     marginTop: 8,
     backgroundColor: "#0062ff",
-    paddingVertical: 6,
-    paddingHorizontal: 10,
-    borderRadius: 6,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: 8,
     alignSelf: "flex-start",
   },
-
-  addedBtn: {
-    backgroundColor: "#16A34A",
-  },
-
-  addBtnText: {
-    color: "#fff",
-    fontSize: 12,
-    fontWeight: "600",
-  },
+  addedBtn: { backgroundColor: "#ef4444" },
+  addBtnText: { color: "#fff", fontSize: 12, fontWeight: "700" },
+  arrowWrap: { justifyContent: "center", paddingLeft: 8 },
   cartBar: {
     position: "absolute",
     bottom: 20,
     left: 16,
     right: 16,
     backgroundColor: "#111827",
+    padding: 16,
     borderRadius: 16,
-    padding: 14,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    elevation: 10,
   },
-
-  cartCount: {
-    color: "#fff",
-    fontSize: 12,
-  },
-
-  cartTotal: {
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "700",
-  },
-
-  viewCartBtn: {
-    backgroundColor: "#fff",
-    paddingHorizontal: 14,
-    paddingVertical: 8,
-    borderRadius: 10,
-  },
-
-  viewCartText: {
-    fontWeight: "600",
-  },
+  cartCount: { color: "#9CA3AF", fontSize: 12 },
+  cartTotal: { color: "#fff", fontWeight: "700", fontSize: 16 },
+  viewCartText: { color: "#60A5FA", fontWeight: "700" },
 });
