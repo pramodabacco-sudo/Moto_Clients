@@ -9,6 +9,7 @@ import {
   Animated,
   StyleSheet,
   Platform,
+  Alert,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useLocalSearchParams, useRouter } from "expo-router";
@@ -35,7 +36,20 @@ const C = {
 };
 
 // ─── Price Helper ───────────────────────────────────────
-const getServicePrice = (service) => {
+// Uses the selectedCarType to filter the service's pricing array
+const getServicePrice = (service, selectedCarType) => {
+  if (service.pricing && service.pricing.length > 0) {
+    const carTypeUpper = selectedCarType?.toUpperCase();
+    const pricingObj = service.pricing.find((p) => p.carType === carTypeUpper);
+
+    if (pricingObj) {
+      const price = parseFloat(pricingObj.price);
+      const discount = parseFloat(pricingObj.discount || 0);
+      return Math.max(price - discount, 0);
+    }
+  }
+
+  // Fallback to standard price if no segment-specific pricing is found
   if (service.price !== undefined && service.price !== null) {
     const hasDiscount = !!(service.discountType && service.discountValue);
     if (!hasDiscount) return service.price;
@@ -49,10 +63,13 @@ const getServicePrice = (service) => {
     }
     return service.price;
   }
+
+  // Final fallback: take the lowest available price
   if (service.pricing && service.pricing.length > 0) {
     const prices = service.pricing.map((p) => p.price - (p.discount || 0));
     return Math.min(...prices);
   }
+
   return 0;
 };
 
@@ -63,14 +80,14 @@ function ServiceCard({
   onPress,
   garageId,
   garageName,
-  garage, // This is a string from params
+  garage,
+  selectedCarType,
 }) {
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const slideAnim = useRef(new Animated.Value(16)).current;
   const scaleAnim = useRef(new Animated.Value(1)).current;
 
-  // ✅ Added removeFromCart
-  const { addToCart, removeFromCart, cartItems } = useCart();
+  const { addToCart, removeFromCart, clearCart, cartItems } = useCart();
 
   const isAdded = cartItems.find(
     (item) => String(item.id) === String(service.id),
@@ -101,41 +118,67 @@ function ServiceCard({
   const onPressOut = () =>
     Animated.spring(scaleAnim, { toValue: 1, useNativeDriver: true }).start();
 
-  const finalPrice = getServicePrice(service);
-  const hasDiscount = !!(service.discountType && service.discountValue);
-  const originalPrice = hasDiscount ? service.price : null;
-  const discountLabel = hasDiscount
-    ? service.discountType === "PERCENTAGE"
-      ? `${service.discountValue}% off`
-      : `₹${service.discountValue} off`
-    : null;
+  const finalPrice = getServicePrice(service, selectedCarType);
 
-  // ✅ Toggle logic for Add/Remove
+  let originalPrice = service.price;
+  if (service.pricing) {
+    const pObj = service.pricing.find(
+      (p) => p.carType === selectedCarType?.toUpperCase(),
+    );
+    if (pObj) originalPrice = pObj.price;
+  }
+
   const handleCartAction = () => {
     if (isAdded) {
       removeFromCart(service.id);
-    } else {
-      // Parse full garage object to store in cart
-      let garageObject = {};
-      try {
-        garageObject = typeof garage === "string" ? JSON.parse(garage) : garage;
-      } catch (e) {
-        console.log("Error parsing garage context", e);
-      }
-
-      addToCart({
-        id: service.id,
-        title: service.name,
-        price: finalPrice,
-        image: service.image || null,
-        source: "service",
-        slug: service.slug,
-        garageId,
-        garageName,
-        // ✅ Storing the full object so Confirm screen can see address/phone
-        garage: garageObject,
-      });
+      return;
     }
+
+    const existingService = cartItems.find((item) => item.source === "service");
+
+    if (
+      existingService &&
+      String(existingService.garageId) !== String(garageId)
+    ) {
+      Alert.alert(
+        "Replace Cart Items?",
+        `Your cart contains services from "${existingService.garageName}". You can only select services from one garage at a time. \n\nDo you want to clear your cart and add this service from "${garageName}"?`,
+        [
+          { text: "Cancel", style: "cancel" },
+          {
+            text: "Continue",
+            onPress: () => {
+              clearCart();
+              executeAddToCart();
+            },
+          },
+        ],
+      );
+    } else {
+      executeAddToCart();
+    }
+  };
+
+  const executeAddToCart = () => {
+    let garageObject = {};
+    try {
+      garageObject = typeof garage === "string" ? JSON.parse(garage) : garage;
+    } catch (e) {
+      console.log("Error parsing garage context", e);
+    }
+
+    addToCart({
+      id: service.id,
+      title: service.name,
+      price: finalPrice,
+      carType: selectedCarType,
+      image: service.image || null,
+      source: "service",
+      slug: service.slug,
+      garageId,
+      garageName,
+      garage: garageObject,
+    });
   };
 
   return (
@@ -157,17 +200,14 @@ function ServiceCard({
           <Text style={styles.serviceName}>{service.name}</Text>
           <View style={styles.priceRow}>
             <Text style={styles.finalPrice}>₹{finalPrice}</Text>
-            {originalPrice && originalPrice !== finalPrice && (
+            {originalPrice > finalPrice && (
               <Text style={styles.oldPrice}>₹{originalPrice}</Text>
             )}
-            {discountLabel && (
-              <View style={styles.saveBadge}>
-                <Text style={styles.saveBadgeText}>{discountLabel}</Text>
-              </View>
-            )}
+            <View style={styles.vehicleTypeTag}>
+              <Text style={styles.vehicleTypeText}>{selectedCarType}</Text>
+            </View>
           </View>
 
-          {/* ✅ UPDATED BUTTON: Supports both Adding and Removing */}
           <TouchableOpacity
             onPress={handleCartAction}
             style={[styles.addBtn, isAdded && styles.addedBtn]}
@@ -194,6 +234,7 @@ function Section({
   garageId,
   garageName,
   garage,
+  selectedCarType,
 }) {
   return (
     <View style={styles.sectionBlock}>
@@ -205,16 +246,23 @@ function Section({
       </View>
       {section.services?.map((service, idx) => (
         <ServiceCard
-          key={service.id}
+          // key={service.id}
+          key={`${service.id}-${idx}`}
           service={service}
           index={sectionIndex * 8 + idx}
           garageId={garageId}
           garageName={garageName}
           garage={garage}
+          selectedCarType={selectedCarType}
           onPress={() =>
             router.push({
               pathname: "/sub-service/[id]",
-              params: { id: service.id, externalServiceId: service.slug },
+              params: {
+                id: service.id,
+                externalServiceId: service.slug,
+                carType: selectedCarType,
+                service: JSON.stringify(service),
+              },
             })
           }
         />
@@ -225,10 +273,14 @@ function Section({
 
 // ─── Screen ─────────────────────────────────────────────
 export default function ServiceDetailsScreen() {
-  const { id, mainService, garageId, garageName, garage } =
+  const { id, mainService, garageId, garageName, garage, carType } =
     useLocalSearchParams();
   const router = useRouter();
   const { cartItems } = useCart();
+
+  // ✅ ROOT FIX: Use carType from params.
+  // Defaulting to "SEDAN" only if absolutely necessary (e.g., initial render or direct link)
+  const selectedCarType = carType || "SEDAN";
 
   const total = cartItems.reduce(
     (sum, item) => sum + item.price * (item.quantity || 1),
@@ -241,6 +293,9 @@ export default function ServiceDetailsScreen() {
   const titleSlide = useRef(new Animated.Value(-12)).current;
 
   useEffect(() => {
+    // Debug log to trace the navigation chain
+    console.log(`[ServiceDetails] ID: ${id}, carType: ${carType}`);
+
     if (mainService) {
       try {
         const parsed = JSON.parse(mainService);
@@ -264,7 +319,7 @@ export default function ServiceDetailsScreen() {
     } else if (id) {
       loadService();
     }
-  }, [id, mainService]);
+  }, [id, mainService, carType]);
 
   const loadService = async () => {
     try {
@@ -286,13 +341,12 @@ export default function ServiceDetailsScreen() {
     );
   }
 
-  if (!data) {
+  if (!data)
     return (
       <SafeAreaView style={styles.centerScreen}>
         <Text>Service not found</Text>
       </SafeAreaView>
     );
-  }
 
   return (
     <SafeAreaView style={styles.screen}>
@@ -318,6 +372,12 @@ export default function ServiceDetailsScreen() {
           }}
         >
           <Text style={styles.pageTitle}>{data.name}</Text>
+          <View style={styles.infoBanner}>
+            <Ionicons name="car-outline" size={16} color={C.accent} />
+            <Text style={styles.infoBannerText}>
+              Showing prices for {selectedCarType}
+            </Text>
+          </View>
         </Animated.View>
 
         {data.sections?.map((section, si) => (
@@ -329,6 +389,7 @@ export default function ServiceDetailsScreen() {
             garageId={garageId}
             garageName={garageName}
             garage={garage}
+            selectedCarType={selectedCarType}
           />
         ))}
         <View style={{ height: 100 }} />
@@ -360,7 +421,27 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   headerTitle: { fontSize: 17, fontWeight: "700", marginLeft: 10 },
-  pageTitle: { fontSize: 22, fontWeight: "800", marginVertical: 16 },
+  pageTitle: {
+    fontSize: 22,
+    fontWeight: "800",
+    marginTop: 16,
+    marginBottom: 4,
+  },
+  infoBanner: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 16,
+    backgroundColor: "#eef2ff",
+    padding: 8,
+    borderRadius: 8,
+    alignSelf: "flex-start",
+  },
+  infoBannerText: {
+    marginLeft: 6,
+    fontSize: 12,
+    fontWeight: "600",
+    color: C.accent,
+  },
   sectionBlock: { marginBottom: 24 },
   sectionHeaderRow: {
     flexDirection: "row",
@@ -386,6 +467,13 @@ const styles = StyleSheet.create({
   },
   finalPrice: { fontSize: 16, fontWeight: "700", color: "#006fff" },
   oldPrice: { textDecorationLine: "line-through", color: "#999", fontSize: 13 },
+  vehicleTypeTag: {
+    backgroundColor: "#f3f4f6",
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: 4,
+  },
+  vehicleTypeText: { fontSize: 10, color: "#6b7280", fontWeight: "700" },
   saveBadge: {
     backgroundColor: "#e6f7ed",
     paddingHorizontal: 6,
@@ -400,7 +488,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignSelf: "flex-start",
   },
-  addedBtn: { backgroundColor: "#ef4444" }, // Red for "Remove"
+  addedBtn: { backgroundColor: "#ef4444" },
   addBtnText: { color: "#fff", fontSize: 12, fontWeight: "700" },
   arrowWrap: { justifyContent: "center", paddingLeft: 8 },
   cartBar: {

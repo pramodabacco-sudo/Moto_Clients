@@ -19,7 +19,7 @@ import { useAuth } from "../src/providers/AuthProvider";
 import axios from "axios";
 import { Ionicons } from "@expo/vector-icons";
 
-const BASE_URL = "https://cqw6v494-8000.inc1.devtunnels.ms/api/v1";
+const BASE_URL = "https://ld3bgq17-8000.inc1.devtunnels.ms/api/v1";
 const WAIT_SECONDS = 35;
 const POLL_INTERVAL_MS = 5000;
 
@@ -37,10 +37,7 @@ export default function ServiceConfirmScreen() {
   const pollRef = useRef(null);
   const bookedAtRef = useRef(null);
 
-  // ✅ GET PARAMS
   const { garageId, name, garage } = useLocalSearchParams();
-
-  // ✅ PARSE GARAGE OBJECT (for address, phone, email)
   const garageData = garage ? JSON.parse(garage) : null;
 
   const total = cartItems.reduce(
@@ -139,41 +136,67 @@ export default function ServiceConfirmScreen() {
       if (!user?.phone) return Alert.alert("Error", "Missing phone number");
 
       const clientId = await resolveCrmClientId();
-      const serviceNames = cartItems.map((i) => i.title).join(", ");
       const primaryItem = cartItems[0];
       const externalServiceId = primaryItem.slug || primaryItem.id;
       const scheduledAt = new Date().toISOString();
       bookedAtRef.current = scheduledAt;
 
+      // ✅ Build a flat list of all services across all cart items
+      // For package items: use item.services[] (the included services)
+      // For regular service items: use item.title as the service name
+      const allServices = cartItems.flatMap((item) => {
+        if (item.source === "package" && item.services?.length) {
+          // Package — expand its included services
+          return item.services.map((s) => ({
+            serviceName: s.serviceName || s.name || "",
+            fromPackage: item.title, // which package this came from
+          }));
+        }
+        // Regular service
+        return [{ serviceName: item.title }];
+      });
+
+      // Human-readable summary for CRM display (e.g. notifications, CRM UI)
+      const serviceNames = allServices.map((s) => s.serviceName).join(", ");
+
       const payload = {
         externalServiceId,
-        garageId: Number(garageId),
+        garageId,
         clientId,
         scheduledAt,
         carType: primaryItem.carType || "SEDAN",
+
+        // ✅ Plain string summary (kept for backwards compat with CRM)
         serviceName: serviceNames,
+
+        // ✅ Structured services array — CRM can now see every included service
+        services: allServices,
+
         appPrice: total,
+
+        // ✅ Package-specific fields (only set when booking a package)
+        ...(primaryItem.source === "package" && {
+          packageId: primaryItem.id,
+          packageName: primaryItem.title,
+        }),
       };
 
+      console.log("📤 Sending payload:", JSON.stringify(payload, null, 2));
       await axios.post(`${BASE_URL}/marketplace/book`, payload);
+
       clearCart();
       setBookingState("waiting");
     } catch (err) {
-      Alert.alert(
-        "Booking Failed",
-        err?.response?.data?.message || "Something went wrong",
-      );
+      const errorMsg = err?.response?.data?.message || err.message;
+      console.error("❌ Booking Error:", errorMsg);
+      Alert.alert("Booking Failed", errorMsg);
     } finally {
       setConfirming(false);
     }
   };
 
-  const goHome = () => {
-    router.replace("/(tabs)/home");
-  };
-  const goBack = () => {
-    router.back();
-  };
+  const goHome = () => router.replace("/(tabs)/home");
+  const goBack = () => router.back();
 
   // ── Result screens ──
   if (["accepted", "rejected", "timeout"].includes(bookingState)) {
@@ -234,7 +257,7 @@ export default function ServiceConfirmScreen() {
     );
   }
 
-  // ── CONFIRM SCREEN ──
+  // ── Confirm screen ──
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -245,13 +268,12 @@ export default function ServiceConfirmScreen() {
       </View>
 
       <ScrollView showsVerticalScrollIndicator={false}>
-        {/* ✅ GARAGE INFORMATION SECTION */}
+        {/* Garage Details */}
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
             <Ionicons name="business" size={18} color="#0062ff" />
             <Text style={styles.sectionTitle}>Garage Details</Text>
           </View>
-
           <View style={styles.infoRow}>
             <Text style={styles.label}>Name</Text>
             <Text style={styles.value}>
@@ -261,21 +283,18 @@ export default function ServiceConfirmScreen() {
                 "Not Available"}
             </Text>
           </View>
-
           <View style={styles.infoRow}>
             <Text style={styles.label}>Address</Text>
             <Text style={styles.value}>
               {garageData?.address || "Not Available"}
             </Text>
           </View>
-
           <View style={styles.infoRow}>
             <Text style={styles.label}>Phone</Text>
             <Text style={styles.value}>
               {garageData?.phone || "Not Available"}
             </Text>
           </View>
-
           <View style={styles.infoRow}>
             <Text style={styles.label}>Email</Text>
             <Text style={styles.value}>
@@ -284,16 +303,36 @@ export default function ServiceConfirmScreen() {
           </View>
         </View>
 
+        {/* Services — expanded view for packages */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Services</Text>
           {cartItems.map((item) => (
-            <View key={item.id} style={styles.itemRow}>
-              <Text style={styles.itemName}>
-                {item.title} × {item.quantity || 1}
-              </Text>
-              <Text style={styles.itemPrice}>
-                ₹{item.price * (item.quantity || 1)}
-              </Text>
+            <View key={item.id}>
+              <View style={styles.itemRow}>
+                <Text style={styles.itemName}>
+                  {item.title} × {item.quantity || 1}
+                </Text>
+                <Text style={styles.itemPrice}>
+                  ₹{item.price * (item.quantity || 1)}
+                </Text>
+              </View>
+              {/* ✅ If it's a package, show its included services below */}
+              {item.source === "package" && item.services?.length > 0 && (
+                <View style={styles.packageServices}>
+                  {item.services.map((s, i) => (
+                    <View key={i} style={styles.packageServiceRow}>
+                      <Ionicons
+                        name="checkmark-circle"
+                        size={13}
+                        color="#4ade80"
+                      />
+                      <Text style={styles.packageServiceText}>
+                        {s.serviceName || s.name}
+                      </Text>
+                    </View>
+                  ))}
+                </View>
+              )}
             </View>
           ))}
         </View>
@@ -362,6 +401,22 @@ const styles = StyleSheet.create({
   },
   itemName: { fontSize: 14, color: "#444" },
   itemPrice: { fontSize: 14, fontWeight: "700" },
+  // ✅ Package included services styles
+  packageServices: {
+    marginLeft: 8,
+    marginTop: 4,
+    marginBottom: 8,
+    paddingLeft: 8,
+    borderLeftWidth: 2,
+    borderLeftColor: "#e0e7ff",
+  },
+  packageServiceRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 6,
+    marginBottom: 4,
+  },
+  packageServiceText: { fontSize: 12, color: "#666" },
   total: { fontSize: 22, fontWeight: "800", color: "#0062ff" },
   infoBox: {
     margin: 16,

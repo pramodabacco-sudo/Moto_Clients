@@ -12,6 +12,7 @@ export function CartProvider({ children }) {
   }, []);
 
   useEffect(() => {
+    // Save cart to local storage whenever it changes
     AsyncStorage.setItem("CART", JSON.stringify(cartItems));
   }, [cartItems]);
 
@@ -19,7 +20,12 @@ export function CartProvider({ children }) {
   const loadCart = async () => {
     try {
       const data = await AsyncStorage.getItem("CART");
-      if (data) setCartItems(JSON.parse(data));
+      if (data) {
+        const parsedData = JSON.parse(data);
+        if (Array.isArray(parsedData)) {
+          setCartItems(parsedData);
+        }
+      }
     } catch (e) {
       console.log("Cart load error", e);
     }
@@ -32,7 +38,7 @@ export function CartProvider({ children }) {
 
       // ✅ SERVICE LOGIC (NO QUANTITY INCREMENT)
       if (item.source === "service") {
-        if (exists) return prev; // already added
+        if (exists) return prev; // already added, do nothing
         return [
           ...prev,
           {
@@ -63,20 +69,29 @@ export function CartProvider({ children }) {
     });
   };
 
-  // 🔧 REMOVE (works for both types)
+  // 🔧 REMOVE (Improved for services)
   const removeFromCart = (id) => {
-    setCartItems((prev) =>
-      prev
-        .map((item) =>
-          String(item.id) === String(id)
-            ? { ...item, quantity: item.quantity - 1 }
-            : item,
+    setCartItems((prev) => {
+      const item = prev.find((i) => String(i.id) === String(id));
+
+      // If it's a service, remove it entirely immediately
+      if (item?.source === "service") {
+        return prev.filter((i) => String(i.id) !== String(id));
+      }
+
+      // If it's a product, decrement quantity and filter out if 0
+      return prev
+        .map((i) =>
+          String(i.id) === String(id) ? { ...i, quantity: i.quantity - 1 } : i,
         )
-        .filter((item) => item.quantity > 0),
-    );
+        .filter((i) => i.quantity > 0);
+    });
   };
 
-  const clearCart = () => setCartItems([]);
+  const clearCart = () => {
+    setCartItems([]);
+    AsyncStorage.removeItem("CART"); // Explicitly clear storage
+  };
 
   // ✅ TOTAL (works for both)
   const getTotal = () =>
@@ -90,6 +105,7 @@ export function CartProvider({ children }) {
     <CartContext.Provider
       value={{
         cartItems,
+        setCartItems, // Optional: in case you need direct state access
         addToCart,
         removeFromCart,
         clearCart,

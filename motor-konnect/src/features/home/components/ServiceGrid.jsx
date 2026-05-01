@@ -27,8 +27,9 @@ export default function ServiceGrid() {
   const { theme } = useTheme();
   const router = useRouter();
 
-  // ✅ RECEIVE DATA FROM PREVIOUS SCREEN (GarageList)
-  const { garageId, garageName, services, garage } = useLocalSearchParams();
+  // ✅ Also extract carType — passed from GarageList via navigation params
+  const { garageId, garageName, services, garage, carType } =
+    useLocalSearchParams();
 
   // parse services for grid display
   let parsedServices = [];
@@ -82,12 +83,12 @@ export default function ServiceGrid() {
                       id: main.id,
                       mainService: JSON.stringify(main),
                       title: main.name,
-
-                      // ✅ FORWARD FULL CONTEXT
-                      // These params ensure the next screen has everything needed for the cart
                       garageId: garageId,
                       garageName: garageName,
-                      garage: garage, // Full stringified item (address, phone, email included)
+                      garage: garage,
+                      // ✅ Forward carType so the service details screen
+                      // shows the correct vehicle-type pricing (LUXURY, SUV etc.)
+                      carType: carType,
                     },
                   })
                 }

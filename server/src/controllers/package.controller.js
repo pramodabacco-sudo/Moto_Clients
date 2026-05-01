@@ -11,16 +11,18 @@ export const getPackages = async (req, res) => {
   try {
     const { vehicleType } = req.query;
 
-    // 🔥 MAIN QUERY (CRM TABLES)
     const result = await db.query(
       `
       SELECT 
         p.id,
+        p."userId", -- ✅ ADD THIS LINE: This is the missing Garage ID
         p.name,
         p.description,
         p.price,
         p."isActive",
         u."companyName" as "garageName",
+        u.address, -- ✅ OPTIONAL: Add this to avoid "Address Not Available"
+        u.phone,   -- ✅ OPTIONAL: Add this to avoid "Phone Not Available"
 
         json_agg(
           json_build_object(
@@ -49,7 +51,8 @@ export const getPackages = async (req, res) => {
           : ""
       }
 
-      GROUP BY p.id, u."companyName"
+      -- ✅ ADD p."userId", u.address, u.phone to GROUP BY
+      GROUP BY p.id, u."companyName", u.address, u.phone 
 
       ORDER BY p."createdAt" DESC
       `,

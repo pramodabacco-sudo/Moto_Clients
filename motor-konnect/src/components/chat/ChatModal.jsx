@@ -17,7 +17,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 // ── CONFIGURATION ────────────────────────────────────────────────────────
 // ADD YOUR API KEY HERE
-const GEMINI_API_KEY = "AIzaSyAynVZDkw24JFlQgmwUtKDlsfHSBaWVo90";
+const GEMINI_API_KEY = "AIzaSyAe_FJP_pAK0ChB2s9HexFBpaa4tx8-5j8";
 
 const SYSTEM_PROMPT = `
 You are the expert AI Support Assistant for Motor Konnect (the app) and Motor Store. 

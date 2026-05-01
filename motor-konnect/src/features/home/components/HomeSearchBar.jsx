@@ -4,6 +4,7 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  Platform,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "../../../hooks/useTheme";
@@ -11,22 +12,29 @@ import { useTheme } from "../../../hooks/useTheme";
 export default function HomeSearchBar({ value, onChangeText, onClear }) {
   const { theme } = useTheme();
   const isDark = theme.dark;
-  const inputBg = isDark ? "#2c2c2e" : "#f2f2f7";
+
+  // Classic high-contrast color palette
+  const inputBg = isDark ? "#1c1c1e" : "#FFFFFF";
+  const borderColor = isDark ? "#2c2c2e" : "#F0F0F0";
   const textColor = theme.colors.text;
-  const placeholderColor = isDark ? "#636366" : "#8e8e93";
-  const primary = theme.colors.primary;
+  const placeholderColor = isDark ? "#636366" : "#A0A0A0";
 
   return (
-    <View style={[styles.wrap, { backgroundColor: inputBg }]}>
+    <View
+      style={[
+        styles.wrap,
+        { backgroundColor: inputBg, borderColor: borderColor },
+      ]}
+    >
       <Ionicons
-        name="search-outline"
-        size={17}
+        name="search"
+        size={18}
         color={placeholderColor}
         style={styles.icon}
       />
       <TextInput
         style={[styles.input, { color: textColor }]}
-        placeholder="Search services..."
+        placeholder="Search for garages or services..."
         placeholderTextColor={placeholderColor}
         value={value}
         onChangeText={onChangeText}
@@ -39,7 +47,7 @@ export default function HomeSearchBar({ value, onChangeText, onClear }) {
           onPress={onClear}
           hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
         >
-          <Ionicons name="close-circle" size={16} color={placeholderColor} />
+          <Ionicons name="close-circle" size={18} color={placeholderColor} />
         </TouchableOpacity>
       )}
     </View>
@@ -50,10 +58,23 @@ const styles = StyleSheet.create({
   wrap: {
     flexDirection: "row",
     alignItems: "center",
-    borderRadius: 12,
-    paddingHorizontal: 12,
-    height: 44,
-    gap: 8,
+    borderRadius: 14,
+    paddingHorizontal: 16,
+    height: 50, // Slightly taller for a more premium feel
+    gap: 10,
+    borderWidth: 1,
+    // Subtle shadow for the "Classic" floating look
+    ...Platform.select({
+      ios: {
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.04,
+        shadowRadius: 8,
+      },
+      android: {
+        elevation: 2,
+      },
+    }),
   },
   icon: {
     flexShrink: 0,
@@ -61,7 +82,8 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     fontSize: 15,
-    fontWeight: "500",
+    fontWeight: "400", // Clean, modern weight
     paddingVertical: 0,
+    letterSpacing: -0.2,
   },
 });
