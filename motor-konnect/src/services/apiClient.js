@@ -7,12 +7,12 @@ const getBaseURL = () => {
   if (Platform.OS === "android") {
     // Android Emulator
     // return "https://cqw6v494-8000.inc1.devtunnels.ms/api";
-    return "https://ld3bgq17-8000.inc1.devtunnels.ms/api";
+    return "https://moto-clients.onrender.com/api";
   }
 
   // iOS Simulator
   // return "https://cqw6v494-8000.inc1.devtunnels.ms/api";
-  return "https://ld3bgq17-8000.inc1.devtunnels.ms/api";
+  return "https://moto-clients.onrender.com/api";
 };
 
 const api = axios.create({
