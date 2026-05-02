@@ -4,8 +4,10 @@ import axios from "axios";
 const router = express.Router();
 
 // ← Different base paths for different CRM route groups
-const CRM_V1 = "http://localhost:5001/api/v1"; // for /external/users
-const CRM_API = "http://localhost:5001/api"; // for /marketplace/...
+// const CRM_V1 = "http://localhost:5001/api/v1"; // for /external/users
+// const CRM_API = "http://localhost:5001/api"; // for /marketplace/...
+const CRM_V1 = "https://auto-garage-crm-zrxc.onrender.com/api/v1"; // for /external/users
+const CRM_API = "https://auto-garage-crm-zrxc.onrender.com/api"; // for /marketplace/...
 
 router.get("/external/users", async (req, res) => {
   try {
@@ -37,14 +39,12 @@ router.post("/marketplace/client-lookup", async (req, res) => {
       "Proxy error /marketplace/client-lookup:",
       error?.response?.data || error.message,
     );
-    return res
-      .status(error?.response?.status || 500)
-      .json(
-        error?.response?.data || {
-          success: false,
-          message: "client-lookup failed",
-        },
-      );
+    return res.status(error?.response?.status || 500).json(
+      error?.response?.data || {
+        success: false,
+        message: "client-lookup failed",
+      },
+    );
   }
 });
 
@@ -81,14 +81,12 @@ router.get("/marketplace/my-bookings", async (req, res) => {
       "Proxy error /marketplace/my-bookings:",
       error?.response?.data || error.message,
     );
-    return res
-      .status(error?.response?.status || 500)
-      .json(
-        error?.response?.data || {
-          success: false,
-          message: "Failed to fetch bookings",
-        },
-      );
+    return res.status(error?.response?.status || 500).json(
+      error?.response?.data || {
+        success: false,
+        message: "Failed to fetch bookings",
+      },
+    );
   }
 });
 
@@ -107,14 +105,12 @@ router.get("/notifications", async (req, res) => {
       "Proxy error /notifications:",
       error?.response?.data || error.message,
     );
-    return res
-      .status(error?.response?.status || 500)
-      .json(
-        error?.response?.data || {
-          success: false,
-          message: "Failed to fetch notifications",
-        },
-      );
+    return res.status(error?.response?.status || 500).json(
+      error?.response?.data || {
+        success: false,
+        message: "Failed to fetch notifications",
+      },
+    );
   }
 });
 
