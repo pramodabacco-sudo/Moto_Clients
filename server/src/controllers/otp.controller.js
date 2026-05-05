@@ -43,7 +43,7 @@ export const sendOtp = async (req, res, next) => {
 
     // ✅ MUST match DLT template EXACTLY
     // const message = encodeURIComponent(rawMessage);
-    const message = rawMessage;
+    const message = `${otp} is your OTP for Abacco Technology CRM login verification. OTP valid for 10 minutes. Do not share this OTP with anyone.`;
     console.log("Final SMS message:", message);
 
     // API URL
