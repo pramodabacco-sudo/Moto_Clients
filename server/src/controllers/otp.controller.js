@@ -42,7 +42,6 @@ export const sendOtp = async (req, res, next) => {
     console.log("OTP stored in memory");
 
     // ✅ MUST match DLT template EXACTLY
-const rawMessage = `${otp} is your OTP for Abacco Technology CRM login verification. OTP valid for 10 minutes. Do not share this OTP with anyone.`;
     // const message = encodeURIComponent(rawMessage);
     const message = rawMessage;
     console.log("Final SMS message:", message);

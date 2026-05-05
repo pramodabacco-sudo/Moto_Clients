@@ -51,14 +51,19 @@ const getServicePrice = (service, selectedCarType) => {
       const discount = parseFloat(pricingObj.discount || 0);
       const discountType = pricingObj.discountType;
 
-      // console.log("Pricing Obj:", pricingObj);
-
       let finalPrice = price;
 
       if (discountType === "PERCENTAGE") {
         finalPrice = price - (price * discount) / 100;
       } else if (discountType === "FLAT") {
         finalPrice = price - discount;
+      } else {
+        // 🔥 FIX: handle missing discountType
+        if (discount > 0 && discount <= 100) {
+          finalPrice = price - (price * discount) / 100;
+        } else {
+          finalPrice = price - discount;
+        }
       }
 
       return Math.max(finalPrice, 0);
@@ -72,8 +77,6 @@ const getServicePrice = (service, selectedCarType) => {
     const price = parseFloat(service.price || 0);
     const discountValue = parseFloat(service.discountValue || 0);
     const discountType = service.discountType;
-
-    // console.log("Service Price:", price, discountType, discountValue);
 
     let finalPrice = price;
 
@@ -95,6 +98,15 @@ const getServicePrice = (service, selectedCarType) => {
       const discount = parseFloat(p.discount || 0);
 
       if (p.discountType === "PERCENTAGE") {
+        return price - (price * discount) / 100;
+      }
+
+      if (p.discountType === "FLAT") {
+        return price - discount;
+      }
+
+      // 🔥 FIX: fallback when no discountType
+      if (discount > 0 && discount <= 100) {
         return price - (price * discount) / 100;
       }
 
@@ -283,7 +295,6 @@ function Section({
       </View>
       {section.services?.map((service, idx) => (
         <ServiceCard
-          // key={service.id}
           key={`${service.id}-${idx}`}
           service={service}
           index={sectionIndex * 8 + idx}
@@ -315,8 +326,6 @@ export default function ServiceDetailsScreen() {
   const router = useRouter();
   const { cartItems } = useCart();
 
-  // ✅ ROOT FIX: Use carType from params.
-  // Defaulting to "SEDAN" only if absolutely necessary (e.g., initial render or direct link)
   const selectedCarType = carType || "SEDAN";
 
   const total = cartItems.reduce(
@@ -330,7 +339,6 @@ export default function ServiceDetailsScreen() {
   const titleSlide = useRef(new Animated.Value(-12)).current;
 
   useEffect(() => {
-    // Debug log to trace the navigation chain
     console.log(`[ServiceDetails] ID: ${id}, carType: ${carType}`);
 
     if (mainService) {
