@@ -60,24 +60,48 @@ export default function SubServiceDetails() {
 
   // ── PRICE FIX (IMPORTANT) ─────────────────────────────
 
-  const getServicePrice = () => {
-    if (service?.pricing?.length > 0 && carType) {
-      const match = service.pricing.find(
-        (p) => p.carType === carType.toUpperCase(),
-      );
+ const getServicePrice = () => {
+   if (service?.pricing?.length > 0 && carType) {
+     const match = service.pricing.find(
+       (p) => p.carType === carType.toUpperCase(),
+     );
 
-      if (match) {
-        const price = parseFloat(match.price);
-        const discount = parseFloat(match.discount || 0);
-        return Math.max(price - discount, 0);
-      }
-    }
+     if (match) {
+       const price = parseFloat(match.price || 0);
+       const discount = parseFloat(match.discount || 0);
+       const discountType = match.discountType;
 
-    // fallback
-    if (service?.price) return service.price;
+       let finalPrice = price;
 
-    return 0;
-  };
+       if (discountType === "PERCENTAGE") {
+         finalPrice = price - (price * discount) / 100;
+       } else if (discountType === "FLAT") {
+         finalPrice = price - discount;
+       }
+
+       return Math.max(finalPrice, 0);
+     }
+   }
+
+   // fallback (also fix here if needed)
+   if (service?.price) {
+     const price = parseFloat(service.price || 0);
+     const discount = parseFloat(service.discountValue || 0);
+     const discountType = service.discountType;
+
+     let finalPrice = price;
+
+     if (discountType === "PERCENTAGE") {
+       finalPrice = price - (price * discount) / 100;
+     } else if (discountType === "FLAT") {
+       finalPrice = price - discount;
+     }
+
+     return Math.max(finalPrice, 0);
+   }
+
+   return 0;
+ };
 
   const finalPrice = getServicePrice();
 

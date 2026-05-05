@@ -124,7 +124,7 @@ export default function PopularServicesCards() {
 
   return (
     <View style={styles.container}>
-      <SectionHeader title="Popular Services" seeAllPath="/services" />
+      <SectionHeader title="Popular Services"/>
 
       {carouselData.length === 0 ? (
         <View style={styles.loader}>

@@ -42,9 +42,20 @@ export default function GarageList({
           if (svc.pricing?.length) {
             const match = svc.pricing.find((p) => p.carType === typeKey);
             if (match) {
-              const net =
-                parseFloat(match.price) - parseFloat(match.discount || 0);
-              prices.push(Math.max(net, 0));
+              const price = parseFloat(match.price || 0);
+              const discount = parseFloat(match.discount || 0);
+
+              let finalPrice;
+
+              if (discount > 0 && discount <= 100) {
+                // percentage discount (10 = 10%)
+                finalPrice = price - (price * discount) / 100;
+              } else {
+                // flat discount (100 = ₹100)
+                finalPrice = price - discount;
+              }
+
+              prices.push(Math.max(finalPrice, 0));
             }
           } else if (svc.price != null) {
             prices.push(parseFloat(svc.price));

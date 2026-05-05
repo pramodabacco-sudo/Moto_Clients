@@ -38,38 +38,87 @@ const C = {
 // ─── Price Helper ───────────────────────────────────────
 // Uses the selectedCarType to filter the service's pricing array
 const getServicePrice = (service, selectedCarType) => {
+  // ==============================
+  // 1. CAR-TYPE SPECIFIC PRICING
+  // ==============================
   if (service.pricing && service.pricing.length > 0) {
     const carTypeUpper = selectedCarType?.toUpperCase();
+
     const pricingObj = service.pricing.find((p) => p.carType === carTypeUpper);
 
     if (pricingObj) {
-      const price = parseFloat(pricingObj.price);
+      const price = parseFloat(pricingObj.price || 0);
       const discount = parseFloat(pricingObj.discount || 0);
-      return Math.max(price - discount, 0);
+      const discountType = pricingObj.discountType;
+
+      let finalPrice = price;
+
+      if (discountType === "PERCENTAGE") {
+        finalPrice = price - (price * discount) / 100;
+      } else if (discountType === "FLAT") {
+        finalPrice = price - discount;
+      } else {
+        // 🔥 FIX: handle missing discountType
+        if (discount > 0 && discount <= 100) {
+          finalPrice = price - (price * discount) / 100;
+        } else {
+          finalPrice = price - discount;
+        }
+      }
+
+      return Math.max(finalPrice, 0);
     }
   }
 
-  // Fallback to standard price if no segment-specific pricing is found
+  // ==============================
+  // 2. SERVICE LEVEL PRICING
+  // ==============================
   if (service.price !== undefined && service.price !== null) {
-    const hasDiscount = !!(service.discountType && service.discountValue);
-    if (!hasDiscount) return service.price;
-    if (service.discountType === "PERCENTAGE") {
-      return Math.round(
-        service.price - (service.price * service.discountValue) / 100,
-      );
+    const price = parseFloat(service.price || 0);
+    const discountValue = parseFloat(service.discountValue || 0);
+    const discountType = service.discountType;
+
+    let finalPrice = price;
+
+    if (discountType === "PERCENTAGE") {
+      finalPrice = price - (price * discountValue) / 100;
+    } else if (discountType === "FLAT") {
+      finalPrice = price - discountValue;
     }
-    if (service.discountType === "FLAT") {
-      return Math.max(service.price - service.discountValue, 0);
-    }
-    return service.price;
+
+    return Math.max(finalPrice, 0);
   }
 
-  // Final fallback: take the lowest available price
+  // ==============================
+  // 3. FALLBACK (LOWEST PRICE)
+  // ==============================
   if (service.pricing && service.pricing.length > 0) {
-    const prices = service.pricing.map((p) => p.price - (p.discount || 0));
-    return Math.min(...prices);
+    const prices = service.pricing.map((p) => {
+      const price = parseFloat(p.price || 0);
+      const discount = parseFloat(p.discount || 0);
+
+      if (p.discountType === "PERCENTAGE") {
+        return price - (price * discount) / 100;
+      }
+
+      if (p.discountType === "FLAT") {
+        return price - discount;
+      }
+
+      // 🔥 FIX: fallback when no discountType
+      if (discount > 0 && discount <= 100) {
+        return price - (price * discount) / 100;
+      }
+
+      return price - discount;
+    });
+
+    return Math.max(Math.min(...prices), 0);
   }
 
+  // ==============================
+  // 4. FINAL FALLBACK
+  // ==============================
   return 0;
 };
 
@@ -246,7 +295,6 @@ function Section({
       </View>
       {section.services?.map((service, idx) => (
         <ServiceCard
-          // key={service.id}
           key={`${service.id}-${idx}`}
           service={service}
           index={sectionIndex * 8 + idx}
@@ -278,8 +326,6 @@ export default function ServiceDetailsScreen() {
   const router = useRouter();
   const { cartItems } = useCart();
 
-  // ✅ ROOT FIX: Use carType from params.
-  // Defaulting to "SEDAN" only if absolutely necessary (e.g., initial render or direct link)
   const selectedCarType = carType || "SEDAN";
 
   const total = cartItems.reduce(
@@ -293,7 +339,6 @@ export default function ServiceDetailsScreen() {
   const titleSlide = useRef(new Animated.Value(-12)).current;
 
   useEffect(() => {
-    // Debug log to trace the navigation chain
     console.log(`[ServiceDetails] ID: ${id}, carType: ${carType}`);
 
     if (mainService) {
